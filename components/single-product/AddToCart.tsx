@@ -1,10 +1,11 @@
 import React from 'react'
+import { Button } from '../ui/button'
 
 function AddToCart() {
   return (
-    <div>
-      AddToCart
-    </div>
+    <Button className='capitalize mt-8' size='lg'>
+        add to cart
+    </Button>
   )
 }
 
