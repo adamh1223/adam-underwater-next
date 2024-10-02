@@ -10,7 +10,7 @@ import { Suspense } from "react";
 function Navbar() {
   return (
     <nav className="border-b">
-      <Container className="flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap py-8 gap-4">
+      <Container className="flex flex-col sm:flex-row sm:justify-between sm:items-center flex-wrap py-6 gap-4">
         <Logo />
         <Suspense>
           <NavSearch />
