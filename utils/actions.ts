@@ -61,24 +61,9 @@ export const createProductAction = async (
   const user = await getAuthUser();
 
   try {
-    const name = formData.get("name") as string;
-    const company = formData.get("company") as string;
-    const price = Number(formData.get("price") as string);
-    const image = formData.get("image") as File;
-    const description = formData.get("description") as string;
-    const featured = Boolean(formData.get("featured") as string);
+    const rawData = Object.fromEntries(formData);
+    
 
-    await db.product.create({
-      data: {
-        name,
-        company,
-        price,
-        image: "/images/print5.jpg",
-        description,
-        featured,
-        clerkId: user.id,
-      },
-    });
     return { message: "product created" };
   } catch (error) {
     return renderError(error);
