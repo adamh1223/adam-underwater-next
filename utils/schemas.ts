@@ -29,19 +29,23 @@ export const productSchema = z.object({
 });
 
 export const imageSchema = z.object({
-    image:validateImageFile()
-})
+  image: validateImageFile(),
+});
 
-function validateImageFile(){
-    const maxUploadSize = 25600 * 25600;
-    //maybe increase this?^
-    const acceptedFileTypes = ['image/'];
-    return z.instanceof(File).refine((file) => {
-        return !file || file.size <= maxUploadSize
-    }, 'File size must be less than 25mb').refine((file) => {
-        return !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
-    },'File must be an image')
-
+function validateImageFile() {
+  const maxUploadSize = 25600 * 25600;
+  //maybe increase this?^
+  const acceptedFileTypes = ["image/"];
+  return z
+    .instanceof(File)
+    .refine((file) => {
+      return !file || file.size <= maxUploadSize;
+    }, "File size must be less than 25mb")
+    .refine((file) => {
+      return (
+        !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
+      );
+    }, "File must be an image");
 }
 
 export function validateWithZodSchema<T>(
@@ -55,3 +59,28 @@ export function validateWithZodSchema<T>(
   }
   return result.data;
 }
+
+export const reviewSchema = z.object({
+  productId: z.string().refine((value) => value !== "", {
+    message: "Product ID cannot be empty",
+  }),
+  authorName: z.string().refine((value) => value !== "", {
+    message: "Author name cannot be empty",
+  }),
+  authorImageUrl: z.string().refine((value) => value !== "", {
+    message: "Author image URL cannot be empty",
+  }),
+  rating: z.coerce
+    .number()
+    .int()
+    .min(1, { message: "Rating must be 1-5" })
+    .max(5, { message: "Rating must be 1-5" }),
+  comment: z
+    .string()
+    .min(10, {
+      message: "Comment must be between 10 and 10,000 characters.",
+    })
+    .max(1000, {
+      message: "Comment must be between 10 and 10,000 characters.",
+    }),
+});
