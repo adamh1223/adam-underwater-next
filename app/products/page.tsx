@@ -10,7 +10,9 @@ function ProductsPage({
   const search = searchParams.search || "";
   console.log(searchParams);
 
-  return <ProductsContainer layout={layout} search={search}/>;
+  return(
+    <ProductsContainer layout={layout} search={search}/>
+  )
 }
 
 export default ProductsPage;
