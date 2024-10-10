@@ -1,13 +1,12 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { VscCode } from "react-icons/vsc";
 
 function Logo() {
   return (
-    <Button size="icon" asChild>
+    <Button variant="ghost" asChild>
       <Link href="/">
-        <VscCode className="w-6 h-6" />
+        <img src={"/svg/colorlogo.svg"} style={{ height: "4rem" }}></img>
       </Link>
     </Button>
   );

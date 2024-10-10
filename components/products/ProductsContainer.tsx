@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { fetchAllProducts } from "@/utils/actions";
 import Link from "next/link";
+import { Suspense } from "react";
+import NavSearch from "@/components/navbar/NavSearch";
 
 async function ProductsContainer({
   layout,
@@ -13,13 +15,22 @@ async function ProductsContainer({
   layout: string;
   search: string;
 }) {
-  const products = await fetchAllProducts({search});
+  const products = await fetchAllProducts({ search });
   const totalProducts = products.length;
   const searchTerm = search ? `&search=${search}` : "";
   return (
     <>
       {/* HEADER */}
       <section>
+        <div className="flex justify-center">
+          <img src={"/images/prints2.png"} style={{ height: "90px" }}></img>
+        </div>
+
+        <div className="flex justify-center py-5">
+          <Suspense>
+            <NavSearch />
+          </Suspense>
+        </div>
         <div className="flex justify-between items-center">
           <h4 className="font-medium text-lg">
             {totalProducts} product{totalProducts > 1 && "s"}

@@ -10,7 +10,9 @@ async function ReviewsPage() {
 
   return (
     <>
-      <SectionTitle text="Your Reviews" />
+      <div className="flex justify-center">
+        <img src={"/images/reviews2.png"} style={{ height: "90px" }}></img>
+      </div>
       <section className="grid md:grid-cols-2 gap-8 mt-4 ">
         {reviews.map((review) => {
           const { comment, rating } = review;

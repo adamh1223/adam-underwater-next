@@ -5,7 +5,6 @@ import { fetchOrCreateCart, updateCart } from "@/utils/actions";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-
 async function CartPage() {
   const { userId } = auth();
   if (!userId) redirect("/");
@@ -15,7 +14,9 @@ async function CartPage() {
 
   return (
     <>
-      <SectionTitle text="Shopping Cart" />
+      <div className="flex justify-center">
+        <img src={"/images/cart.png"} style={{ height: "90px" }}></img>
+      </div>
       <div className="mt-8 grid gap-4 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <CartItemsList cartItems={cartItems} />

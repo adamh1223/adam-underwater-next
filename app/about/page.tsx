@@ -1,12 +1,9 @@
 function AboutPage() {
   return (
     <section>
-      <h1 className="flex flex-wrap gap-2 sm:gap-x-6 items-center justify-center text-4xl font-bold leading-none tracking-wide sm:text-6xl">
-        About
-        <span className="bg-primary pb-2 ps-4 pe-3 rounded-lg tracking-widest text-white">
-          me
-        </span>
-      </h1>
+      <div className="flex justify-center">
+        <img src={"/images/aboutme3.png"} style={{ height: "90px" }}></img>
+      </div>
       <p className="mt-6 text-lg tracking-wide leading-8 max-w-5xl mx-auto text-muted-foreground">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero hic
         distinctio ducimus temporibus nobis autem laboriosam repellat, magni

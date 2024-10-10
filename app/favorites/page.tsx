@@ -8,7 +8,9 @@ async function FavoritesPage() {
     return <SectionTitle text="You have no favorites yet." />;
   return (
     <div>
-      <SectionTitle text="Favorites" />
+      <div className="flex justify-center">
+        <img src={"/images/favorites4.png"} style={{ height: "90px" }}></img>
+      </div>
       <ProductsGrid products={favorites.map((favorite) => favorite.product)} />
     </div>
   );
