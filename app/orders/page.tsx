@@ -16,7 +16,9 @@ async function OrdersPage() {
 
   return (
     <>
-      <SectionTitle text="Your Orders" />
+      <div className="flex justify-center pb-5">
+        <img src={"/images/orders.png"} style={{ height: "90px" }} />
+      </div>
       <div>
         <Table>
           <TableCaption>Total orders : {orders.length}</TableCaption>

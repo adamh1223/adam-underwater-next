@@ -10,7 +10,7 @@ async function ReviewsPage() {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-5">
         <img src={"/images/reviews2.png"} style={{ height: "90px" }}></img>
       </div>
       <section className="grid md:grid-cols-2 gap-8 mt-4 ">

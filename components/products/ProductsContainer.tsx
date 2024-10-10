@@ -22,7 +22,7 @@ async function ProductsContainer({
     <>
       {/* HEADER */}
       <section>
-        <div className="flex justify-center">
+        <div className="flex justify-center pb-3">
           <img src={"/images/prints2.png"} style={{ height: "90px" }}></img>
         </div>
 
@@ -31,7 +31,7 @@ async function ProductsContainer({
             <NavSearch />
           </Suspense>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center pt-5">
           <h4 className="font-medium text-lg">
             {totalProducts} product{totalProducts > 1 && "s"}
           </h4>
