@@ -36,7 +36,7 @@ export default function RootLayout({
           >
           <Providers>
             <Navbar />
-            <Container className="py-10">{children}</Container>
+            <Container>{children}</Container>
           </Providers>
           
           

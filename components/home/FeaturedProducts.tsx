@@ -9,7 +9,9 @@ async function FeaturedProducts() {
   if (products.length === 0) return <EmptyList />;
   return (
     <section className="pt-24">
-      <Sectiontitle text="featured products" />
+      <div className="flex justify-center">
+        <img src={"/images/featured.png"} style={{ height: "90px" }}></img>
+      </div>
       <ProductsGrid products={products} />
     </section>
   );
