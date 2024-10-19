@@ -23,7 +23,11 @@ async function ProductsContainer({
       {/* HEADER */}
       <section>
         <div className="flex justify-center pb-3">
-          <img src={"/images/prints2.png"} style={{ height: "90px" }}></img>
+          <img
+            src={"/images/prints2.png"}
+            style={{ height: "110px" }}
+            className="pt-3"
+          ></img>
         </div>
 
         <div className="flex justify-center py-5">

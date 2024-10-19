@@ -17,7 +17,11 @@ async function OrdersPage() {
   return (
     <>
       <div className="flex justify-center pb-5">
-        <img src={"/images/orders.png"} style={{ height: "90px" }} />
+        <img
+          src={"/images/orders.png"}
+          style={{ height: "110px" }}
+          className="pt-5"
+        />
       </div>
       <div>
         <Table>

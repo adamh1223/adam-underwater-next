@@ -16,23 +16,23 @@ function Navbar() {
       <Container className="flex flex-col xl:flex-row sm:justify-between sm:items-center lg:justify-between flex-wrap py-4 gap-4 navbar">
         <Logo />
         <div className="flex items-center">
-          <Button variant="link" className="mx-[-7px]">
-            Work
+          <Button variant="link">
+            <Link href="/work">Work</Link>
           </Button>
-          <Button variant="link" className="mx-[-7px]">
-            About
+          <Button variant="link">
+            <Link href="/about">About</Link>
           </Button>
-          <Button variant="link" className="mx-[-7px]">
-            Services
+          <Button variant="link">
+            <Link href="/services">Services</Link>
           </Button>
-          <Button variant="link" className="mx-[-7px]">
-            Prints
+          <Button variant="link">
+            <Link href="/products">Products</Link>
           </Button>
-          <Button variant="link" className="mx-[-7px]">
-            Stock Footage
+          <Button variant="link">
+            <Link href="/stock">Stock Footage</Link>
           </Button>
-          <Button variant="link" className="mx-[-7px]">
-            Contact
+          <Button variant="link">
+            <Link href="/contact">Contact</Link>
           </Button>
         </div>
         <div className="flex gap-4 items-center">

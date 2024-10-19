@@ -9,7 +9,11 @@ async function FavoritesPage() {
   return (
     <div>
       <div className="flex justify-center">
-        <img src={"/images/favorites4.png"} style={{ height: "90px" }}></img>
+        <img
+          src={"/images/favorites4.png"}
+          style={{ height: "110px" }}
+          className="pt-5"
+        ></img>
       </div>
       <ProductsGrid products={favorites.map((favorite) => favorite.product)} />
     </div>

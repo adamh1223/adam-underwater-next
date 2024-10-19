@@ -15,7 +15,11 @@ async function CartPage() {
   return (
     <>
       <div className="flex justify-center">
-        <img src={"/images/cart.png"} style={{ height: "90px" }}></img>
+        <img
+          src={"/images/cart.png"}
+          style={{ height: "110px" }}
+          className="pt-5"
+        ></img>
       </div>
       <div className="mt-8 grid gap-4 lg:grid-cols-12">
         <div className="lg:col-span-8">

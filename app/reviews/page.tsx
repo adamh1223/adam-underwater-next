@@ -11,7 +11,11 @@ async function ReviewsPage() {
   return (
     <>
       <div className="flex justify-center pb-5">
-        <img src={"/images/reviews2.png"} style={{ height: "90px" }}></img>
+        <img
+          src={"/images/reviews2.png"}
+          style={{ height: "110px" }}
+          className="pt-5"
+        ></img>
       </div>
       <section className="grid md:grid-cols-2 gap-8 mt-4 ">
         {reviews.map((review) => {

@@ -2,7 +2,11 @@ function AboutPage() {
   return (
     <section>
       <div className="flex justify-center">
-        <img src={"/images/aboutme3.png"} style={{ height: "90px" }}></img>
+        <img
+          src={"/images/aboutme3.png"}
+          style={{ height: "110px" }}
+          className="pt-5"
+        ></img>
       </div>
       <p className="mt-6 text-lg tracking-wide leading-8 max-w-5xl mx-auto text-muted-foreground">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero hic
