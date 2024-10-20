@@ -15,7 +15,7 @@ function ProductsList({ products }: { products: Product[] }) {
         return (
           <article key={productId} className="group relative">
             <Link href={`/products/${productId}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500">
+              <Card className="transform group-hover:shadow-xl transition-shadow duration-500 mx-8 my-3">
                 <CardContent className="p-8 gap-y-4 grid md:grid-cols-3">
                   <div className="relative h-64 md:h-48 md:w-48">
                     <Image
@@ -37,7 +37,7 @@ function ProductsList({ products }: { products: Product[] }) {
                 </CardContent>
               </Card>
             </Link>
-            <div className="absolute bottom-8 right-8 z-5">
+            <div className="absolute bottom-8 right-8 z-5 p-5">
               <FavoriteToggleButton productId={productId} />
             </div>
           </article>

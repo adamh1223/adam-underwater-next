@@ -36,10 +36,10 @@ async function ProductsContainer({
           </Suspense>
         </div>
         <div className="flex justify-between items-center pt-5">
-          <h4 className="font-medium text-lg">
+          <h4 className="font-medium text-xl p-5">
             {totalProducts} product{totalProducts > 1 && "s"}
           </h4>
-          <div className="flex gap-x-4">
+          <div className="flex gap-x-4 p-5">
             <Button
               variant={layout === "grid" ? "default" : "ghost"}
               size="icon"
