@@ -5,7 +5,7 @@ function page() {
     <>
       <div className="flex justify-center pb-5 ps-3">
         <img
-          src={"/images/stock.png"}
+          src={"/images/stock2.png"}
           style={{ height: "120px" }}
           className="pt-2"
         />
