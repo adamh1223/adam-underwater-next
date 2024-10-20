@@ -19,7 +19,7 @@ function page() {
           className="frame"
           src="https://player.vimeo.com/video/814128392?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
           width="900vw"
-          height="510vh"
+          height="506vh"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
           title="Seaforestation Trailer"
         ></iframe>
