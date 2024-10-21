@@ -1,8 +1,18 @@
+"use client";
+
 import Sectiontitle from "@/components/global/Sectiontitle";
 import "./services.css";
 import { Button } from "@/components/ui/button";
 
 function page() {
+  const handleClick = (
+    sectionId: string,
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    let section = document.getElementById(sectionId);
+    event.preventDefault();
+    section && section.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <>
       <div className="flex justify-center pb-5 ps-1">
@@ -20,18 +30,24 @@ function page() {
         }}
       >
         <Button variant="outline" className="anchor">
-          <a href="#video">Underwater Video</a>
+          <a onClick={(evt) => handleClick("video", evt)}>Underwater Video</a>
         </Button>
         <Button variant="outline" className="anchor">
-          <a href="#photo">Underwater Photo</a>
+          <a onClick={(evt) => handleClick("photo", evt)}>Underwater Photo</a>
         </Button>
         <Button variant="outline" className="anchor">
-          <a href="#dives">Guided Dives</a>
+          <a onClick={(evt) => handleClick("dives", evt)}>Guided Dives</a>
         </Button>
       </div>
 
-      <section id="video">
+      <section id="video" className="h-[500px]">
         <Sectiontitle text="Underwater 8K Video" />
+      </section>
+      <section id="photo" className="h-[500px]">
+        <Sectiontitle text="Underwater 45mp Photo" />
+      </section>
+      <section id="dives" className="h-[500px]">
+        <Sectiontitle text="Guided Dives" />
       </section>
     </>
   );

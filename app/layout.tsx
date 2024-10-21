@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/global/Container";
 import Providers from "./providers";
 import {ClerkProvider} from '@clerk/nextjs'
+import Footer from "@/components/footer/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Providers>
             <Navbar />
             <Container>{children}</Container>
+            <Footer/>
           </Providers>
           
           
