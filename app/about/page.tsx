@@ -1,7 +1,7 @@
 function AboutPage() {
   return (
     <section>
-      <div className="flex justify-center">
+      <div className="flex justify-center ms-[-10px]">
         <img
           src={"/images/aboutme3.png"}
           style={{ height: "110px" }}

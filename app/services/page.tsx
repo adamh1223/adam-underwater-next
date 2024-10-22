@@ -15,7 +15,7 @@ function page() {
   };
   return (
     <>
-      <div className="flex justify-center pb-5 ps-1">
+      <div className="flex justify-center pb-5">
         <img
           src={"/images/services2.png"}
           style={{ height: "110px" }}
