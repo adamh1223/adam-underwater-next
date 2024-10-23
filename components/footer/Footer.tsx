@@ -11,6 +11,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import LoopingCarousel from "./FooterCarousel";
+import { Button } from "../ui/button";
+import Sectiontitle from "../global/Sectiontitle";
 
 function Footer() {
   return (
@@ -44,18 +46,45 @@ function Footer() {
           <div className="flex-1 h-px bg-muted" />
         </div>
       </div>
+      <div className="flex justify-center text-3xl py-4">
+        <p className="">Testimonials</p>
+      </div>
+
       {/* Carousel */}
       <LoopingCarousel />
       {/* Bottom Tabs */}
-      <div className="flex justify-evenly w-full pb-[100px] text-muted-foreground">
+      <div className="flex justify-evenly w-full pb-[100px] text-muted-foreground pt-5">
         <div className="help">
-          <div className="footer-title">Help</div>
+          <div className="footer-title flex justify-center text-3xl mb-2">
+            Help
+          </div>
+          <div className="my-[-10px]">
+            <Button variant="link">
+              <Link href="/faq">FAQ</Link>
+            </Button>
+          </div>
         </div>
         <div className="policies">
-          <div className="footer-title">Policies</div>
+          <div className="footer-title flex justify-center mb-2 text-3xl">
+            Policies
+          </div>
+          <div className="my-[-10px]">
+            <Button variant="link">
+              <Link href="/policies">Privacy Policy</Link>
+            </Button>
+          </div>
+          <div className="my-[-10px]">
+            <Button variant="link">
+              <Link href="/policies">Refund Policy</Link>
+            </Button>
+          </div>
+          <div className="my-[-10px]">
+            <Button variant="link">
+              <Link href="/policies">Shipping Policy</Link>
+            </Button>
+          </div>
         </div>
-        <div>hi</div>
-        <div>hi</div>
+        <div className="footer-title flex justify-center">hi</div>
       </div>
 
       {/* Very Bottom */}
