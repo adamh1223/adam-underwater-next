@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
 .about-icon-wrapper {
@@ -20,12 +19,12 @@
 }
 
 .about-icon {
-  height: 70px;
+  height: 115px;
 }
 
 .padi-icon {
-  height: 85px;
-  margin: 0 0 -7px -7px;
+  height: 125px;
+  margin: 0 0 -5px -5px;
 }
 
 .padi-description {
@@ -38,25 +37,38 @@
   margin: 0 30px 40px 30px;
 }
 
+/* At min-width 623px: Align headshot and icons side by side */
 @media (min-width: 623px) {
+  .about-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .headshot {
+    height: 300px;
+    margin: 0 20px 30px 30px;
+  }
+
+  .about-icon {
+    height: 70px;
+  }
+
+  .padi-icon {
+    height: 80px;
+  }
+}
+
+/* At min-width 941px: Use the larger layout */
+@media (min-width: 941px) {
   .about-container {
     flex-direction: row;
     align-items: center;
   }
 
   .headshot {
-    height: 300px;
-    margin: 0 30px 0 30px;
-  }
-}
-
-@media (min-width: 941px) {
-  .about-container {
-    flex-direction: row;
-  }
-
-  .about-icon-wrapper {
-    margin: 0;
+    height: 430px;
+    margin: 0 30px 40px 30px;
   }
 
   .about-icon {
@@ -66,23 +78,20 @@
   .padi-icon {
     height: 125px;
   }
-
-  .headshot {
-    height: 430px;
-  }
 }
 
-@media (max-width: 623px) {
+/* Default for screens below 623px: Stack icons below the headshot */
+@media (max-width: 622px) {
   .about-container {
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     gap: 30px;
   }
 
   .about-icon-wrapper {
+    margin: 0;
     width: 100%;
     align-items: center;
-    margin: 0;
   }
 
   .about-icon-container {
@@ -90,7 +99,7 @@
   }
 
   .headshot {
-    height: 430px;
+    height: 400px;
     margin: 0 0 20px 0;
   }
 }
