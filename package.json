@@ -6,10 +6,13 @@
     "dev": "next dev & npx next-video sync -w",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "manifest": "node node_modules/manifest/scripts/watch/watch.js",
+    "manifest:seed": "node node_modules/manifest/dist/manifest/src/seed/scripts/seed.js"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.6.4",
+    "@mnfst/sdk": "^1.0.5",
     "@prisma/client": "^5.20.0",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -30,6 +33,7 @@
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.3.0",
     "lucide-react": "^0.446.0",
+    "manifest": "^4.0.4",
     "next": "14.2.13",
     "next-themes": "^0.3.0",
     "next-video": "^1.2.0",

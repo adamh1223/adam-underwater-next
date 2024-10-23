@@ -13,6 +13,7 @@ import {
 import LoopingCarousel from "./FooterCarousel";
 import { Button } from "../ui/button";
 import Sectiontitle from "../global/Sectiontitle";
+import NewsLetter from "../newsLetter/NewsLetter";
 
 function Footer() {
   return (
@@ -84,7 +85,7 @@ function Footer() {
             </Button>
           </div>
         </div>
-        <div className="footer-title flex justify-center">hi</div>
+        <NewsLetter/>
       </div>
 
       {/* Very Bottom */}
