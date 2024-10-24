@@ -1,11 +1,22 @@
-import React from 'react'
+import './Submenu.css'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
-function Submenu(visible) {
+interface SubmenuProps{
+  visible: Boolean;
+  onMouseLeave: () => void
+}
+
+function Submenu({visible, onMouseLeave}:SubmenuProps) {
   return (
     <div
+    onMouseLeave={onMouseLeave}
       className={visible ? "submenu show-submenu" : "submenu"}
     >
-      <h5>{'hello'}</h5>
+      {visible && <><h5>{'hello'}</h5>
       <div
         className="submenu-links"
         style={{
@@ -17,8 +28,10 @@ function Submenu(visible) {
               <div className="submenu-icon">{'thing'}</div>
               <p className="sublink-text">{'thing2'}</p>
             </a>
-      </div>
+      </div></>}
+      
     </div>
+    
   );
 }
 

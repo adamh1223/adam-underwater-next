@@ -5,27 +5,49 @@ import { useState, useRef } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Submenu from "./Submenu";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { useRouter } from "next/navigation";
+
+
 
 function ServicesDropdown() {
+  const router = useRouter()
   const [showLinks, setShowLinks] = useState(false);
   const [submenuVisible, setSubmenuVisible] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
-  const onMouseEnter = () => {
-    setSubmenuVisible(true);
-  };
-  const handleMouseLeave = () => {
-    setSubmenuVisible(false); // Hide submenu when mouse leaves navbar
-  };
+  const handleServicesClick = () => {
+router.push('/services')
+  }
+ const handleSubservicesClick = (section:string) => {
+router.push(`/services#${section}`)
+ }
   return (
-    <>
-      <Button variant="link">
-        <Link href="/services" onMouseEnter={onMouseEnter}>
-          Services
-        </Link>
+    <HoverCard openDelay={1}>
+  <HoverCardTrigger>
+
+          
+      <Button variant="link" onClick={handleServicesClick}>
+        Services
       </Button>
-      {<Submenu visible={submenuVisible} />}
-    </>
+        </HoverCardTrigger>
+
+  <HoverCardContent>
+    <Button variant="ghost" onClick={()=>handleSubservicesClick('video')}>
+    Underwater Video
+      </Button>
+    <Button variant="ghost" onClick={()=>handleSubservicesClick('photo')}>
+    Underwater Photo
+      </Button>
+    <Button variant="ghost" onClick={()=>handleSubservicesClick('dives')}>
+    Guided Dives
+      </Button>
+  </HoverCardContent>
+</HoverCard>
   );
 }
 

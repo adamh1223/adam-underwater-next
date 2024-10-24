@@ -1,0 +1,55 @@
+.submenu {
+  display: block;
+  position: fixed;
+  width: 100px;
+  background-color: var(--proj-black);
+  left: 54%;
+  padding: 2rem;
+  transform-origin: top;
+  perspective: 1000px;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+.show-submenu {
+  visibility: visible;
+  opacity: 1;
+}
+.submenu h5 {
+  margin-bottom: 1rem;
+  color: var(--proj-white);
+}
+.submenu-links {
+  display: grid;
+  row-gap: 0.5rem;
+}
+.submenu-links a:hover {
+  color: var(--proj-sky-blue);
+  transition: 0.3s ease-in-out;
+}
+.sublink-text {
+  display: inline-block;
+  color: var(--proj-white);
+  text-transform: capitalize;
+  display: flex;
+  align-items: start;
+  margin: 0 0 2px 0;
+  gap: 1rem;
+}
+.sublink-text:hover {
+  color: var(--proj-sky-blue);
+  transition: 0.3s ease-in-out;
+}
+.submenu-icon {
+  color: var(--proj-sky-blue);
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+.submenu a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
