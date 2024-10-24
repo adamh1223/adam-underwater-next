@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import { useState, useRef } from "react";
 import Submenu from "./Submenu";
 import ServicesDropdown from "./ServicesDropdown";
+import StockDropdown from "./StockDropdown";
 
 function Navbar() {
   return (
@@ -32,9 +33,7 @@ function Navbar() {
             <Button variant="link">
               <Link href="/products">Products</Link>
             </Button>
-            <Button variant="link">
-              <Link href="/stock">Stock Footage</Link>
-            </Button>
+            <StockDropdown />
             <Button variant="link">
               <Link href="/contact">Contact</Link>
             </Button>

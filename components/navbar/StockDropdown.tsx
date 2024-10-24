@@ -12,39 +12,36 @@ import {
 } from "@/components/ui/hover-card";
 import { useRouter } from "next/navigation";
 
-function ServicesDropdown() {
+function StockDropdown() {
   const router = useRouter();
   const [showLinks, setShowLinks] = useState(false);
   const [submenuVisible, setSubmenuVisible] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
   const handleServicesClick = () => {
-    router.push("/services");
+    router.push("/stock");
   };
   const handleSubservicesClick = (section: string) => {
-    router.push(`/services#${section}`);
+    router.push(`/stock#${section}`);
   };
   return (
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <Button variant="link" onClick={handleServicesClick}>
-          Services
+          Stock Footage
         </Button>
       </HoverCardTrigger>
 
       <HoverCardContent>
         <Button variant="ghost" onClick={() => handleSubservicesClick("video")}>
-          Underwater Video
+          Stock Video
         </Button>
         <Button variant="ghost" onClick={() => handleSubservicesClick("photo")}>
-          Underwater Photo
-        </Button>
-        <Button variant="ghost" onClick={() => handleSubservicesClick("dives")}>
-          Guided Dives
+          Stock Photo
         </Button>
       </HoverCardContent>
     </HoverCard>
   );
 }
 
-export default ServicesDropdown;
+export default StockDropdown;

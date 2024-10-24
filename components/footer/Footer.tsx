@@ -47,9 +47,6 @@ function Footer() {
           <div className="flex-1 h-px bg-muted" />
         </div>
       </div>
-      <div className="flex justify-center text-3xl py-4">
-        <p className="">Testimonials</p>
-      </div>
 
       {/* Carousel */}
       <LoopingCarousel />
@@ -85,7 +82,7 @@ function Footer() {
             </Button>
           </div>
         </div>
-        <NewsLetter/>
+        <NewsLetter />
       </div>
 
       {/* Very Bottom */}
