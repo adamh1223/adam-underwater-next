@@ -13,6 +13,8 @@ import { useState, useRef } from "react";
 import Submenu from "./Submenu";
 import ServicesDropdown from "./ServicesDropdown";
 import StockDropdown from "./StockDropdown";
+import AboutDropdown from "./AboutDropdown";
+import ProductsDropdown from "./ProductsDropdown";
 
 function Navbar() {
   return (
@@ -24,15 +26,11 @@ function Navbar() {
             <Button variant="link">
               <Link href="/work">Work</Link>
             </Button>
-            <Button variant="link">
-              <Link href="/about">About</Link>
-            </Button>
+            <AboutDropdown />
             <ServicesDropdown />
           </div>
           <div className="flex justify-center w-full">
-            <Button variant="link">
-              <Link href="/products">Products</Link>
-            </Button>
+            <ProductsDropdown />
             <StockDropdown />
             <Button variant="link">
               <Link href="/contact">Contact</Link>

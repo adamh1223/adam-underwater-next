@@ -21,7 +21,7 @@ async function CartPage() {
           className="pt-5"
         ></img>
       </div>
-      <div className="mt-8 grid gap-4 lg:grid-cols-12">
+      <div className="mt-8 grid gap-4 lg:grid-cols-12 px-5">
         <div className="lg:col-span-8">
           <CartItemsList cartItems={cartItems} />
         </div>

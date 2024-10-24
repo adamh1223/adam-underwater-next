@@ -17,7 +17,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
   const reviewDoesNotExist =
     userId && !(await findExistingReview(userId, product.id));
   return (
-    <section>
+    <section className="p-[50px]">
       <BreadCrumbs name={product.name} />
       <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">
         {/* IMAGE FIRST COL */}
