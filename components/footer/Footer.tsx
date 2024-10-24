@@ -19,7 +19,7 @@ function Footer() {
   return (
     <>
       {/* Socials */}
-      <div className="footer-container">
+      <div className="footer-container px-5">
         <div className="flex items-center justify-center w-full my-8">
           <div className="flex-1 h-px bg-muted" />
           <span className="px-4 text-muted-foreground">
@@ -51,7 +51,7 @@ function Footer() {
       {/* Carousel */}
       <LoopingCarousel />
       {/* Bottom Tabs */}
-      <div className="flex justify-evenly w-full pb-[100px] text-muted-foreground pt-5">
+      <div className="flex justify-evenly w-full pb-[100px] text-muted-foreground pt-5 mx-5">
         <div className="help">
           <div className="footer-title flex justify-center text-3xl mb-2">
             Help
