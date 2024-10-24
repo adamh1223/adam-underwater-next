@@ -10,9 +10,9 @@ function Hero() {
 
   const handleVideoLoad = () => {
     setTimeout(() => {
-setIsVideoReady(true); // Switch to video only when loaded
-    }, 10000)
-  }
+      setIsVideoReady(true); // Switch to video only when loaded
+    }, 5000);
+  };
 
   useEffect(() => {
     const iframe = document.querySelector("iframe");
