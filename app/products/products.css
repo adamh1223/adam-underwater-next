@@ -1,0 +1,17 @@
+@media (min-width: 670px) {
+  .anchors {
+    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 669px) {
+  .anchors {
+    grid-template-columns: 1fr;
+  }
+}
+
+.anchor {
+  margin: 20px;
+}
