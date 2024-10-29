@@ -23,7 +23,7 @@ async function CartPage() {
       </div>
       <div className="mt-8 grid gap-4 lg:grid-cols-12 px-5">
         <div className="lg:col-span-8">
-          <CartItemsList cartItems={cartItems} />
+          <CartItemsList cartItems={currentCart.cartItems} />
         </div>
         <div className="lg:col-span-4">
           <CartTotals cart={currentCart} />

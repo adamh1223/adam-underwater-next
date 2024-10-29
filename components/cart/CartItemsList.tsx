@@ -1,9 +1,15 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { FirstColumn, SecondColumn, FourthColumn } from "./CartItemColumns";
 import ThirdColumn from "./ThirdColumn";
 import { CartItemWithProduct } from "@/utils/types";
-import {CartItem} from '@prisma/client'
+import { CartItem } from "@prisma/client";
+import { useEffect } from "react";
+
 function CartItemsList({ cartItems }: { cartItems: CartItemWithProduct[] }) {
+  console.log(cartItems);
+  useEffect(() => {}, [cartItems.length]);
   return (
     <div>
       {cartItems.map((cartItem) => {
@@ -16,7 +22,7 @@ function CartItemsList({ cartItems }: { cartItems: CartItemWithProduct[] }) {
           >
             <FirstColumn image={image} name={name} />
             <SecondColumn name={name} company={company} productId={productId} />
-            <ThirdColumn id={id} quantity={amount}/>
+            <ThirdColumn id={id} quantity={amount} />
             <FourthColumn price={price} />
           </Card>
         );

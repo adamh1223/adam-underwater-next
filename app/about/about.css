@@ -96,6 +96,11 @@
 
   .about-icon-container {
     justify-content: center;
+    width: 100%;
+  }
+  .sci-description,
+  .faa-description {
+    width: 270px;
   }
 
   .headshot {
@@ -119,4 +124,12 @@
 
 .anchor {
   margin: 20px;
+}
+
+@media (max-width: 670px) {
+  .anchors {
+    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -499,6 +499,7 @@ export const removeCartItemAction = async (
       userId: user.id,
       errorOnFailure: true,
     });
+
     await db.cartItem.delete({
       where: {
         id: cartItemId,
@@ -547,23 +548,22 @@ export const updateCartItemAction = async ({
 
 export const createOrderAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
-  let orderId:null | string = null
-  let cartId:null | string = null
+  let orderId: null | string = null;
+  let cartId: null | string = null;
 
   try {
     const cart = await fetchOrCreateCart({
       userId: user.id,
       errorOnFailure: true,
     });
-    cartId = cart.id
+    cartId = cart.id;
 
     await db.order.deleteMany({
       where: {
         clerkId: user.id,
         isPaid: false,
-      }
-    })
-
+      },
+    });
 
     const order = await db.order.create({
       data: {
@@ -575,7 +575,7 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
         email: user.emailAddresses[0].emailAddress,
       },
     });
-    orderId = order.id
+    orderId = order.id;
   } catch (error) {
     return renderError(error);
   }

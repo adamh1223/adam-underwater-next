@@ -54,11 +54,13 @@ function AboutPage() {
 
             <div className="about-icon-container">
               <img src={"/images/aaus-logo.png"} className="about-icon" />
-              <p className="text-lg description">AAUS Scientific Diver</p>
+              <p className="text-lg description sci-description">
+                AAUS Scientific Diver
+              </p>
             </div>
             <div className="about-icon-container">
               <img src={"/images/faa-logo.png"} className="about-icon" />
-              <p className="text-lg description">FAA Part 107 Drone Operator</p>
+              <p className="text-lg description faa-description">FAA Part 107 Drone Operator</p>
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ function ServicesDropdown() {
         </Button>
       </HoverCardTrigger>
 
-      <HoverCardContent>
+      <HoverCardContent className="w-48">
         <Button variant="ghost" onClick={() => handleSubservicesClick("video")}>
           Underwater Video
         </Button>
