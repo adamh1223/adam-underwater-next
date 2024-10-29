@@ -32,7 +32,7 @@ function StockDropdown() {
         </Button>
       </HoverCardTrigger>
 
-      <HoverCardContent>
+      <HoverCardContent className="w-40">
         <Button variant="ghost" onClick={() => handleSubservicesClick("video")}>
           Stock Video
         </Button>

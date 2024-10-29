@@ -32,7 +32,7 @@ function ProductsDropdown() {
         </Button>
       </HoverCardTrigger>
 
-      <HoverCardContent>
+      <HoverCardContent className="w-56">
         <Button
           variant="ghost"
           onClick={() => handleSubservicesClick("prints")}

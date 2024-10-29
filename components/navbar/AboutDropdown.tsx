@@ -32,14 +32,17 @@ function AboutDropdown() {
         </Button>
       </HoverCardTrigger>
 
-      <HoverCardContent>
+      <HoverCardContent className="w-40">
         <Button variant="ghost" onClick={() => handleSubservicesClick("about")}>
           About Me
         </Button>
         <Button variant="ghost" onClick={() => handleSubservicesClick("gear")}>
           My Gear
         </Button>
-        <Button variant="ghost" onClick={() => handleSubservicesClick("workflow")}>
+        <Button
+          variant="ghost"
+          onClick={() => handleSubservicesClick("workflow")}
+        >
           My Workflow
         </Button>
       </HoverCardContent>
