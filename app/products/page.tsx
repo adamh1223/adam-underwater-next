@@ -43,6 +43,7 @@ function ProductsPage({
           <a onClick={(evt) => handleClick("print-creation", evt)}>Print Creation</a>
         </Button>
       </div> */}
+      
       <ProductsContainer layout={layout} search={search} />
       {/* <section id="print-creation" className="h-[500px]">
         <Sectiontitle text="Print Creation Process" />

@@ -19,7 +19,7 @@
 
 @media (min-width: 670px) {
   .anchor {
-    margin: 20px;
+    margin: 0 20px 20px 0;
   }
 }
 @media (max-width: 670px) {
