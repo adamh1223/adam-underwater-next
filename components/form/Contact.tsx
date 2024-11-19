@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/0EyGBV5aW7U
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,16 +10,17 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import "./Contact.css";
 
 export default function Component() {
   return (
     <div
       key="1"
-      className="border-2 border-gray-300 dark:border-gray-700 p-4 rounded-md shadow-md space-y-8"
+      className="border-2 border-gray-300 dark:border-gray-700 p-4 rounded-md shadow-md space-y-8 container"
     >
       <div className="space-y-2">
         <h2 className="text-3xl font-bold">Contact Us</h2>
-        <p className="text-gray-500 dark:text-gray-400">
+        <p>
           Please fill the below form and we will get back to you as soon as
           possible.
         </p>
@@ -38,63 +34,25 @@ export default function Component() {
             Name
           </Label>
           <Input
-            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 name"
             id="name"
             placeholder="Enter your name"
             required
           />
         </div>
-        <div className="flex space-x-2 space-y-2 items-end">
-          <div className="w-1/12 space-y-2">
-            <Label
-              className="text-gray-600 dark:text-gray-400 required"
-              htmlFor="prefix"
-            >
-              Prefix
-            </Label>
-            <Select>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="+1">
-                    <img
-                      alt="US Flag"
-                      className="inline-block mr-2"
-                      height={20}
-                      src="/placeholder.svg"
-                      style={{ aspectRatio: "20/20", objectFit: "cover" }}
-                      width={20}
-                    />
-                    (+1)
-                  </SelectItem>
-                  <SelectItem value="+44">
-                    <img
-                      alt="UK Flag"
-                      className="inline-block mr-2"
-                      height={20}
-                      src="/placeholder.svg"
-                      style={{ aspectRatio: "20/20", objectFit: "cover" }}
-                      width={20}
-                    />
-                    (+44)
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="w-3/4 space-y-2">
-            <Label
-              className="text-gray-600 dark:text-gray-400 required"
-              htmlFor="phone"
-            >
-              Phone Number
-            </Label>
-            <Input
-              className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
-              id="phone"
-              placeholder="Enter your phone number"
-              required
-            />
-          </div>
+        <div className="space-y-2">
+          <Label
+            className="text-gray-600 dark:text-gray-400 required"
+            htmlFor="email"
+          >
+            Email
+          </Label>
+          <Input
+            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 email"
+            id="email"
+            placeholder="Enter your email address"
+            required
+          />
         </div>
         <div className="space-y-2">
           <Label
@@ -104,8 +62,7 @@ export default function Component() {
             Message
           </Label>
           <textarea
-            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 w-full p-2"
-            defaultValue="I would like to receive more information"
+            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 w-full p-2 message"
             id="message"
             placeholder="Type your message"
             required
@@ -129,7 +86,7 @@ export default function Component() {
           </Label>
         </div>
         <Button
-          className="w-full bg-gray-300 dark:bg-gray-700 text-black dark:text-white"
+          className="w-full bg-gray-300 dark:bg-gray-700 text-black"
           type="submit"
         >
           Submit

@@ -1,0 +1,11 @@
+.name,
+.email,
+.message {
+  color: black;
+}
+
+.container {
+  width: 90vw;
+  padding: 30px;
+  margin: 50px auto; /* Center the container horizontally */
+}
