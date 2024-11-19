@@ -23,7 +23,7 @@ function ProductsPage({
 
   return (
     <>
-      <div className="flex justify-center pb-3">
+      <div className="flex justify-center pb-3" id="prints">
         <img
           src={"/images/prints2.png"}
           style={{ height: "110px" }}
@@ -47,6 +47,9 @@ function ProductsPage({
       {/* <section id="print-creation" className="h-[500px]">
         <Sectiontitle text="Print Creation Process" />
       </section> */}
+      <section id="print-creation" className="h-[500px]">
+        <Sectiontitle text="Print Creation Process" />
+      </section>
     </>
   );
 }

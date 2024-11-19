@@ -1,4 +1,4 @@
-import React from "react";
+import Contact from "@/components/form/Contact";
 
 function page() {
   return (
@@ -10,6 +10,7 @@ function page() {
           className="pt-3"
         />
       </div>
+      <Contact />
     </>
   );
 }

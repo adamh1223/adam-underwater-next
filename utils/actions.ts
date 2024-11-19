@@ -548,6 +548,10 @@ export const updateCartItemAction = async ({
 
 export const createOrderAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
+  const fullName = `${user.firstName} ${user.lastName}`;
+  console.log(user);
+  console.log(fullName);
+
   let orderId: null | string = null;
   let cartId: null | string = null;
 
@@ -556,6 +560,7 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
       userId: user.id,
       errorOnFailure: true,
     });
+    const productIDs = cart?.cartItems.map((cartItem) => cartItem.productId);
     cartId = cart.id;
 
     await db.order.deleteMany({
@@ -568,11 +573,13 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
     const order = await db.order.create({
       data: {
         clerkId: user.id,
+        productIDs,
         products: cart.numItemsInCart,
         orderTotal: cart.orderTotal,
         tax: cart.tax,
         shipping: cart.shipping,
         email: user.emailAddresses[0].emailAddress,
+        fullName,
       },
     });
     orderId = order.id;
