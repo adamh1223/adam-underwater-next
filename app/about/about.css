@@ -137,3 +137,18 @@
     margin: 10px;
   }
 }
+.gear-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.subheader {
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+  padding: 0 30px 0 30px;
+}

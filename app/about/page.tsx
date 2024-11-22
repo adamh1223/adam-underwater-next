@@ -3,6 +3,14 @@
 import "./about.css";
 import { Button } from "@/components/ui/button";
 import Sectiontitle from "@/components/global/Sectiontitle";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 function AboutPage() {
   const handleClick = (
@@ -159,12 +167,57 @@ function AboutPage() {
             seaforestfilm.com
           </a>{" "}
           <br />
-          <br />I am available for hire as a cinematographer and director in underwater video production and photography.
-          Based in San Diego, CA
+          <br />I am available for hire as a cinematographer and director in
+          underwater video production and photography. Based in San Diego, CA.
         </p>
       </section>
-      <section id="gear" className="h-[500px]">
+      <section id="gear">
         <Sectiontitle text="My Gear" />
+        <h1 className="subheader">
+          Canon EOS R5C + Nauticam NA-R5C Underwater Housing
+        </h1>
+        <div className="gear-container">
+          <Carousel className="w-full max-w-sm">
+            <CarouselContent>
+              {/* First item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear1.png"} alt="" />
+                </div>
+              </CarouselItem>
+
+              {/* Second item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear2.png"} alt="" />
+                </div>
+              </CarouselItem>
+
+              {/* Third item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear3.png"} alt="" />
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+        <p className="mt-6 text-lg tracking-wide leading-8 m-[50px] mt-[60px]">
+          The NA-R5C Nauticam Housing allows me to bring the Canon R5C, an 8K
+          Raw and 50mp photo cinema camera into the water. With 14 stops of
+          dynamic range, the color information is captured in detail and a true
+          to life image is the result.
+        </p>
+
+        <ul className="subheader">
+          <h1>Keldan Video Lights</h1>
+        </ul>
+        <p className="mt-6 text-lg tracking-wide leading-8 m-[50px] mt-[60px]">
+          It can get dark underwater and I need a strong light source to properly light underexposed shots. The Keldan video lights provide long lasting and a strong light source that allow me to achieve adequate exposure on any dive, day or night.
+        </p>
       </section>
       <section id="workflow" className="h-[500px]">
         <Sectiontitle text="My Workflow" />

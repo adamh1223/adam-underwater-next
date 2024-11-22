@@ -19,9 +19,9 @@ export default function Component() {
       className="border-2 border-gray-300 dark:border-gray-700 p-4 rounded-md shadow-md space-y-8 container"
     >
       <div className="space-y-2">
-        <h2 className="text-3xl font-bold">Contact Us</h2>
+        <h2 className="text-3xl font-bold">Contact Me</h2>
         <p>
-          Please fill the below form and we will get back to you as soon as
+          Please fill the below form and I will get back to you as soon as
           possible.
         </p>
       </div>
