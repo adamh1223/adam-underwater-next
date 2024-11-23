@@ -3,15 +3,15 @@
 import Sectiontitle from "@/components/global/Sectiontitle";
 import "./services.css";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function page() {
   const handleClick = (
@@ -100,34 +100,39 @@ function page() {
         <ul className="subheader">
           <h1>Go diving with me Southern California</h1>
         </ul>
-        <div className="gear-container">
-          <Carousel className="w-full max-w-sm">
-            <CarouselContent>
-              {/* First item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear1.png"} alt="" />
-                </div>
-              </CarouselItem>
-
-              {/* Second item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear2.png"} alt="" />
-                </div>
-              </CarouselItem>
-
-              {/* Third item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear3.png"} alt="" />
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+        <div className="cards-container">
+          <div className="card">
+            <Card>
+              <CardHeader>
+                <CardTitle>Guided Scuba Dive</CardTitle>
+                <CardDescription>Scuba Certification required</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Card Content</p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="anchor">
+                  Book Now
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+          <div className="card">
+            <Card>
+              <CardHeader>
+                <CardTitle>Guided Snorkel Tour</CardTitle>
+                <CardDescription>Card Description</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Card Content</p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline" className="anchor">
+                  Book Now
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
         </div>
       </section>
     </>
