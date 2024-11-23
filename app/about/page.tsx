@@ -205,18 +205,45 @@ function AboutPage() {
             <CarouselNext />
           </Carousel>
         </div>
-        <p className="mt-6 text-lg tracking-wide leading-8 m-[50px] mt-[60px]">
+        <p className="mt-6 text-lg tracking-wide leading-8 mx-[70px] mt-[60px]">
           The NA-R5C Nauticam Housing allows me to bring the Canon R5C, an 8K
           Raw and 50mp photo cinema camera into the water. With 14 stops of
-          dynamic range, the color information is captured in detail and a true
-          to life image is the result.
+          dynamic range and up to 60 fps, the R5C gives me the flexibility I
+          need when I'm filming.
         </p>
 
         <ul className="subheader">
           <h1>Keldan Video Lights</h1>
         </ul>
-        <p className="mt-6 text-lg tracking-wide leading-8 m-[50px] mt-[60px]">
-          It can get dark underwater and I need a strong light source to properly light underexposed shots. The Keldan video lights provide long lasting and a strong light source that allow me to achieve adequate exposure on any dive, day or night.
+
+        <div className="gear-container">
+          <Carousel className="w-full max-w-sm">
+            <CarouselContent>
+              {/* First item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/keldan2.jpg"} alt="" />
+                </div>
+              </CarouselItem>
+
+              {/* Second item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/keldan1.png"} alt="" />
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+
+        <p className="mt-6 text-lg tracking-wide leading-8 mx-[70px] mb-[40px]">
+          It can get dark underwater and I need a strong light source to
+          properly light underexposed shots. The Keldan video lights provide
+          long lasting and a strong light source that allow me to achieve
+          adequate exposure on any dive, day or night.
         </p>
       </section>
       <section id="workflow" className="h-[500px]">
