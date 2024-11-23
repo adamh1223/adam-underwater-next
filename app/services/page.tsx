@@ -95,10 +95,10 @@ function page() {
       <section id="photo" className="h-[500px]">
         <Sectiontitle text="Underwater 45mp Photo" />
       </section>
-      <section id="dives" className="h-[500px]">
+      <section id="dives">
         <Sectiontitle text="Guided Dives" />
         <ul className="subheader">
-          <h1>Go diving with me Southern California</h1>
+          <h1>San Diego, CA</h1>
         </ul>
         <div className="cards-container">
           <div className="card">
