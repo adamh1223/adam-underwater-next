@@ -39,12 +39,6 @@ function AboutDropdown() {
         <Button variant="ghost" onClick={() => handleSubservicesClick("gear")}>
           My Gear
         </Button>
-        <Button
-          variant="ghost"
-          onClick={() => handleSubservicesClick("workflow")}
-        >
-          My Workflow
-        </Button>
       </HoverCardContent>
     </HoverCard>
   );

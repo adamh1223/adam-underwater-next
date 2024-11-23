@@ -44,9 +44,6 @@ function AboutPage() {
           <Button variant="outline" className="anchor">
             <a onClick={(evt) => handleClick("gear", evt)}>My Gear</a>
           </Button>
-          <Button variant="outline" className="anchor">
-            <a onClick={(evt) => handleClick("workflow", evt)}>My Workflow</a>
-          </Button>
         </div>
 
         <div className="about-container">
@@ -245,9 +242,6 @@ function AboutPage() {
           long lasting and a strong light source that allow me to achieve
           adequate exposure on any dive, day or night.
         </p>
-      </section>
-      <section id="workflow" className="h-[500px]">
-        <Sectiontitle text="My Workflow" />
       </section>
     </>
   );
