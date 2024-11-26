@@ -16,8 +16,8 @@ export const GET = async (req: NextRequest) => {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
-    // console.log(session);
-
+    console.log(session);
+    const shippingDetails = session.shipping_details
     const orderId = session.metadata?.orderId;
     const cartId = session.metadata?.cartId;
     if (session.status === 'complete') {
@@ -51,20 +51,23 @@ export const GET = async (req: NextRequest) => {
     
     const productDescriptions = productInfo.map(product => {
 
-      const productImage = `<img src=${product.image}>`
+      const productImage = product.image
       const productDescription = product.description
       const productPrice = product.price;
       const productName = product.name;
+      const productQuantity = JSON.parse(orderInfo?.productQuantities)
 
-      return `${productName} \n ${productImage} \n ${productDescription} \n ${productPrice}`
+      return {productName, productImage, productDescription, productPrice}
       
       
     })
-    console.log(productDescriptions);
-  
     const orderInfoString = `Quantity: ${orderInfo?.products}, Total: ${orderInfo?.orderTotal}`
-    const bodyText = `Your order ID is ${orderId}. \n Order Details: ${productDescriptions.join(', ')}
-      `
+    const bodyText = `Order ID: ${orderId}.`
+      const orderTotal = orderInfo?.orderTotal ?? 0
+      const shipping = orderInfo?.shipping ?? 0
+      const tax = orderInfo?.tax ?? 0
+      const subtotal = (orderTotal - shipping - tax) ?? 0
+
     await courier.send({
   message: {
     to: {
@@ -77,7 +80,13 @@ export const GET = async (req: NextRequest) => {
     data: {
       orderInfo: orderInfoString,
       fullName: orderInfo?.fullName,
-      productDescriptions: bodyText,
+      productDescriptions,
+      bodyText,
+      orderTotal,
+      shipping,
+      tax,
+      subtotal,
+      shippingDetails: shippingDetails?.address,
     },
     routing: {
       method: "single",

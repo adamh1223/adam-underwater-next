@@ -51,6 +51,7 @@ export const POST = async (req: NextRequest) => {
       metadata: { orderId, cartId },
       line_items: line_items,
       mode: 'payment',
+      shipping_address_collection: {allowed_countries: ['US']},
       return_url: `${origin}/api/confirm?session_id={CHECKOUT_SESSION_ID}`,
     });
 

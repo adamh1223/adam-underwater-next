@@ -569,7 +569,12 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
         isPaid: false,
       },
     });
-
+    const productQuantities = cart?.cartItems.map((cartItem) => {
+      return {
+        productId: cartItem.productId,
+        amount: cartItem.amount,
+      };
+    });
     const order = await db.order.create({
       data: {
         clerkId: user.id,
@@ -580,6 +585,7 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
         shipping: cart.shipping,
         email: user.emailAddresses[0].emailAddress,
         fullName,
+        productQuantities,
       },
     });
     orderId = order.id;

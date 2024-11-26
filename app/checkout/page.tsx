@@ -6,7 +6,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
+  AddressElement,
 } from "@stripe/react-stripe-js";
+import { AddressMode } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
@@ -28,11 +30,15 @@ export default function CheckoutPage() {
   }, []);
 
   const options = { fetchClientSecret };
-
+  // const addressOptions = {
+  //   allowedCountries: ["US"],
+  //   mode: "shipping" as AddressMode,
+  // };
   return (
     <div id="checkout">
       <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
         <EmbeddedCheckout />
+        {/* <AddressElement options={addressOptions} /> */}
       </EmbeddedCheckoutProvider>
     </div>
   );
