@@ -37,13 +37,22 @@ function ProductsDropdown() {
           variant="ghost"
           onClick={() => handleSubservicesClick("prints")}
         >
-          Prints
+          Canvas Prints
         </Button>
         <Button
           variant="ghost"
-          onClick={() => handleSubservicesClick("print-creation")}
+          onClick={() => handleSubservicesClick("custom-prints")}
         >
-          Print Creation Process
+          Create Your Own Print
+        </Button>
+        <Button variant="ghost" onClick={() => handleSubservicesClick("luts")}>
+          LUT Packs
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={() => handleSubservicesClick("soundfx")}
+        >
+          Sound FX
         </Button>
       </HoverCardContent>
     </HoverCard>

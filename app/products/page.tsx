@@ -30,6 +30,12 @@ function ProductsPage({
           className="pt-3"
         ></img>
       </div>
+      <div className="flex justify-center font-extrabold text-3xl py-2">
+        <p>Canvas Wall Art</p>
+      </div>
+      <p className="flex justify-center font-semibold text-l">
+        Bring the ocean into your home
+      </p>
       {/* <div
         className="anchors"
         style={{
@@ -43,13 +49,19 @@ function ProductsPage({
           <a onClick={(evt) => handleClick("print-creation", evt)}>Print Creation</a>
         </Button>
       </div> */}
-      
+
       <ProductsContainer layout={layout} search={search} />
       {/* <section id="print-creation" className="h-[500px]">
         <Sectiontitle text="Print Creation Process" />
       </section> */}
-      <section id="print-creation" className="h-[500px]">
-        <Sectiontitle text="Print Creation Process" />
+      <section id="custom-prints" className="h-[500px]">
+        <Sectiontitle text="Create Your Own Canvas Wall Art" />
+      </section>
+      <section id="luts" className="h-[500px]">
+        <Sectiontitle text="LUT Packs" />
+      </section>
+      <section id="soundfx" className="h-[500px]">
+        <Sectiontitle text="Ocean Sound FX Bundle" />
       </section>
     </>
   );

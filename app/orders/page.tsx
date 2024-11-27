@@ -11,6 +11,8 @@ import {
 import SectionTitle from "@/components/global/Sectiontitle";
 import { fetchUserOrders } from "@/utils/actions";
 import { formatCurrency, formatDate } from "@/utils/format";
+import './orders.css'
+
 async function OrdersPage() {
   const orders = await fetchUserOrders();
 
@@ -24,7 +26,7 @@ async function OrdersPage() {
         />
       </div>
       <div>
-        <Table>
+        <Table className="table">
           <TableCaption>Total orders : {orders.length}</TableCaption>
           <TableHeader>
             <TableRow>

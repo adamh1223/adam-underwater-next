@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
+import AddToCart from "../single-product/AddToCart";
 
 function ProductsGrid({ products }: { products: Product[] }) {
   return (
@@ -32,6 +33,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
                     <p className="text-muted-foreground mt-2">
                       {dollarsAmount}
                     </p>
+                    <AddToCart productId={productId} />
                   </div>
                 </CardContent>
               </Card>
