@@ -11,7 +11,9 @@ import {
 import SectionTitle from "@/components/global/Sectiontitle";
 import { fetchUserOrders } from "@/utils/actions";
 import { formatCurrency, formatDate } from "@/utils/format";
-import './orders.css'
+import "./orders.css";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 async function OrdersPage() {
   const orders = await fetchUserOrders();
@@ -30,7 +32,8 @@ async function OrdersPage() {
           <TableCaption>Total orders : {orders.length}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Products</TableHead>
+              <TableHead>Total Products</TableHead>
+              <TableHead>Order ID</TableHead>
               <TableHead>Order Total</TableHead>
               <TableHead>Tax</TableHead>
               <TableHead>Shipping</TableHead>
@@ -51,6 +54,11 @@ async function OrdersPage() {
               return (
                 <TableRow key={order.id}>
                   <TableCell>{products}</TableCell>
+                  <TableCell>
+                    <Button variant="link">
+                      <Link href={`/orders/${id}`}>{id}</Link>
+                    </Button>
+                  </TableCell>
                   <TableCell>{formatCurrency(orderTotal)}</TableCell>
                   <TableCell>{formatCurrency(tax)}</TableCell>
                   <TableCell>{formatCurrency(shipping)}</TableCell>

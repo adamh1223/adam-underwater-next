@@ -39,12 +39,6 @@ function ProductsDropdown() {
         >
           Canvas Prints
         </Button>
-        <Button
-          variant="ghost"
-          onClick={() => handleSubservicesClick("custom-prints")}
-        >
-          Create Your Own Print
-        </Button>
         <Button variant="ghost" onClick={() => handleSubservicesClick("luts")}>
           LUT Packs
         </Button>

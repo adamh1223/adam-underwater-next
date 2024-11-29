@@ -54,9 +54,6 @@ function ProductsPage({
       {/* <section id="print-creation" className="h-[500px]">
         <Sectiontitle text="Print Creation Process" />
       </section> */}
-      <section id="custom-prints" className="h-[500px]">
-        <Sectiontitle text="Create Your Own Canvas Wall Art" />
-      </section>
       <section id="luts" className="h-[500px]">
         <Sectiontitle text="LUT Packs" />
       </section>

@@ -16,10 +16,15 @@ export const GET = async (req: NextRequest) => {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
-    console.log(session);
     const shippingDetails = session.shipping_details
     const orderId = session.metadata?.orderId;
     const cartId = session.metadata?.cartId;
+    const cartItems = await db.cartItem.findMany({
+      where: {
+        cartId: cartId
+      }
+      
+    })
     if (session.status === 'complete') {
       await db.order.update({
         where: {
@@ -47,7 +52,6 @@ export const GET = async (req: NextRequest) => {
         id: {in: orderInfo?.productIDs}
       }
     })
-    console.log(productInfo);
     
     const productDescriptions = productInfo.map(product => {
 
@@ -55,9 +59,14 @@ export const GET = async (req: NextRequest) => {
       const productDescription = product.description
       const productPrice = product.price;
       const productName = product.name;
-      const productQuantity = JSON.parse(orderInfo?.productQuantities)
+      const productQuantity = cartItems.map(item => {
+        
+        if (item.productId === product.id) {
+          return item.amount
+        }
+      })
 
-      return {productName, productImage, productDescription, productPrice}
+      return {productName, productImage, productDescription, productPrice, productQuantity}
       
       
     })

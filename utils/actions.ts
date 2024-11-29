@@ -398,6 +398,17 @@ export const fetchOrCreateCart = async ({
   return cart;
 };
 
+export const fetchPurchasedProducts = async (productIDs: string[]) => {
+  const products = db.product.findMany({
+    where: {
+      id: {
+        in: productIDs
+      } 
+    }
+  })
+  return products;
+}
+
 const updateOrCreateCartItem = async ({
   productId,
   cartId,
@@ -608,6 +619,15 @@ export const fetchUserOrders = async () => {
   });
   return orders;
 };
+
+export const fetchOrder = async (orderId: string) => {
+  const order = await db.order.findUnique({
+    where: {
+      id: orderId
+    }
+  })
+  return order;
+} 
 
 export const fetchAdminOrders = async () => {
   const user = await getAdminUser();
