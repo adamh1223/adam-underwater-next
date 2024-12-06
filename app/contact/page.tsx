@@ -1,18 +1,16 @@
-import Contact from "@/components/form/Contact";
+import ContactForm from "@/components/form/Contact";
 
-function page() {
+
+export default function Page() {
   return (
-    <>
-      <div className="flex justify-center pb-5">
-        <img
-          src={"/images/contact2.png"}
-          style={{ height: "112px" }}
-          className="pt-3"
-        />
-      </div>
-      <Contact />
-    </>
+    <div className="flex flex-col items-center pt-10">
+      <img
+        src="/images/contact2.png"
+        alt="Contact Banner"
+        className="mb-5"
+        style={{ height: "112px" }}
+      />
+      <ContactForm />
+    </div>
   );
 }
-
-export default page;

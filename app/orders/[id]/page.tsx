@@ -11,8 +11,12 @@ import { Card, CardTitle } from "@/components/ui/card";
 async function page({ params }: { params: { id: string } }) {
   const id = params.id;
   const orderInfo = await fetchOrder(id);
-  console.log(orderInfo);
-  console.log(params);
+
+  if (!orderInfo) {
+    return null;
+  }
+  //   console.log(orderInfo);
+  //   console.log(params);
   const {
     shipping,
     tax,
@@ -21,15 +25,32 @@ async function page({ params }: { params: { id: string } }) {
     productIDs,
   } = orderInfo;
   const productsPurchased = await fetchPurchasedProducts(productIDs);
+
+  if (
+    !productsPurchased ||
+    !productQuantities
+  ) {
+
+    return null;
+  }
+  console.log(Object.keys(productQuantities)?.length);
   console.log(productQuantities);
+  if (productQuantities.toString.length === 2) {
+    return null;
+  }
+  const parsedProductQuantities = productQuantities as any[];
+  console.log(productQuantities);
+  if (!parsedProductQuantities?.length) {
+    return null;
+  }
   const test = productsPurchased
     .map((product) => {
-      return productQuantities.filter((p) => {
+      return parsedProductQuantities?.filter((p: any) => {
         return p.productId === product.id;
       });
     })
     .flat();
-  console.log("hello", test);
+  //   console.log("hello", test);
 
   return (
     <>

@@ -1,97 +1,118 @@
+"use client";
+
+import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import "./Contact.css";
+import "./contact.css";
 
-export default function Component() {
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        setStatus("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setStatus("An error occurred. Please try again later.");
+    }
+  };
+
   return (
-    <div
-      key="1"
-      className="border-2 border-gray-300 dark:border-gray-700 p-4 rounded-md shadow-md space-y-8 container"
-    >
-      <div className="space-y-2">
-        <h2 className="text-3xl font-bold">Contact Me</h2>
-        <p>
-          Please fill the below form and I will get back to you as soon as
-          possible.
-        </p>
-      </div>
-      <div className="space-y-4">
+    <div className="container">
+      <form
+        onSubmit={handleSubmit}
+        className="border-2 border-gray-300 dark:border-gray-700 p-4 rounded-md shadow-md space-y-8"
+      >
         <div className="space-y-2">
-          <Label
-            className="text-gray-600 dark:text-gray-400 required"
-            htmlFor="name"
-          >
-            Name
-          </Label>
-          <Input
-            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 name"
-            id="name"
-            placeholder="Enter your name"
-            required
-          />
+          <h2 className="text-3xl font-bold">Contact Me</h2>
+          <p>
+            Please fill the form below and I will get back to you as soon as
+            possible.
+          </p>
         </div>
-        <div className="space-y-2">
-          <Label
-            className="text-gray-600 dark:text-gray-400 required"
-            htmlFor="email"
-          >
-            Email
-          </Label>
-          <Input
-            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 email"
-            id="email"
-            placeholder="Enter your email address"
-            required
-          />
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label className="required" htmlFor="name">
+              Name
+            </Label>
+            <Input
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="required" htmlFor="email">
+              Email
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email address"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="required" htmlFor="message">
+              Message
+            </Label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Type your message"
+              rows={4}
+              className="w-full message"
+              required
+            />
+          </div>
+          <Button type="submit" className="w-full bg-gray-300 dark:bg-gray-700">
+            Submit
+          </Button>
         </div>
-        <div className="space-y-2">
-          <Label
-            className="text-gray-600 dark:text-gray-400 required"
-            htmlFor="message"
-          >
-            Message
-          </Label>
-          <textarea
-            className="border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 w-full p-2 message"
-            id="message"
-            placeholder="Type your message"
-            required
-            rows={4}
-          />
-        </div>
-        <div className="flex items-center space-x-2">
-          <Checkbox
-            className="text-gray-600 dark:text-gray-400"
-            id="agreement"
-            required
-          />
-          <Label
-            className="text-sm font-normal text-gray-600 dark:text-gray-400"
-            htmlFor="agreement"
-          >
-            I agree to the
-            <button className="underline underline-offset-2 text-gray-600 dark:text-gray-400">
-              Terms & Conditions
-            </button>
-          </Label>
-        </div>
-        <Button
-          className="w-full bg-gray-300 dark:bg-gray-700 text-black"
-          type="submit"
-        >
-          Submit
-        </Button>
-      </div>
+        {status && <p className="text-center text-gray-600">{status}</p>}
+      </form>
     </div>
   );
 }

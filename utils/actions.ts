@@ -11,6 +11,7 @@ import {
 import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { Cart } from "@prisma/client";
+import { CourierClient } from "@trycourier/courier";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -402,12 +403,12 @@ export const fetchPurchasedProducts = async (productIDs: string[]) => {
   const products = db.product.findMany({
     where: {
       id: {
-        in: productIDs
-      } 
-    }
-  })
+        in: productIDs,
+      },
+    },
+  });
   return products;
-}
+};
 
 const updateOrCreateCartItem = async ({
   productId,
@@ -623,11 +624,11 @@ export const fetchUserOrders = async () => {
 export const fetchOrder = async (orderId: string) => {
   const order = await db.order.findUnique({
     where: {
-      id: orderId
-    }
-  })
+      id: orderId,
+    },
+  });
   return order;
-} 
+};
 
 export const fetchAdminOrders = async () => {
   const user = await getAdminUser();
@@ -642,3 +643,41 @@ export const fetchAdminOrders = async () => {
   });
   return orders;
 };
+
+const courier = new CourierClient({
+  authorizationToken: process.env.COURIER_API_KEY,
+});
+
+export async function sendContactEmail({
+  name,
+  email,
+  message,
+}: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  console.log(name, email, message);
+  await courier.send({
+    message: {
+      to: {
+        email, // Replace with your recipient email
+      },
+      template: "DX5DX0MT7GMCTFK3CY65WC927THZ",
+    },
+  });
+
+  await courier.send({
+    message: {
+      to: {
+        email: "adam@hussmedia.io", // Replace with your recipient email
+      },
+      data: {
+        name,
+        email,
+        message,
+      },
+      template: "Q6HCEKAAFXM5CFH41HR0RSHRWH6R",
+    },
+  });
+}
