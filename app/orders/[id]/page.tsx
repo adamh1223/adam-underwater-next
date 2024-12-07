@@ -7,6 +7,7 @@ import ThirdColumn from "@/components/cart/ThirdColumn";
 import FormContainer from "@/components/form/FormContainer";
 import { fetchOrder, fetchPurchasedProducts } from "@/utils/actions";
 import { Card, CardTitle } from "@/components/ui/card";
+import "./order.css";
 
 async function page({ params }: { params: { id: string } }) {
   const id = params.id;
@@ -26,11 +27,7 @@ async function page({ params }: { params: { id: string } }) {
   } = orderInfo;
   const productsPurchased = await fetchPurchasedProducts(productIDs);
 
-  if (
-    !productsPurchased ||
-    !productQuantities
-  ) {
-
+  if (!productsPurchased || !productQuantities) {
     return null;
   }
   console.log(Object.keys(productQuantities)?.length);
@@ -54,7 +51,7 @@ async function page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <div>
+      <div className="p-8 viewport w-[70%] card-container">
         {productsPurchased.map((product) => {
           const productQuantities = test.map((t) => {
             if (t.productId === product.id) {
@@ -77,13 +74,22 @@ async function page({ params }: { params: { id: string } }) {
             </Card>
           );
         })}
-        <div>
+        <div className="totals text-xl">
           <Card className="p-8">
-            <div> label="Subtotal" amount={orderTotal} </div>
-            <div> label="Shipping" amount={shipping} </div>
-            <div> label="Tax" amount={tax} </div>
-            <CardTitle className="mt-8">
-              <div> label="Order Total" amount={orderTotal} lastRow </div>
+            <div>
+              Subtotal: <span className="total"> ${orderTotal}.00</span>
+            </div>
+            <div>
+              Shipping: <span className="total"> ${shipping}.00</span>
+            </div>
+            <div>
+              Tax: <span className="total"> ${tax}.00</span>
+            </div>
+            <CardTitle className="mt-8 order-total">
+              <div>
+                {" "}
+                Order Total: <span> ${orderTotal}.00</span>
+              </div>
             </CardTitle>
           </Card>
         </div>

@@ -56,7 +56,7 @@ export default function ContactForm() {
     <div className="container">
       <form
         onSubmit={handleSubmit}
-        className="border-2 border-gray-300 dark:border-gray-700 p-4 rounded-md shadow-md space-y-8"
+        className="border-2 border-gray-300 dark:border-gray-700 p-8 rounded-md shadow-md space-y-8"
       >
         <div className="space-y-2">
           <h2 className="text-3xl font-bold">Contact Me</h2>
@@ -107,9 +107,11 @@ export default function ContactForm() {
               required
             />
           </div>
-          <Button type="submit" className="w-full bg-gray-300 dark:bg-gray-700">
-            Submit
-          </Button>
+          <div className="submit">
+            <Button type="submit" className="w-50 bg-gray-300 dark:bg-gray-700">
+              Submit
+            </Button>
+          </div>
         </div>
         {status && <p className="text-center text-gray-600">{status}</p>}
       </form>

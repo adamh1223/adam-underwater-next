@@ -27,7 +27,7 @@ async function ProductsContainer({
             <NavSearch />
           </Suspense>
         </div>
-        <div className="flex justify-between items-center pt-5">
+        <div className="flex justify-between items-center pt-5 px-9">
           <h4 className="font-medium text-xl p-5">
             {totalProducts} product{totalProducts > 1 && "s"}
           </h4>

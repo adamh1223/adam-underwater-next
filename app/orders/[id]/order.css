@@ -1,0 +1,14 @@
+.card-container {
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack content vertically */
+  margin: 0 auto; /* Center horizontally */
+}
+
+.totals {
+  text-align: start; /* Restrict totals to 40% of the viewport */
+  justify-content: center;
+}
+
+.order-total {
+  text-align: end;
+}
