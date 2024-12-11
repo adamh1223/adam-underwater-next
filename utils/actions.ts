@@ -12,6 +12,7 @@ import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { Cart } from "@prisma/client";
 import { CourierClient } from "@trycourier/courier";
+import { useCart } from "./cartContext";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -43,7 +44,9 @@ export const fetchFeaturedProducts = async () => {
   return products;
 };
 
-export const fetchAllProducts = ({ search = "" }: { search?: string } = {}) => {
+export const fetchAllProducts = async ({
+  search = "",
+}: { search?: string } = {}) => {
   return db.product.findMany({
     where: {
       OR: [
@@ -497,7 +500,7 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
   } catch (error) {
     return renderError(error);
   }
-  redirect("/cart");
+
 };
 
 export const removeCartItemAction = async (

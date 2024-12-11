@@ -52,6 +52,7 @@ async function page({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="p-8 viewport w-[70%] card-container">
+        {`orderId: ${id}`}
         {productsPurchased.map((product) => {
           const productQuantities = test.map((t) => {
             if (t.productId === product.id) {

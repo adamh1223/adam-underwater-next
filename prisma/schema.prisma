@@ -73,7 +73,7 @@ model CartItem {
 
 model Order {
   fullName String
-  id        String   @id @default(uuid())
+  id        String   @id @default(dbgenerated("substring(gen_random_uuid()::text, 1, 12)"))
   clerkId  String
   products Int  @default(0)
   productIDs String[]

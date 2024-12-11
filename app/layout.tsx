@@ -6,6 +6,8 @@ import Container from "@/components/global/Container";
 import Providers from "./providers";
 import {ClerkProvider} from '@clerk/nextjs'
 import Footer from "@/components/footer/Footer";
+import { createContext } from "react";
+import { CartProvider } from "@/utils/cartContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,6 +25,8 @@ export const metadata: Metadata = {
   description: "Underwater video and photo services",
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,9 +40,11 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
           <Providers>
-            <Navbar />
-            <Container>{children}</Container>
-            <Footer/>
+            <CartProvider>
+              <Navbar />
+              <Container>{children}</Container>
+              <Footer/>
+            </CartProvider>
           </Providers>
           
           

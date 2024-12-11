@@ -82,10 +82,7 @@ export const GET = async (req: NextRequest) => {
     to: {
       email: orderInfo?.email,
     },
-    content: {
-      title: "Thanks for your Order!",
-      body: bodyText
-    },
+    template: "YF16GXYDBN4NQ2QD1716FK7SAY3G",
     data: {
       orderInfo: orderInfoString,
       fullName: orderInfo?.fullName,
