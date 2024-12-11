@@ -15,11 +15,14 @@ function CartTotals({ cart }: { cart: Cart }) {
         <CartTotalRow label="Shipping" amount={shipping} />
         <CartTotalRow label="Tax" amount={tax} />
         <CardTitle className="mt-8">
-            <CartTotalRow label="Order Total" amount={orderTotal} lastRow/>
+          <CartTotalRow label="Order Total" amount={orderTotal} lastRow />
         </CardTitle>
       </Card>
+      <p className="flex justify-center pt-7">
+        Please allow 7-10 business days for shipping.
+      </p>
       <FormContainer action={createOrderAction}>
-        <SubmitButton text="Place Order" className="w-full mt-8"/>
+        <SubmitButton text="Place Order" className="w-full mt-8" />
       </FormContainer>
     </div>
   );

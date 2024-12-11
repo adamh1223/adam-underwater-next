@@ -25,8 +25,8 @@ function ProductsPage({
     <>
       <div className="flex justify-center pb-3" id="prints">
         <img
-          src={"/images/prints2.png"}
-          style={{ height: "110px" }}
+          src={"/images/products.png"}
+          style={{ height: "120px" }}
           className="pt-3"
         ></img>
       </div>

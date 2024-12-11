@@ -71,7 +71,7 @@ export const GET = async (req: NextRequest) => {
       
     })
     const orderInfoString = `Quantity: ${orderInfo?.products}, Total: ${orderInfo?.orderTotal}`
-    const bodyText = `Order ID: ${orderId}.`
+    const bodyText = `${orderId}`
       const orderTotal = orderInfo?.orderTotal ?? 0
       const shipping = orderInfo?.shipping ?? 0
       const tax = orderInfo?.tax ?? 0
