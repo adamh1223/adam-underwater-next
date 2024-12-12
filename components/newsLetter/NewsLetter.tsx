@@ -91,9 +91,6 @@ export default function NewsLetter() {
               />
               <Button type="submit">Subscribe</Button>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Sent out weekly on Mondays. Always free.
-            </p>
           </form>
           {/* Display the alert based on alertVisible state */}
           {alertVisible && (

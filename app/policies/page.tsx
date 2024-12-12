@@ -47,9 +47,20 @@ function Policies() {
       </section>
       <section id="return-policy">
         <Sectiontitle text="Return Policy" />
-        <div className="flex justify-center w-80vw">
-            <p>We honor refunds or replacements up to 30 days after delivery on products that have been damaged in transit or are faulty on arrival.</p>
-            <p>We do not offer "change of mind" refunds</p>
+        <div className="flex justify-center returns py-8">
+          <div>
+            <p className="statement">
+              We honor refunds or replacements up to 30 days after delivery on
+              products that have been damaged in transit or are faulty on
+              arrival.
+            </p>
+          </div>
+          <br />
+          <div>
+            <p className="statement">
+              We do not offer "change of mind" refunds
+            </p>
+          </div>
         </div>
       </section>
     </>

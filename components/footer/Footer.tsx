@@ -76,11 +76,6 @@ function Footer() {
               <Link href="/policies">Refund Policy</Link>
             </Button>
           </div>
-          <div className="my-[-10px]">
-            <Button variant="link">
-              <Link href="/policies">Shipping Policy</Link>
-            </Button>
-          </div>
         </div>
         <NewsLetter />
       </div>

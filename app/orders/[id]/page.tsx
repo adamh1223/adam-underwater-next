@@ -52,7 +52,9 @@ async function page({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="p-8 viewport w-[70%] card-container">
-        {`orderId: ${id}`}
+        <p className="text-xl py-5">
+          Order #: <span className="font-semibold">{`${id}`} </span>
+        </p>
         {productsPurchased.map((product) => {
           const productQuantities = test.map((t) => {
             if (t.productId === product.id) {
@@ -75,17 +77,22 @@ async function page({ params }: { params: { id: string } }) {
             </Card>
           );
         })}
-        <div className="totals text-xl">
+        <div className="totals text-l">
           <Card className="p-8">
-            <div>
-              Subtotal: <span className="total"> ${orderTotal}.00</span>
-            </div>
-            <div>
-              Shipping: <span className="total"> ${shipping}.00</span>
-            </div>
-            <div>
-              Tax: <span className="total"> ${tax}.00</span>
-            </div>
+            <Card className="p-5 w-[45%]">
+              <div>
+                Subtotal:{" "}
+                <span className="total font-semibold"> ${orderTotal}.00</span>
+              </div>
+              <div>
+                Shipping:{" "}
+                <span className="total font-semibold"> ${shipping}.00</span>
+              </div>
+              <div>
+                Tax: <span className="total font-semibold"> ${tax}.00</span>
+              </div>
+            </Card>
+
             <CardTitle className="mt-8 order-total">
               <div>
                 {" "}
