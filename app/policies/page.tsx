@@ -51,8 +51,7 @@ function Policies() {
           <div>
             <p className="statement">
               We honor refunds or replacements up to 30 days after delivery on
-              products that have been damaged in transit or are faulty on
-              arrival.
+              products that are damaged or defective on arrival.
             </p>
           </div>
           <br />
