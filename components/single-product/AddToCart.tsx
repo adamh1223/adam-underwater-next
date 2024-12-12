@@ -15,7 +15,7 @@ function AddToCart({ productId }: { productId: string }) {
   const { addToCart } = useCart();
 
   const handleAction = () => {
-     addToCartAction().then(() => addToCart())
+    addToCartAction().then(() => addToCart());
   };
   return (
     <div className="mt-4">
