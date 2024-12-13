@@ -3,6 +3,7 @@ import ProductsContainer from "@/components/products/ProductsContainer";
 import Sectiontitle from "@/components/global/Sectiontitle";
 import { Button } from "@/components/ui/button";
 import "./products.css";
+import { Card } from "@/components/ui/card";
 
 function ProductsPage({
   searchParams,
@@ -36,6 +37,28 @@ function ProductsPage({
       <p className="flex justify-center font-semibold text-l">
         Bring the ocean into your home
       </p>
+
+      <div className="flex justify-center returns">
+        <Card className="my-7 p-5">
+          <div>
+            <p className="statement">1.5" Gallery-Wrap frames</p>
+          </div>
+          <div>
+            <p className="statement">Customizable sizes</p>
+          </div>
+          <div>
+            <p className="statement">High quality canvas</p>
+          </div>
+
+          <div>
+            <p className="statement">Printed on Canon 4400 Pro Printer</p>
+          </div>
+          <div>
+            <p className="statement">Color that lasts</p>
+          </div>
+        </Card>
+      </div>
+
       {/* <div
         className="anchors"
         style={{

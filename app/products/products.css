@@ -15,3 +15,38 @@
 .anchor {
   margin: 20px;
 }
+
+.returns {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center elements horizontally */
+}
+
+.returns > * {
+  width: 310px; /* Make each child take up 80% of the viewport width */
+  text-align: center; /* Center-align text inside the elements */
+}
+
+.statement {
+  text-align: left; /* Align the text to the start of its parent */
+  width: 300px; /* Optional: Ensure consistent width with other elements */
+  margin: 0; /* Reset margin if needed */
+  position: relative; /* Required for positioning the pseudo-element */
+  padding: 0 0 0;
+}
+
+.statement::before {
+  content: "•"; /* Adds a bullet point */
+  margin-right: 8px; /* Space between bullet and text */
+  font-size: 1.2em; /* Adjust bullet size as needed */
+  color: inherit; /* Matches the text color */
+  display: inline-block;
+}
+
+.card {
+  width: 300px; /* Match the width of .statement */
+  margin: 0 auto; /* Center the card */
+  padding: 20px; /* Optional: Add some padding for better spacing */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+  border-radius: 8px; /* Optional: Add rounded corners */
+}
