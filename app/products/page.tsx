@@ -53,9 +53,6 @@ function ProductsPage({
           <div>
             <p className="statement">Printed on Canon 4400 Pro Printer</p>
           </div>
-          <div>
-            <p className="statement">Color that lasts</p>
-          </div>
         </Card>
       </div>
 
