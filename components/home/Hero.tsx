@@ -51,9 +51,9 @@ function Hero() {
         </h1> */}
         <div className="flex justify-center pb-3" id="prints">
           <img
-            src={"/images/videophoto.png"}
-            style={{ height: "120px" }}
-            className="pt-3"
+            src={"/images/vp3.png"}
+            style={{ height: "85px" }}
+            className="pt-3 hero-img"
           ></img>
         </div>
         <Button size="lg" className="mt-5">

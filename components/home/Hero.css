@@ -70,3 +70,10 @@ body {
 .video.visible {
   opacity: 1;
 }
+
+.hero-img {
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
