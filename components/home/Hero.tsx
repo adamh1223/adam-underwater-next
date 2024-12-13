@@ -46,9 +46,16 @@ function Hero() {
         {/* <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1018553050?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="website"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script> */}
       </div>
       <div className="content">
-        <h1 className="max-w-2xl font-bold text-4xl tracking-tight pb-2 px-3">
+        {/* <h1 className="max-w-2xl font-bold text-4xl tracking-tight pb-2 px-3">
           Underwater Video and Photo
-        </h1>
+        </h1> */}
+        <div className="flex justify-center pb-3" id="prints">
+          <img
+            src={"/images/videophoto.png"}
+            style={{ height: "120px" }}
+            className="pt-3"
+          ></img>
+        </div>
         <Button size="lg" className="mt-5">
           <Link href="/work">Dive in</Link>
         </Button>
