@@ -30,10 +30,13 @@ const faq = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>There is a problem </AccordionTrigger>
+                <AccordionTrigger>
+                  Do products ship internationally?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Yes. It comes with default styles that matches the other
-                  components&apos; aesthetic.
+                  My electronic products - LUTS and Sound FX are available from
+                  anywhere in the world, but at this time prints can only be
+                  shipped within the United States.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">

@@ -108,7 +108,7 @@ function page() {
                 <CardDescription>Scuba Certification required</CardDescription>
               </CardHeader>
               <CardContent>
-                <p>Card Content</p>
+                <p>hi</p>
               </CardContent>
               <CardFooter>
                 <Button variant="outline" className="anchor">

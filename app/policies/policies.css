@@ -56,14 +56,14 @@
   }
 }
 
-.returns {
+.card-container {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center elements horizontally */
   gap: 10px; /* Optional: Adds spacing between rows */
 }
 
-.returns > * {
+.card-container > * {
   width: 80vw; /* Make each child take up 80% of the viewport width */
   text-align: center; /* Center-align text inside the elements */
 }

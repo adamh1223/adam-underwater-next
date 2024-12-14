@@ -3,6 +3,7 @@
 import "./policies.css";
 import { Button } from "@/components/ui/button";
 import Sectiontitle from "@/components/global/Sectiontitle";
+import { Card } from "@/components/ui/card";
 
 function Policies() {
   const handleClick = (
@@ -44,22 +45,38 @@ function Policies() {
       </section>
       <section id="privacy-policy">
         <Sectiontitle text="Privacy Policy" />
+        <div className="flex justify-center card-container">
+          <Card className="my-7 p-5">
+            <div>
+              <p className="statement">
+                We honor refunds or replacements up to 30 days after delivery on
+                products that are damaged or defective on arrival.
+              </p>
+            </div>
+            <div>
+              <p className="statement">
+                We do not offer "change of mind" refunds
+              </p>
+            </div>
+          </Card>
+        </div>
       </section>
       <section id="return-policy">
         <Sectiontitle text="Return Policy" />
-        <div className="flex justify-center returns py-8">
-          <div>
-            <p className="statement">
-              We honor refunds or replacements up to 30 days after delivery on
-              products that are damaged or defective on arrival.
-            </p>
-          </div>
-          <br />
-          <div>
-            <p className="statement">
-              We do not offer "change of mind" refunds
-            </p>
-          </div>
+        <div className="flex justify-center card-container">
+          <Card className="my-7 p-5">
+            <div>
+              <p className="statement">
+                We honor refunds or replacements up to 30 days after delivery on
+                products that are damaged or defective on arrival.
+              </p>
+            </div>
+            <div>
+              <p className="statement">
+                We do not offer "change of mind" refunds
+              </p>
+            </div>
+          </Card>
         </div>
       </section>
     </>
