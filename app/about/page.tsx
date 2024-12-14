@@ -24,14 +24,13 @@ function AboutPage() {
   return (
     <>
       <section id="about">
-        <div className="flex justify-center">
+        <div className="flex justify-center img-container">
           <img
-            src={"/images/aboutme3.png"}
-            style={{ height: "110px" }}
-            className="pt-5"
+            src={"/images/about2.png"}
+            style={{ height: "100px" }}
+            className="pt-5 mb-5"
           />
         </div>
-
         <div
           className="anchors"
           style={{

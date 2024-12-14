@@ -21,13 +21,16 @@ const faq = () => {
           <Card className="p-7 w-[50%]">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                <AccordionTrigger>
+                  My desired print size is not available?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
+                  Fill out a contact form and let me know your size and I can
+                  create your custom size if it is possible.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>Is it styled?</AccordionTrigger>
+                <AccordionTrigger>There is a problem </AccordionTrigger>
                 <AccordionContent>
                   Yes. It comes with default styles that matches the other
                   components&apos; aesthetic.
