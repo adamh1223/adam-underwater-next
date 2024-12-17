@@ -12,7 +12,6 @@ import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { Cart } from "@prisma/client";
 import { CourierClient } from "@trycourier/courier";
-import { useCart } from "./cartContext";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -80,15 +79,25 @@ export const createProductAction = async (
 
   try {
     const rawData = Object.fromEntries(formData);
-    const file = formData.get("image") as File;
+    const files = (formData.get("image") as unknown) as File[];
+    console.log(files);
+    console.log(rawData);
+    
+
     const validatedFields = validateWithZodSchema(productSchema, rawData);
-    const validatedFile = validateWithZodSchema(imageSchema, { image: file });
-    const fullPath = await uploadImage(validatedFile.image);
+    const stringFiles: string[] = [];
+    files.map(async (file) => {
+      const validatedFile = validateWithZodSchema(imageSchema, {
+        image: file,
+      });
+      const fullPath = await uploadImage(validatedFile.image);
+      stringFiles.push(fullPath);
+    });
 
     await db.product.create({
       data: {
         ...validatedFields,
-        image: fullPath,
+        image: stringFiles,
         clerkId: user.id,
       },
     });
@@ -490,17 +499,19 @@ export const updateCart = async (cart: Cart) => {
 
 export const addToCartAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
+  let productId = "";
   try {
-    const productId = formData.get("productId") as string;
+    productId = formData.get("productId") as string;
     const amount = Number(formData.get("amount"));
     await fetchProduct(productId);
     const cart = await fetchOrCreateCart({ userId: user.id });
     await updateOrCreateCartItem({ productId, cartId: cart.id, amount });
     await updateCart(cart);
+    console.log(productId);
   } catch (error) {
     return renderError(error);
   }
-
+  redirect(`/products/${productId}`);
 };
 
 export const removeCartItemAction = async (

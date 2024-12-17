@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import SelectProductAmount from "./SelectProductAmount";
 import { Mode } from "./SelectProductAmount";
@@ -7,16 +8,11 @@ import { SubmitButton } from "../form/Buttons";
 import { addToCartAction } from "@/utils/actions";
 import { useAuth } from "@clerk/nextjs";
 import { ProductSignInButton } from "../form/Buttons";
-import { useCart } from "@/utils/cartContext";
 
 function AddToCart({ productId }: { productId: string }) {
   const [amount, setAmount] = useState(1);
   const { userId } = useAuth();
-  const { addToCart } = useCart();
 
-  const handleAction = () => {
-    addToCartAction().then(() => addToCart());
-  };
   return (
     <div className="mt-4">
       <SelectProductAmount
@@ -25,7 +21,7 @@ function AddToCart({ productId }: { productId: string }) {
         setAmount={setAmount}
       />
       {userId ? (
-        <FormContainer action={handleAction}>
+        <FormContainer action={addToCartAction}>
           <input type="hidden" name="productId" value={productId} />
           <input type="hidden" name="amount" value={amount} />
           <SubmitButton text="add to cart" size="default" className="mt-8" />

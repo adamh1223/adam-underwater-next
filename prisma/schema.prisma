@@ -14,7 +14,7 @@ model Product {
   company     String
   description String
   featured    Boolean
-  image       String
+  image       String[]
   price       Int
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
@@ -72,17 +72,17 @@ model CartItem {
 }
 
 model Order {
-  fullName String
-  id        String   @id @default(dbgenerated("substring(gen_random_uuid()::text, 1, 12)"))
-  clerkId  String
-  products Int  @default(0)
-  productIDs String[]
-  orderTotal Int @default(0)
-  tax Int @default(0)
-  shipping Int @default(0)
-  email String
-  isPaid Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  productQuantities Json @default("{}")
+  fullName          String
+  id                String   @id @default(dbgenerated("substring(gen_random_uuid()::text, 1, 12)"))
+  clerkId           String
+  products          Int      @default(0)
+  productIDs        String[]
+  orderTotal        Int      @default(0)
+  tax               Int      @default(0)
+  shipping          Int      @default(0)
+  email             String
+  isPaid            Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  productQuantities Json     @default("{}")
 }

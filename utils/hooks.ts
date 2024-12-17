@@ -1,7 +1,0 @@
-import { useDispatch, useSelector } from 'react-redux'
-import type { AppDispatch, RootState } from './store'
-
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-// @ts-ignore possible collision with nextjs imports
-// export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
-// export const useAppSelector = useSelector.withTypes<RootState>()

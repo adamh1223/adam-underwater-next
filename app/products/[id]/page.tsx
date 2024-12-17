@@ -9,6 +9,13 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { fetchSingleProduct, findExistingReview } from "@/utils/actions";
 import { auth } from "@clerk/nextjs/server";
 import Sectiontitle from "@/components/global/Sectiontitle";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 async function SingleProductPage({ params }: { params: { id: string } }) {
   const product = await fetchSingleProduct(params.id);
@@ -23,7 +30,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
         <BreadCrumbs name={product.name} />
         <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">
           {/* IMAGE FIRST COL */}
-          <div className="relative h-96">
+          {/* <div className="relative h-96">
             <Image
               src={image}
               alt={name}
@@ -32,7 +39,34 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
               priority
               className="w-full rounded-md object-cover"
             />
-          </div>
+          </div> */}
+          <Carousel className="w-full max-w-sm">
+            <CarouselContent>
+              {/* First item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear1.png"} alt="" />
+                </div>
+              </CarouselItem>
+
+              {/* Second item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear2.png"} alt="" />
+                </div>
+              </CarouselItem>
+
+              {/* Third item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear3.png"} alt="" />
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
           {/* PRODUCT INFO SECOND COL */}
           <div>
             <div className="flex gap-x-8 items-center">
@@ -54,7 +88,6 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
 
         {reviewDoesNotExist && <SubmitReview productId={params.id} />}
       </section>
-      
     </>
   );
 }
