@@ -42,7 +42,6 @@ function validateImageFile() {
       return !file || file.size <= maxUploadSize;
     }, "File size must be less than 25mb")
     .refine((file) => {
-      console.log(file);
 
       return (
         !file || acceptedFileTypes.some((type) => file.type.startsWith(type))

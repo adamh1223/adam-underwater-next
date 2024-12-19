@@ -78,18 +78,24 @@ export const createProductAction = async (
   const user = await getAuthUser();
 
   try {
+    const rawFiles = Object.values(
+      (formData.getAll("images") as unknown) as File[]
+    );
+
     const rawData = Object.fromEntries(formData);
+
     const files = (formData.get("image") as unknown) as File[];
-    console.log(files);
-    console.log(rawData);
-    
 
     const validatedFields = validateWithZodSchema(productSchema, rawData);
     const stringFiles: string[] = [];
-    files.map(async (file) => {
+    rawFiles.map(async (file) => {
+      console.log("VALIDATING FILES");
+
       const validatedFile = validateWithZodSchema(imageSchema, {
         image: file,
       });
+      console.log(validatedFile.image);
+
       const fullPath = await uploadImage(validatedFile.image);
       stringFiles.push(fullPath);
     });
