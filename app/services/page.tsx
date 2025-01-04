@@ -56,7 +56,7 @@ function page() {
       <div
         className="anchors"
         style={{
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
         }}
       >
         <Button variant="outline" className="anchor">
@@ -67,6 +67,9 @@ function page() {
         </Button>
         <Button variant="outline" className="anchor">
           <a onClick={(evt) => handleClick("dives", evt)}>Guided Dives</a>
+        </Button>
+        <Button variant="outline" className="anchor">
+          <a onClick={(evt) => handleClick("coaching", evt)}>1 on 1 Coaching</a>
         </Button>
       </div>
       <Sectiontitle text="Underwater 8K Video" />
@@ -134,6 +137,25 @@ function page() {
             </Card>
           </div>
         </div>
+      </section>
+      <section id="coaching">
+        <Sectiontitle text="1 on 1 Coaching" />
+        <ul className="subheader">
+          <h1>Zoom coaching sessions</h1>
+        </ul>
+        <ul>
+          <li>
+            I am happy to provide coaching sessions for anyone interested in
+            Underwater videography or photography.
+          </li>
+          <li>
+            Topics include: underwater camera gear questions and
+            recommendations, composing cinematic shots underwater, landing
+            paying clients as an underwater cinematographer, building a brand,
+            feature film advice, and creative direction
+          </li>
+          <li>The first coaching session is 50% off.</li>
+        </ul>
       </section>
     </>
   );

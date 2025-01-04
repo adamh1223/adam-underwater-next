@@ -10,8 +10,8 @@ function ProductsPage({
 }: {
   searchParams: { layout?: string; search?: string };
 }) {
-  const layout = searchParams.layout || "grid";
-  const search = searchParams.search || "";
+  const layout = searchParams?.layout || "grid";
+  const search = searchParams?.search || "";
   console.log(searchParams);
   // const handleClick = (
   //   sectionId: string,

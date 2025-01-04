@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import "./contact.css";
+import "./Contact.css";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
