@@ -1,3 +1,4 @@
+
 import { formatCurrency } from "@/utils/format";
 import { Product } from "@prisma/client";
 import Link from "next/link";
@@ -12,15 +13,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import ProductCarousel from "./ProductCarousel";
 
 function ProductsGrid({ products }: { products: Product[] }) {
   return (
     <div className="pt-12 mx-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-5 pb-5">
       {products.map((product) => {
         const { name, price, image } = product;
-        console.log(
-          "as;dlfaklskd;falksdjf;laksjd;flkajsd;flkajs;dlfkjas;ldkfjasl;d"
-        );
         console.log(image);
 
         const productId = product.id;
@@ -28,9 +27,9 @@ function ProductsGrid({ products }: { products: Product[] }) {
         return (
           <article key={productId} className="group relative">
             <Link href={`/products/${productId}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500">
+              <Card className="group-hover:shadow-xl transition-shadow duration-500">
                 <CardContent className="p-4">
-                  <div className="relative h-80 md:h-48 rounded overflow-hidden">
+                  <div className="relative h-full w-full rounded">
                     {/* <Image
                       src={image}
                       alt={name}
@@ -39,33 +38,9 @@ function ProductsGrid({ products }: { products: Product[] }) {
                       priority
                       className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     /> */}
-                    <Carousel className="w-full max-w-sm">
-                      <CarouselContent>
-                        {/* First item */}
-                        <CarouselItem>
-                          <div className="p-4 flex items-center justify-center">
-                            <img src={image[0]} />
-                          </div>
-                        </CarouselItem>
+                    <ProductCarousel image={image}>
 
-                        {/* Second item */}
-                        <CarouselItem>
-                          <div className="p-4 flex items-center justify-center">
-                            <img src={image[1]} />
-                          </div>
-                        </CarouselItem>
-
-                        {/* Third item */}
-                        <CarouselItem>
-                          <div className="p-4 flex items-center justify-center">
-                            <img src={image[2]} />
-                          </div>
-                        </CarouselItem>
-                      </CarouselContent>
-
-                      <CarouselPrevious />
-                      <CarouselNext />
-                    </Carousel>
+                    </ProductCarousel>
                   </div>
                   <div className="mt-4 text-center">
                     <h2 className="text-lg capitalize">{name}</h2>
