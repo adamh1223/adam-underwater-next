@@ -37,17 +37,29 @@ function ProductCarousel({ image }: { image: string[] }) {
   const scrollToIndex = (index: number) => {
     carouselApi?.scrollTo(index);
   };
+  const increaseIndex = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    evt.stopPropagation();
+    scrollToIndex(currentIndex + 1);
+  };
+  const decreaseIndex = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    evt.stopPropagation();
+    scrollToIndex(currentIndex - 1);
+  };
   return (
     <>
       <Carousel
         setApi={setcarouselApi}
-        className="w-full max-w-sm transform-none"
+        className="w-full max-w-7xl h-96  transform-none"
       >
-        <CarouselContent>
+        <CarouselContent className=" ml-4 ">
           {/* First item */}
           <CarouselItem>
-            <div className="p-4 flex items-center justify-center">
-              <img src={image[0]} alt="" />
+            <div className="flex items-center">
+              <img
+                src={image[0]}
+                className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                alt=""
+              />
             </div>
             {/* <div className="p-4 flex items-center justify-center">
                             <Image
@@ -76,16 +88,18 @@ function ProductCarousel({ image }: { image: string[] }) {
           </CarouselItem>
         </CarouselContent>
       </Carousel>
-      <div className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none">
+      <div className="absolute inset-0 z-40 flex items-center justify-between pointer-events-none">
         <Button
-          onClick={() => scrollToIndex(currentIndex - 1)}
-          className="pointer-events-auto rounded-full w-32 h-32 p-0 bg-transparent shadow-none hover:bg-transparent"
+          onClick={decreaseIndex}
+          className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-none"
+          variant="secondary"
         >
           <ChevronLeftIcon className="h-6 w-6 text-white"></ChevronLeftIcon>
         </Button>
         <Button
-          onClick={() => scrollToIndex(currentIndex + 1)}
-          className="pointer-events-auto rounded-full w-32 h-32 p-0 bg-transparent shadow-none hover:bg-transparent"
+          onClick={increaseIndex}
+          className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-none"
+          variant="secondary"
         >
           <ChevronRightIcon className="h-6 w-6 text-white"></ChevronRightIcon>
         </Button>
