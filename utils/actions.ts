@@ -689,7 +689,7 @@ export async function sendContactEmail({
   await courier.send({
     message: {
       to: {
-        email: "adam@hussmedia.io", // Replace with your recipient email
+        email: "adamahussain1223@gmail.com", // Replace with your recipient email
       },
       data: {
         name,

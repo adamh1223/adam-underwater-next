@@ -40,7 +40,20 @@ const faq = () => {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>Is it animated?</AccordionTrigger>
+                <AccordionTrigger>
+                  I purchased an E-product and it didn't download. What should I
+                  do?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Yes. It&apos;s animated by default, but you can disable it if
+                  you prefer.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-4">
+                <AccordionTrigger>
+                  May I share stock footage I purchased for anyone to use
+                  publicly?
+                </AccordionTrigger>
                 <AccordionContent>
                   Yes. It&apos;s animated by default, but you can disable it if
                   you prefer.

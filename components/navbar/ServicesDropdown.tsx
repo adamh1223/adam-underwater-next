@@ -32,7 +32,7 @@ function ServicesDropdown() {
         </Button>
       </HoverCardTrigger>
 
-      <HoverCardContent className="w-48">
+      <HoverCardContent className="w-52">
         <Button variant="ghost" onClick={() => handleSubservicesClick("video")}>
           Underwater Video
         </Button>
@@ -42,14 +42,14 @@ function ServicesDropdown() {
         <Button variant="ghost" onClick={() => handleSubservicesClick("dives")}>
           Guided Dives
         </Button>
+        <Button variant="ghost" onClick={() => handleSubservicesClick("drone")}>
+          Drone Video & Photo
+        </Button>
         <Button
           variant="ghost"
           onClick={() => handleSubservicesClick("coaching")}
         >
           1 on 1 Coaching
-        </Button>
-        <Button variant="ghost" onClick={() => handleSubservicesClick("drone")}>
-          Drone Video & Photo
         </Button>
       </HoverCardContent>
     </HoverCard>

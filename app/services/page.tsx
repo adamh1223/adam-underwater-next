@@ -138,6 +138,17 @@ function page() {
           </div>
         </div>
       </section>
+      <section id="drone">
+        <Sectiontitle text="Drone Video & Photo" />
+        <ul className="subheader">
+          <h1>Drone Video & Photo</h1>
+        </ul>
+        <ul>
+          <li>hi</li>
+          <li>hello</li>
+          <li>sup</li>
+        </ul>
+      </section>
       <section id="coaching">
         <Sectiontitle text="1 on 1 Coaching" />
         <ul className="subheader">
@@ -155,21 +166,6 @@ function page() {
             feature film advice, and creative direction
           </li>
           <li>The first coaching session is 50% off.</li>
-        </ul>
-      </section>
-      <section id="drone">
-        <Sectiontitle text="Drone Video & Photo" />
-        <ul className="subheader">
-          <h1>Drone Video & Photo</h1>
-        </ul>
-        <ul>
-          <li>
-            hi
-          </li>
-          <li>
-            hello
-          </li>
-          <li>sup</li>
         </ul>
       </section>
     </>
