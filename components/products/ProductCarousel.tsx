@@ -12,8 +12,16 @@ import {
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
-function ProductCarousel({ image }: { image: string[] }) {
+function ProductCarousel({
+  image,
+  productId,
+}: {
+  image: string[];
+  productId: string;
+}) {
   const [carouselApi, setcarouselApi] = useState<CarouselApi | null>(null);
   const [currentIndex, setcurrentIndex] = useState(0);
   const [totalItems, settotalItems] = useState(0);
@@ -49,18 +57,28 @@ function ProductCarousel({ image }: { image: string[] }) {
     <>
       <Carousel
         setApi={setcarouselApi}
-        className="w-full max-w-7xl h-96  transform-none"
+        className="w-full max-w-7xl transform-none me-4"
       >
-        <CarouselContent className=" ml-4 ">
+        <CarouselContent className="ml-4">
           {/* First item */}
           <CarouselItem>
-            <div className="flex items-center">
-              <img
-                src={image[0]}
-                className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                alt=""
-              />
-            </div>
+            <Link href={`/products/${productId}`}>
+              <div className="flex items-center pe-8">
+                <img
+                  src={image[0]}
+                  className="flex items-center justify-center"
+                  alt=""
+                />
+                {/* <Image
+                  src={image[0]}
+                  alt="hi"
+                  fill
+                  sizes="(max-width:768px) 100vw, (max-width:1300px) 50vw, 33vw"
+                  priority
+                  className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                /> */}
+              </div>
+            </Link>
             {/* <div className="p-4 flex items-center justify-center">
                             <Image
                               src={image[0]}
@@ -75,16 +93,26 @@ function ProductCarousel({ image }: { image: string[] }) {
 
           {/* Second item */}
           <CarouselItem>
-            <div className="p-4 flex items-center justify-center">
-              <img src={image[1]} className="h-full w-full" />
-            </div>
+            <Link href={`/products/${productId}`}>
+              <div className="flex items-center pe-8">
+                <img
+                  src={image[1]}
+                  className="flex items-center justify-center"
+                />
+              </div>
+            </Link>
           </CarouselItem>
 
           {/* Third item */}
           <CarouselItem>
-            <div className="p-4 flex items-center justify-center">
-              <img src={image[2]} className="h-full w-full" />
-            </div>
+            <Link href={`/products/${productId}`}>
+              <div className="flex items-center pe-8">
+                <img
+                  src={image[2]}
+                  className="flex items-center justify-center"
+                />
+              </div>
+            </Link>
           </CarouselItem>
         </CarouselContent>
       </Carousel>

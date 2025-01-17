@@ -1,19 +1,25 @@
 import { formatCurrency } from "@/utils/format";
 import Image from "next/image";
 import Link from "next/link";
-
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 export const FirstColumn = ({
   name,
   image,
 }: {
-  image: string;
+  image: string[];
   name: string;
 }) => {
   return (
     <div className="relative h-24 w-24 sm:h-32 sm:w-32">
       <Image
-        src={image}
+        src={image[0]}
         alt={name}
         fill
         sizes="(max-width:768px) 100vw,(max-width:1200px) 50vw,33vw"

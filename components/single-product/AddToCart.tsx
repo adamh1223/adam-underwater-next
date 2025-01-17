@@ -8,22 +8,32 @@ import { SubmitButton } from "../form/Buttons";
 import { addToCartAction } from "@/utils/actions";
 import { useAuth } from "@clerk/nextjs";
 import { ProductSignInButton } from "../form/Buttons";
+import SelectProductSize from "../products/ProductSize";
 
 function AddToCart({ productId }: { productId: string }) {
   const [amount, setAmount] = useState(1);
+  const [size, setSize] = useState("small");
   const { userId } = useAuth();
 
   return (
     <div className="mt-4">
-      <SelectProductAmount
-        mode={Mode.SingleProduct}
-        amount={amount}
-        setAmount={setAmount}
-      />
+      <div>
+        <div className="flex justify-center">
+          <SelectProductSize size={size} setSize={setSize} />
+        </div>
+        <div className="flex justify-center">
+          <SelectProductAmount
+            mode={Mode.SingleProduct}
+            amount={amount}
+            setAmount={setAmount}
+          />
+        </div>
+      </div>
       {userId ? (
         <FormContainer action={addToCartAction}>
           <input type="hidden" name="productId" value={productId} />
           <input type="hidden" name="amount" value={amount} />
+          <input type="hidden" name="size" value={size} />
           <SubmitButton text="add to cart" size="default" className="mt-8" />
         </FormContainer>
       ) : (

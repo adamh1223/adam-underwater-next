@@ -16,6 +16,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import SelectProductSize from "@/components/products/ProductSize";
+import AddProductSize from "@/components/single-product/AddProductSize";
 
 async function SingleProductPage({ params }: { params: { id: string } }) {
   const product = await fetchSingleProduct(params.id);
@@ -40,26 +42,26 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
               className="w-full rounded-md object-cover"
             />
           </div> */}
-          <Carousel className="w-full max-w-sm">
+          <Carousel className="w-full max-w-sm mx-5">
             <CarouselContent>
               {/* First item */}
               <CarouselItem>
                 <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear1.png"} alt="" />
+                  <img src={image[0]} alt="" />
                 </div>
               </CarouselItem>
 
               {/* Second item */}
               <CarouselItem>
                 <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear2.png"} alt="" />
+                  <img src={image[1]} alt="" />
                 </div>
               </CarouselItem>
 
               {/* Third item */}
               <CarouselItem>
                 <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear3.png"} alt="" />
+                  <img src={image[2]} alt="" />
                 </div>
               </CarouselItem>
             </CarouselContent>
@@ -81,7 +83,9 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
             <p className="mt-6 leading-8 text-muted-foreground">
               {description}
             </p>
-            <AddToCart productId={params.id} />
+            <div>
+              <AddToCart productId={params.id} />
+            </div>
           </div>
         </div>
         <ProductReviews productId={params.id} />

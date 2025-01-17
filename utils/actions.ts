@@ -426,15 +426,17 @@ export const fetchPurchasedProducts = async (productIDs: string[]) => {
   });
   return products;
 };
-
+// only calculates quantity, not price
 const updateOrCreateCartItem = async ({
   productId,
   cartId,
   amount,
+  size,
 }: {
   productId: string;
   cartId: string;
   amount: number;
+  size: string;
 }) => {
   let cartItem = await db.cartItem.findFirst({
     where: {
@@ -442,6 +444,7 @@ const updateOrCreateCartItem = async ({
       cartId,
     },
   });
+
   if (cartItem) {
     cartItem = await db.cartItem.update({
       where: {
@@ -449,11 +452,12 @@ const updateOrCreateCartItem = async ({
       },
       data: {
         amount: cartItem.amount + amount,
+        size,
       },
     });
   } else {
     cartItem = await db.cartItem.create({
-      data: { amount, productId, cartId },
+      data: { amount, productId, cartId, size },
     });
   }
 };
@@ -475,7 +479,10 @@ export const updateCart = async (cart: Cart) => {
 
   for (const item of cartItems) {
     numItemsInCart += item.amount;
-    cartTotal += item.amount * item.product.price;
+    const surcharge = item.size === "medium" ? 100 : 0;
+    console.log(surcharge);
+
+    cartTotal += item.amount + (Number(surcharge) + item.product.price);
   }
   const tax = cart.taxRate * cartTotal;
   const shipping = cartTotal ? cart.shipping : 0;
@@ -508,9 +515,10 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
   try {
     productId = formData.get("productId") as string;
     const amount = Number(formData.get("amount"));
+    const size = String(formData.get("size"));
     await fetchProduct(productId);
     const cart = await fetchOrCreateCart({ userId: user.id });
-    await updateOrCreateCartItem({ productId, cartId: cart.id, amount });
+    await updateOrCreateCartItem({ productId, cartId: cart.id, amount, size });
     await updateCart(cart);
     console.log(productId);
   } catch (error) {
