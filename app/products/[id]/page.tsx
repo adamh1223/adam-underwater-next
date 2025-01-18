@@ -17,7 +17,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import SelectProductSize from "@/components/products/ProductSize";
-import AddProductSize from "@/components/single-product/AddProductSize";
 
 async function SingleProductPage({ params }: { params: { id: string } }) {
   const product = await fetchSingleProduct(params.id);
@@ -83,7 +82,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
             <p className="mt-6 leading-8 text-muted-foreground">
               {description}
             </p>
-            <div>
+            <div className="flex items-center">
               <AddToCart productId={params.id} />
             </div>
           </div>

@@ -66,8 +66,8 @@ function ProductCarousel({
               <div className="flex items-center pe-8">
                 <img
                   src={image[0]}
-                  className="flex items-center justify-center"
-                  alt=""
+                  alt="hi"
+                  className="flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* <Image
                   src={image[0]}
@@ -97,7 +97,8 @@ function ProductCarousel({
               <div className="flex items-center pe-8">
                 <img
                   src={image[1]}
-                  className="flex items-center justify-center"
+                  alt="hi"
+                  className="flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </Link>
@@ -109,7 +110,8 @@ function ProductCarousel({
               <div className="flex items-center pe-8">
                 <img
                   src={image[2]}
-                  className="flex items-center justify-center"
+                  alt="hi"
+                  className="flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </Link>

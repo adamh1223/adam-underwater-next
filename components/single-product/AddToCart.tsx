@@ -17,11 +17,13 @@ function AddToCart({ productId }: { productId: string }) {
 
   return (
     <div className="mt-4">
-      <div>
-        <div className="flex justify-center pb-2">
+      <div className="flex justify-center">
+        <div className="flex justify-end pb-2">
           <SelectProductSize size={size} setSize={setSize} />
         </div>
-        <div className="flex justify-center pt-2">
+      </div>
+      <div className="flex justify-center">
+        <div className="flex justify-end pt-2">
           <SelectProductAmount
             mode={Mode.SingleProduct}
             amount={amount}
