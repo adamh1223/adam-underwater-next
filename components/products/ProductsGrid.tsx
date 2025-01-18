@@ -36,8 +36,11 @@ function ProductsGrid({ products }: { products: Product[] }) {
                       priority
                       className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     /> */}
-                  
-                    <ProductCarousel image={image} productId={productId}></ProductCarousel>
+
+                  <ProductCarousel
+                    image={image}
+                    productId={productId}
+                  ></ProductCarousel>
                 </div>
                 <div className="mt-4 text-center">
                   <h2 className="text-lg capitalize">{name}</h2>
@@ -46,7 +49,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
                 </div>
               </CardContent>
             </Card>
-            <div className="absolute top-7 right-7 z-5">
+            <div className="absolute top-5 right-2 z-5">
               <FavoriteToggleButton productId={productId} />
             </div>
           </article>

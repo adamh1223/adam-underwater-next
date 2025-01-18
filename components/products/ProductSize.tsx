@@ -13,10 +13,10 @@ type SelectProductSizeProps = {
 
 function SelectProductSize(props: SelectProductSizeProps) {
   const { size, setSize } = props;
-  const productSizes = ["small", "medium", "large"];
+  const productSizes = ["Small", "Medium", "Large"];
   return (
     <>
-      <h4 className="mb-2">Size : </h4>
+      <h4 className="mx-2">Size: </h4>
       <Select
         defaultValue={size.toString()}
         onValueChange={(value) => setSize(value)}

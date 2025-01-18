@@ -12,16 +12,16 @@ import SelectProductSize from "../products/ProductSize";
 
 function AddToCart({ productId }: { productId: string }) {
   const [amount, setAmount] = useState(1);
-  const [size, setSize] = useState("small");
+  const [size, setSize] = useState("Small");
   const { userId } = useAuth();
 
   return (
     <div className="mt-4">
       <div>
-        <div className="flex justify-center">
+        <div className="flex justify-center pb-2">
           <SelectProductSize size={size} setSize={setSize} />
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-2">
           <SelectProductAmount
             mode={Mode.SingleProduct}
             amount={amount}
