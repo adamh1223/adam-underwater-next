@@ -119,14 +119,14 @@ function ProductCarousel({
       <div className="absolute inset-0 z-40 flex items-center justify-between pointer-events-none">
         <Button
           onClick={decreaseIndex}
-          className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-none"
+          className="pointer-events-auto rounded-full w-8 h-8 p-0 mx-[-8px] shadow-none"
           variant="secondary"
         >
           <ChevronLeftIcon className="h-6 w-6 text-white"></ChevronLeftIcon>
         </Button>
         <Button
           onClick={increaseIndex}
-          className="pointer-events-auto rounded-full w-12 h-12 p-0 shadow-none"
+          className="pointer-events-auto rounded-full w-8 h-8 p-0 mx-[-8px] shadow-none"
           variant="secondary"
         >
           <ChevronRightIcon className="h-6 w-6 text-white"></ChevronRightIcon>

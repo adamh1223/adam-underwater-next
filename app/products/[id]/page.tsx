@@ -42,7 +42,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
               className="w-full rounded-md object-cover"
             />
           </div> */}
-          <Carousel className="w-full max-w-sm mx-5">
+          <Carousel className="w-full max-w-m mx-3">
             <CarouselContent>
               {/* First item */}
               <CarouselItem>
@@ -70,7 +70,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
             <CarouselNext />
           </Carousel>
           {/* PRODUCT INFO SECOND COL */}
-          <div>
+          <div className="ps-5">
             <div className="flex gap-x-8 items-center">
               <h1 className="capitalize text-3xl font-bold">{name}</h1>
               <FavoriteToggleButton productId={params.id} />
