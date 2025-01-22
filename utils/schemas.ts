@@ -28,6 +28,34 @@ export const productSchema = z.object({
   ),
 });
 
+export const EProductSchema = z.object({
+  name: z
+    .string()
+    .min(2, {
+      message: "name must be at least 2 characters.",
+    })
+    .max(100, {
+      message: "name must be less than 100 characters.",
+    }),
+  price: z.coerce
+    .number()
+    .int()
+    .min(0, {
+      message: "price must be a positive number.",
+    }),
+  description: z.string().refine(
+    (description) => {
+      const wordCount = description.split(" ").length;
+      return wordCount >= 10 && wordCount <= 1000;
+    },
+    {
+      message: "description must be between 10 and 1000 words.",
+    }
+  ),
+  WMVideoLink: z.string().url(),
+  downloadLink: z.string().url(),
+});
+
 export const imageSchema = z.object({
   image: validateImageFile(),
 });
@@ -42,7 +70,6 @@ function validateImageFile() {
       return !file || file.size <= maxUploadSize;
     }, "File size must be less than 25mb")
     .refine((file) => {
-
       return (
         !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
       );

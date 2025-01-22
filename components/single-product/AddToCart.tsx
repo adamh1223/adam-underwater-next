@@ -10,27 +10,37 @@ import { useAuth } from "@clerk/nextjs";
 import { ProductSignInButton } from "../form/Buttons";
 import SelectProductSize from "../products/ProductSize";
 
-function AddToCart({ productId }: { productId: string }) {
+function AddToCart({
+  productId,
+  isEProduct,
+}: {
+  productId: string;
+  isEProduct?: boolean;
+}) {
   const [amount, setAmount] = useState(1);
   const [size, setSize] = useState("Small");
   const { userId } = useAuth();
 
   return (
     <div className="mt-4">
-      <div className="flex justify-center">
-        <div className="flex justify-end pb-2">
-          <SelectProductSize size={size} setSize={setSize} />
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <div className="flex justify-end pt-2">
-          <SelectProductAmount
-            mode={Mode.SingleProduct}
-            amount={amount}
-            setAmount={setAmount}
-          />
-        </div>
-      </div>
+      {!isEProduct && (
+        <>
+          <div className="flex justify-center">
+            <div className="flex justify-end pb-2">
+              <SelectProductSize size={size} setSize={setSize} />
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <div className="flex justify-end pt-2">
+              <SelectProductAmount
+                mode={Mode.SingleProduct}
+                amount={amount}
+                setAmount={setAmount}
+              />
+            </div>
+          </div>
+        </>
+      )}
       {userId ? (
         <FormContainer action={addToCartAction}>
           <input type="hidden" name="productId" value={productId} />

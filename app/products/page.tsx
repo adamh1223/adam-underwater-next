@@ -70,7 +70,7 @@ function ProductsPage({
         </Button>
       </div> */}
 
-      <ProductsContainer layout={layout} search={search} />
+      <ProductsContainer layout={layout} search={search} isEProduct={false} />
       {/* <section id="print-creation" className="h-[500px]">
         <Sectiontitle text="Print Creation Process" />
       </section> */}

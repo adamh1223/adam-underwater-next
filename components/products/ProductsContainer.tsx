@@ -3,7 +3,7 @@ import ProductsList from "./ProductsList";
 import { LuLayoutGrid, LuList } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { fetchAllProducts } from "@/utils/actions";
+import { fetchAllEProducts, fetchAllProducts } from "@/utils/actions";
 import Link from "next/link";
 import { Suspense } from "react";
 import NavSearch from "@/components/navbar/NavSearch";
@@ -11,12 +11,18 @@ import NavSearch from "@/components/navbar/NavSearch";
 async function ProductsContainer({
   layout,
   search,
+  isEProduct,
 }: {
   layout: string;
   search: string;
+  isEProduct: boolean;
 }) {
   const products = await fetchAllProducts({ search });
+  const EProducts = await fetchAllEProducts({ search });
+  console.log(EProducts);
+
   const totalProducts = products.length;
+  const totalEProducts = EProducts.length;
   const searchTerm = search ? `&search=${search}` : "";
   return (
     <>
@@ -56,14 +62,30 @@ async function ProductsContainer({
       </section>
       {/* PRODUCTS */}
       <div>
-        {totalProducts === 0 ? (
-          <h5 className="text-2xl m-16">
-            Sorry, no products matched your search...
-          </h5>
-        ) : layout === "grid" ? (
-          <ProductsGrid products={products} />
+        {isEProduct ? (
+          <>
+            {!totalEProducts ? (
+              <h5 className="text-2xl m-16">
+                Sorry, no products matched your search...
+              </h5>
+            ) : layout === "grid" ? (
+              <ProductsGrid EProducts={EProducts} isEProduct />
+            ) : (
+              <ProductsList EProducts={EProducts} isEProduct />
+            )}
+          </>
         ) : (
-          <ProductsList products={products} />
+          <>
+            {totalProducts === 0 ? (
+              <h5 className="text-2xl m-16">
+                Sorry, no products matched your search...
+              </h5>
+            ) : layout === "grid" ? (
+              <ProductsGrid products={products} isEProduct={false} />
+            ) : (
+              <ProductsList products={products} isEProduct={false} />
+            )}
+          </>
         )}
       </div>
     </>

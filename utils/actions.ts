@@ -3,6 +3,7 @@ import db from "@/utils/db";
 import { currentUser, auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import {
+  EProductSchema,
   imageSchema,
   productSchema,
   reviewSchema,
@@ -59,6 +60,22 @@ export const fetchAllProducts = async ({
   });
 };
 
+export const fetchAllEProducts = async ({
+  search = "",
+}: { search?: string } = {}) => {
+  return db.eProduct.findMany({
+    where: {
+      OR: [
+        { name: { contains: search, mode: "insensitive" } },
+        { keywords: { hasSome: [search] } },
+      ],
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
+
 export const fetchSingleProduct = async (productId: string) => {
   const product = await db.product.findUnique({
     where: {
@@ -103,6 +120,30 @@ export const createProductAction = async (
       data: {
         ...validatedFields,
         image: stringFiles,
+        clerkId: user.id,
+      },
+    });
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect("/admin/products");
+};
+
+//CREATE EPRODUCT
+export const createEProductAction = async (
+  prevState: any,
+  formData: FormData
+): Promise<{ message: string }> => {
+  const user = await getAuthUser();
+
+  try {
+    const rawData = Object.fromEntries(formData);
+
+    const validatedFields = validateWithZodSchema(EProductSchema, rawData);
+
+    await db.eProduct.create({
+      data: {
+        ...validatedFields,
         clerkId: user.id,
       },
     });
