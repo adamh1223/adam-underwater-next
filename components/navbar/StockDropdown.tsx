@@ -31,15 +31,6 @@ function StockDropdown() {
           Stock Footage
         </Button>
       </HoverCardTrigger>
-
-      <HoverCardContent className="w-40">
-        <Button variant="ghost" onClick={() => handleSubservicesClick("video")}>
-          Stock Video
-        </Button>
-        <Button variant="ghost" onClick={() => handleSubservicesClick("photo")}>
-          Stock Photo
-        </Button>
-      </HoverCardContent>
     </HoverCard>
   );
 }

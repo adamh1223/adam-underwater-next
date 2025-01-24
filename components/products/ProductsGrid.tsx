@@ -29,7 +29,7 @@ function ProductsGrid({
         {isEProduct ? (
           <>
             {EProducts?.map((product) => {
-              const { name, price } = product;
+              const { name, price, WMVideoLink, downloadLink } = product;
 
               const productId = product.id;
               const dollarsAmount = formatCurrency(price);
@@ -38,14 +38,14 @@ function ProductsGrid({
                   <Card className="group-hover:shadow-xl transition-shadow duration-500">
                     <CardContent className="p-4">
                       <div className="relative h-full w-full rounded">
-                        {/* <Image
-                      src={image}
-                      alt={name}
-                      fill
-                      sizes="(max-width:768px) 100vw, (max-width:1300px) 50vw, 33vw"
-                      priority
-                      className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                    /> */}
+                        {/* 
+                          <img
+                          src={image[0]}
+                          alt="hi"
+                          className="flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                          />
+                        */}
+                        {/* {Insert Video here. Video plays WMVideoLink on hover. keep zoom effect like with products. Above is format for product image carousel. Either allow a placeholder image or use default frame by video.} */}
                       </div>
                       <div className="mt-4 text-center">
                         <h2 className="text-lg capitalize">{name}</h2>
