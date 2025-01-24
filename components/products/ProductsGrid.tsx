@@ -45,7 +45,12 @@ function ProductsGrid({
                           className="flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                           />
                         */}
-                        {/* {Insert Video here. Video plays WMVideoLink on hover. keep zoom effect like with products. Above is format for product image carousel. Either allow a placeholder image or use default frame by video.} */}
+                        {/* 
+                          Insert Video here. 
+                          Video plays WMVideoLink on hover. 
+                          Keep zoom effect like with products. 
+                          Above is format for product image carousel. Either allow a placeholder image or use default frame by video.
+                        */}
                       </div>
                       <div className="mt-4 text-center">
                         <h2 className="text-lg capitalize">{name}</h2>

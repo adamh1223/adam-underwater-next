@@ -43,9 +43,7 @@ function AddToCart({
       )}
       {userId ? (
         <FormContainer action={addToCartAction}>
-          <input type="hidden" name="productId" value={productId} />
-          <input type="hidden" name="amount" value={amount} />
-          <input type="hidden" name="size" value={size} />
+          <input type="hidden" name="EProductId" value={productId} />
           <SubmitButton text="add to cart" size="default" className="mt-8" />
         </FormContainer>
       ) : (

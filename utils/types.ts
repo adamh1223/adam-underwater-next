@@ -10,12 +10,13 @@ export type actionFunction = (
 ) => Promise<{ message: string }>;
 
 export type CartItem = {
-  productId: string;
-  image: string;
+  EProductId?: string;
+  productId?: string;
+  image?: string;
   title: string;
   price: string;
-  amount: number;
-  company: string;
+  amount?: number;
+  company?: string;
 };
 
 export type CartState = {

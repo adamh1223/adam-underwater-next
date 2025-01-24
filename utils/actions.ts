@@ -473,11 +473,13 @@ const updateOrCreateCartItem = async ({
   cartId,
   amount,
   size,
+  EProductId,
 }: {
   productId: string;
   cartId: string;
-  amount: number;
-  size: string;
+  amount?: number;
+  size?: string;
+  EProductId?: string;
 }) => {
   let cartItem = await db.cartItem.findFirst({
     where: {
@@ -485,21 +487,44 @@ const updateOrCreateCartItem = async ({
       cartId,
     },
   });
-
-  if (cartItem) {
-    cartItem = await db.cartItem.update({
-      where: {
-        id: cartItem.id,
-      },
-      data: {
-        amount: cartItem.amount + amount,
-        size,
-      },
-    });
-  } else {
-    cartItem = await db.cartItem.create({
-      data: { amount, productId, cartId, size },
-    });
+  let ECartItem = await db.cartItem.findFirst({
+    where: {
+      EProductId,
+      cartId,
+    },
+  });
+  if (ECartItem) {
+    return;
+  }
+  //Product that exists in cart
+  if (cartItem && amount && size) {
+    if (cartItem.amount != null) {
+      cartItem = await db.cartItem.update({
+        where: {
+          id: cartItem.id,
+        },
+        data: {
+          amount: cartItem.amount + amount,
+          size,
+        },
+      });
+    }
+  }
+  //New Product not already in cart
+  else if (!cartItem && !EProductId) {
+    if (amount != undefined) {
+      cartItem = await db.cartItem.create({
+        data: { amount, productId, cartId, size },
+      });
+    }
+  }
+  //New EProduct
+  else {
+    if (EProductId != undefined) {
+      cartItem = await db.cartItem.create({
+        data: { EProductId, cartId },
+      });
+    }
   }
 };
 
@@ -519,11 +544,17 @@ export const updateCart = async (cart: Cart) => {
   let cartTotal = 0;
 
   for (const item of cartItems) {
-    numItemsInCart += item.amount;
+    numItemsInCart += item.amount ?? 1;
     const surcharge = item.size === "medium" ? 100 : 0;
     console.log(surcharge);
+    if (item.size && item.amount && item?.product?.price) {
+      cartTotal += item.amount + (Number(surcharge) + item.product.price);
+    } else {
+      if (item?.product?.price) {
+        cartTotal += item.product.price
+      }
+    } 
 
-    cartTotal += item.amount + (Number(surcharge) + item.product.price);
   }
   const tax = cart.taxRate * cartTotal;
   const shipping = cartTotal ? cart.shipping : 0;
@@ -553,13 +584,45 @@ export const updateCart = async (cart: Cart) => {
 export const addToCartAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
   let productId = "";
+  let EProductId = "";
+  let amount;
+  let size;
   try {
     productId = formData.get("productId") as string;
-    const amount = Number(formData.get("amount"));
-    const size = String(formData.get("size"));
+    EProductId = formData.get("EProductId") as string;
+    if (productId) {
+      amount = Number(formData.get("amount"));
+      size = String(formData.get("size"));
+      await fetchProduct(productId);
+    }
+
+    const cart = await fetchOrCreateCart({ userId: user.id });
+    await updateOrCreateCartItem({
+      productId,
+      EProductId,
+      cartId: cart.id,
+      amount,
+      size,
+    });
+    await updateCart(cart);
+    console.log(productId);
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect(`/products/${productId}`);
+};
+
+export const addEProductToCartAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  const user = await getAuthUser();
+  let productId = "";
+  try {
+    productId = formData.get("productId") as string;
     await fetchProduct(productId);
     const cart = await fetchOrCreateCart({ userId: user.id });
-    await updateOrCreateCartItem({ productId, cartId: cart.id, amount, size });
+    await updateOrCreateCartItem({ productId, cartId: cart.id });
     await updateCart(cart);
     console.log(productId);
   } catch (error) {

@@ -33,21 +33,29 @@ export const SecondColumn = ({
   name,
   company,
   productId,
+  EProductId,
 }: {
-  name: string;
-  company: string;
+  name?: string;
+  company?: string;
   productId: string;
+  EProductId: string;
 }) => {
   return (
     <div className=" sm:w-48">
-      <Link href={`/products/${productId}`}>
-        <h3 className="capitalize font-medium hover:underline">{name}</h3>
-      </Link>
+      {productId ? (
+        <Link href={`/products/${productId}`}>
+          <h3 className="capitalize font-medium hover:underline">{name}</h3>
+        </Link>
+      ) : (
+        <Link href={`/stock/${EProductId}`}>
+          <h3 className="capitalize font-medium hover:underline">{name}</h3>
+        </Link>
+      )}
       <h4 className="mt-2 capitalize text-xs">{company}</h4>
     </div>
   );
 };
 
-export const FourthColumn = ({ price }: { price: number }) => {
-  return <p className="font-medium md:ml-auto">{formatCurrency(price)}</p>;
+export const FourthColumn = ({ price }: { price?: number }) => {
+  return <p className="font-medium md:ml-auto">{formatCurrency(price ?? 0)}</p>;
 };
