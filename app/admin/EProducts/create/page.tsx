@@ -6,6 +6,7 @@ import PriceInput from "@/components/form/PriceInput";
 import TextAreaInput from "@/components/form/TextAreaInput";
 import { faker } from "@faker-js/faker";
 import CheckboxInput from "@/components/form/CheckboxInput";
+import ImageInput from "@/components/form/ImageInput";
 
 function CreateEProduct() {
   const name = faker.commerce.productName();
@@ -31,6 +32,7 @@ function CreateEProduct() {
             <FormInput type="text" name="location" label="location" />
             <FormInput type="text" name="keywords" label="keywords" />
             <PriceInput />
+            <ImageInput />
             {/* <WMVideo /> */}
           </div>
           <TextAreaInput

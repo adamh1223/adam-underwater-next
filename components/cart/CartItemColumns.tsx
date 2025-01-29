@@ -13,9 +13,12 @@ export const FirstColumn = ({
   name,
   image,
 }: {
-  image: string[];
+  image?: string[];
   name: string;
 }) => {
+  if (!image) {
+    return null;
+  }
   return (
     <div className="relative h-24 w-24 sm:h-32 sm:w-32">
       <Image
@@ -37,8 +40,8 @@ export const SecondColumn = ({
 }: {
   name?: string;
   company?: string;
-  productId: string;
-  EProductId: string;
+  productId?: string;
+  EProductId?: string;
 }) => {
   return (
     <div className=" sm:w-48">

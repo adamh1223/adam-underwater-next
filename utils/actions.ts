@@ -137,7 +137,18 @@ export const createEProductAction = async (
   const user = await getAuthUser();
 
   try {
+    const rawFiles = Object.values(
+      (formData.getAll("images") as unknown) as File[]
+    );
     const rawData = Object.fromEntries(formData);
+    const promisedImages = rawFiles.map(async (file) => {
+      const validatedFile = validateWithZodSchema(imageSchema, {
+        image: file,
+      });
+
+      return await uploadImage(validatedFile.image);
+    });
+    const stringFiles: string[] = await Promise.all(promisedImages);
 
     const validatedFields = validateWithZodSchema(EProductSchema, rawData);
 
@@ -145,9 +156,12 @@ export const createEProductAction = async (
       data: {
         ...validatedFields,
         clerkId: user.id,
+        thumbnail: stringFiles[0],
       },
     });
   } catch (error) {
+    console.log(error);
+
     return renderError(error);
   }
   redirect("/admin/products");
@@ -481,6 +495,8 @@ const updateOrCreateCartItem = async ({
   size?: string;
   EProductId?: string;
 }) => {
+  console.log(EProductId, "this is my e product");
+
   let cartItem = await db.cartItem.findFirst({
     where: {
       productId,
@@ -521,6 +537,8 @@ const updateOrCreateCartItem = async ({
   //New EProduct
   else {
     if (EProductId != undefined) {
+      console.log("creating an e product");
+
       cartItem = await db.cartItem.create({
         data: { EProductId, cartId },
       });
@@ -535,6 +553,7 @@ export const updateCart = async (cart: Cart) => {
     },
     include: {
       product: true,
+      EProduct: true,
     },
     orderBy: {
       createdAt: "asc",
@@ -551,10 +570,9 @@ export const updateCart = async (cart: Cart) => {
       cartTotal += item.amount + (Number(surcharge) + item.product.price);
     } else {
       if (item?.product?.price) {
-        cartTotal += item.product.price
+        cartTotal += item.product.price;
       }
-    } 
-
+    }
   }
   const tax = cart.taxRate * cartTotal;
   const shipping = cartTotal ? cart.shipping : 0;
@@ -574,6 +592,7 @@ export const updateCart = async (cart: Cart) => {
       cartItems: {
         include: {
           product: true,
+          EProduct: true,
         },
       },
     },

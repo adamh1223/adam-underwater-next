@@ -31,6 +31,7 @@ model EProduct {
   description  String
   WMVideoLink  String
   downloadLink String
+  thumbnail    String?
   price        Int
   keywords     String[]
   location     String     @default("San Francisco, CA")
@@ -88,7 +89,7 @@ model CartItem {
   cart       Cart      @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId     String
   amount     Int?
-  size       String?   @default("Small")
+  size       String?
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
