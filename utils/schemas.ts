@@ -59,6 +59,9 @@ export const EProductSchema = z.object({
 export const imageSchema = z.object({
   image: validateImageFile(),
 });
+export const thumbnailSchema = z.object({
+  thumbnail: validateImageFile(),
+});
 
 function validateImageFile() {
   const maxUploadSize = 25600 * 25600;

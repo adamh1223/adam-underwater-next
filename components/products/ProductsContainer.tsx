@@ -1,5 +1,6 @@
 import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";
+import EProductsList from "../eproducts/EProductsList";
 import { LuLayoutGrid, LuList } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -38,24 +39,49 @@ async function ProductsContainer({
             {totalProducts} product{totalProducts > 1 && "s"}
           </h4>
           <div className="flex gap-x-4 p-5">
-            <Button
-              variant={layout === "grid" ? "default" : "ghost"}
-              size="icon"
-              asChild
-            >
-              <Link href={`/products?layout=grid${searchTerm}`}>
-                <LuLayoutGrid />
-              </Link>
-            </Button>
-            <Button
-              variant={layout === "list" ? "default" : "ghost"}
-              size="icon"
-              asChild
-            >
-              <Link href={`/products?layout=list${searchTerm}`}>
-                <LuList />
-              </Link>
-            </Button>
+            {totalEProducts > 0 ? (
+              <>
+                <Button
+                  variant={layout === "grid" ? "default" : "ghost"}
+                  size="icon"
+                  asChild
+                >
+                  <Link href={`/stock?layout=grid${searchTerm}`}>
+                    <LuLayoutGrid />
+                  </Link>
+                </Button>
+                <Button
+                  variant={layout === "list" ? "default" : "ghost"}
+                  size="icon"
+                  asChild
+                >
+                  <Link href={`/stock?layout=list${searchTerm}`}>
+                    <LuList />
+                  </Link>
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant={layout === "grid" ? "default" : "ghost"}
+                  size="icon"
+                  asChild
+                >
+                  <Link href={`/products?layout=grid${searchTerm}`}>
+                    <LuLayoutGrid />
+                  </Link>
+                </Button>
+                <Button
+                  variant={layout === "list" ? "default" : "ghost"}
+                  size="icon"
+                  asChild
+                >
+                  <Link href={`/products?layout=list${searchTerm}`}>
+                    <LuList />
+                  </Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
         <Separator className="mt-4" />
@@ -71,7 +97,7 @@ async function ProductsContainer({
             ) : layout === "grid" ? (
               <ProductsGrid EProducts={EProducts} isEProduct />
             ) : (
-              <ProductsList EProducts={EProducts} isEProduct />
+              <EProductsList EProducts={EProducts} />
             )}
           </>
         ) : (

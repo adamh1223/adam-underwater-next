@@ -7,6 +7,7 @@ import {
   imageSchema,
   productSchema,
   reviewSchema,
+  thumbnailSchema,
   validateWithZodSchema,
 } from "./schemas";
 import { deleteImage, uploadImage } from "./supabase";
@@ -140,13 +141,15 @@ export const createEProductAction = async (
     const rawFiles = Object.values(
       (formData.getAll("images") as unknown) as File[]
     );
+    console.log(rawFiles);
+    
     const rawData = Object.fromEntries(formData);
     const promisedImages = rawFiles.map(async (file) => {
-      const validatedFile = validateWithZodSchema(imageSchema, {
-        image: file,
+      const validatedFile = validateWithZodSchema(thumbnailSchema, {
+        thumbnail: file,
       });
 
-      return await uploadImage(validatedFile.image);
+      return await uploadImage(validatedFile.thumbnail);
     });
     const stringFiles: string[] = await Promise.all(promisedImages);
 
