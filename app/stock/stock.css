@@ -1,0 +1,28 @@
+
+
+.statement {
+  text-align: left; /* Align the text to the start of its parent */
+  margin: 0; /* Reset margin if needed */
+  position: relative; /* Required for positioning the pseudo-element */
+  padding: 0 0 0;
+}
+
+.statement::before {
+  content: "•"; /* Adds a bullet point */
+  margin-right: 8px; /* Space between bullet and text */
+  font-size: 1.2em; /* Adjust bullet size as needed */
+  color: inherit; /* Matches the text color */
+  display: inline-block;
+}
+
+.card {
+}
+
+.subheader {
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+  padding: 0 30px 0 30px;
+}

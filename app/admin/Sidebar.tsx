@@ -15,16 +15,17 @@ function Sidebar() {
         const isActivePage = pathname === link.href;
         const variant = isActivePage ? "default" : "ghost";
         return (
-          <Button
-            key={link}
-            asChild
-            className="w-full mb-2 capitalize font-normal justify-start"
-            variant={variant}
-          >
-            <Link key={link.href} href={link.href}>
-              {link.label}
-            </Link>
-          </Button>
+          <React.Fragment key={link.href}>
+            <Button
+              asChild
+              className="w-full mb-2 capitalize font-normal justify-start"
+              variant={variant}
+            >
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            </Button>
+          </React.Fragment>
         );
       })}
     </aside>

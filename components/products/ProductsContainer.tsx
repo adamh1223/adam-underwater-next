@@ -1,6 +1,7 @@
 import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";
 import EProductsList from "../eproducts/EProductsList";
+import EProductsGrid from "../eproducts/EProductsGrid";
 import { LuLayoutGrid, LuList } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -95,7 +96,7 @@ async function ProductsContainer({
                 Sorry, no products matched your search...
               </h5>
             ) : layout === "grid" ? (
-              <ProductsGrid EProducts={EProducts} isEProduct />
+              <EProductsGrid EProducts={EProducts} />
             ) : (
               <EProductsList EProducts={EProducts} />
             )}
