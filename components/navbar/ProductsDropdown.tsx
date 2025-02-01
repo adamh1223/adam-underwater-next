@@ -31,7 +31,7 @@ function ProductsDropdown() {
           Products
         </Button>
       </HoverCardTrigger>
-
+      {/* 
       <HoverCardContent className="w-40">
         <Button
           variant="ghost"
@@ -48,7 +48,7 @@ function ProductsDropdown() {
         >
           Sound FX
         </Button>
-      </HoverCardContent>
+      </HoverCardContent> */}
     </HoverCard>
   );
 }

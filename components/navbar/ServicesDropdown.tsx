@@ -39,18 +39,18 @@ function ServicesDropdown() {
         <Button variant="ghost" onClick={() => handleSubservicesClick("photo")}>
           Underwater Photo
         </Button>
-        <Button variant="ghost" onClick={() => handleSubservicesClick("dives")}>
+        {/* <Button variant="ghost" onClick={() => handleSubservicesClick("dives")}>
           Guided Dives
-        </Button>
+        </Button> */}
         <Button variant="ghost" onClick={() => handleSubservicesClick("drone")}>
           Drone Video & Photo
         </Button>
-        <Button
+        {/* <Button
           variant="ghost"
           onClick={() => handleSubservicesClick("coaching")}
         >
           1 on 1 Coaching
-        </Button>
+        </Button> */}
       </HoverCardContent>
     </HoverCard>
   );

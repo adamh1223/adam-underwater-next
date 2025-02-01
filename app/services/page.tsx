@@ -56,7 +56,7 @@ function page() {
       <div
         className="anchors"
         style={{
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr",
         }}
       >
         <Button variant="outline" className="anchor">
@@ -66,11 +66,16 @@ function page() {
           <a onClick={(evt) => handleClick("photo", evt)}>Underwater Photo</a>
         </Button>
         <Button variant="outline" className="anchor">
+          <a onClick={(evt) => handleClick("drone", evt)}>
+            Drone Video & Photo
+          </a>
+        </Button>
+        {/* <Button variant="outline" className="anchor">
           <a onClick={(evt) => handleClick("dives", evt)}>Guided Dives</a>
-        </Button>
-        <Button variant="outline" className="anchor">
+        </Button> */}
+        {/* <Button variant="outline" className="anchor">
           <a onClick={(evt) => handleClick("coaching", evt)}>1 on 1 Coaching</a>
-        </Button>
+        </Button> */}
       </div>
       <Sectiontitle text="Underwater 8K Video" />
       <section
@@ -98,7 +103,7 @@ function page() {
       <section id="photo" className="h-[500px]">
         <Sectiontitle text="Underwater 45mp Photo" />
       </section>
-      <section id="dives">
+      {/* <section id="dives">
         <Sectiontitle text="Guided Dives" />
         <ul className="subheader">
           <h1>San Diego, CA</h1>
@@ -137,19 +142,46 @@ function page() {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
       <section id="drone">
         <Sectiontitle text="Drone Video & Photo" />
-        <ul className="subheader">
-          <h1>Drone Video & Photo</h1>
-        </ul>
-        <ul>
-          <li>hi</li>
-          <li>hello</li>
-          <li>sup</li>
-        </ul>
+        <br />
+        <div
+          style={{
+            gridTemplateColumns: "1fr 1fr",
+          }}
+          className="drone-titles"
+        >
+          {/* <div className="drone-title">DJI Inspire 3</div>
+          <div className="drone-title">RED Komodo X FPV</div> */}
+          <Card className="drone-title group overflow-hidden">
+            <CardHeader className="text-center">
+              <CardTitle>DJI Inspire 3</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <img
+                src={"/images/inspire.jpg"}
+                alt="DJI Inspire 3"
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+            </CardContent>
+          </Card>
+
+          <Card className="drone-title group overflow-hidden">
+            <CardHeader className="text-center">
+              <CardTitle>FPV with RED Komodo X</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <img
+                src={"/images/inspire.jpg"}
+                alt="FPV with RED Komodo X"
+                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+              />
+            </CardContent>
+          </Card>
+        </div>
       </section>
-      <section id="coaching">
+      {/* <section id="coaching">
         <Sectiontitle text="1 on 1 Coaching" />
         <ul className="subheader">
           <h1>Zoom coaching sessions</h1>
@@ -167,7 +199,7 @@ function page() {
           </li>
           <li>The first coaching session is 50% off.</li>
         </ul>
-      </section>
+      </section> */}
     </>
   );
 }
