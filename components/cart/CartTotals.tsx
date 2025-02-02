@@ -21,6 +21,9 @@ function CartTotals({ cart }: { cart: Cart }) {
       <p className="flex justify-center pt-7">
         Please allow 7-10 business days for shipping.
       </p>
+      <p className="flex justify-center pt-7">
+        Electronic products will be downloaded immediately.
+      </p>
       <FormContainer action={createOrderAction}>
         <SubmitButton text="Place Order" className="w-full mt-8" />
       </FormContainer>

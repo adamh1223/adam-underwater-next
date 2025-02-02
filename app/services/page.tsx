@@ -160,7 +160,7 @@ function page() {
             </CardHeader>
             <CardContent className="p-0">
               <img
-                src={"/images/inspire.jpg"}
+                src={"/images/inspire3.jpg"}
                 alt="DJI Inspire 3"
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
@@ -173,7 +173,7 @@ function page() {
             </CardHeader>
             <CardContent className="p-0">
               <img
-                src={"/images/inspire.jpg"}
+                src={"/images/inspire3.jpg"}
                 alt="FPV with RED Komodo X"
                 className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
