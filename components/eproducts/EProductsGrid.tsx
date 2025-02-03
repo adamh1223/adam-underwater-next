@@ -5,6 +5,7 @@ import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import FavoriteToggleButton from "@/components/products/FavoriteToggleButton";
 import AddToCart from "../single-product/AddToCart";
+import EProductPreview from "./EProductPreview";
 
 function ProductsGrid({ EProducts }: { EProducts?: EProduct[] }) {
   return (
@@ -20,20 +21,15 @@ function ProductsGrid({ EProducts }: { EProducts?: EProduct[] }) {
               <Card className="group-hover:shadow-xl transition-shadow duration-500">
                 <CardContent className="p-4">
                   <div className="relative h-full w-full rounded">
-                    {thumbnail && (
+                    {/* {thumbnail && (
                       <img
                         src={thumbnail}
                         alt="hi"
                         className="flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                       />
-                    )}
+                    )} */}
 
-                    {/* 
-                          Insert Video here. 
-                          Video plays WMVideoLink on hover. 
-                          Keep zoom effect like with products. 
-                          Above is format for product image carousel. Either allow a placeholder image or use default frame by video.
-                        */}
+                    <EProductPreview EProduct={product} />
                   </div>
                   <div className="mt-4 text-center">
                     <h2 className="text-lg capitalize">{name}</h2>
