@@ -89,6 +89,18 @@ export const fetchSingleProduct = async (productId: string) => {
   return product;
 };
 
+export const fetchSingleEProduct = async (EProductId: string) => {
+  const EProduct = await db.eProduct.findUnique({
+    where: {
+      id: EProductId,
+    },
+  });
+  if (!EProduct) {
+    redirect("/stock");
+  }
+  return EProduct;
+};
+
 export const createProductAction = async (
   prevState: any,
   formData: FormData
