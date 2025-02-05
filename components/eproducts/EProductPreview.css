@@ -1,0 +1,7 @@
+.thumbnail-crop {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  clip-path: inset(9px 0 9px 0); /* Crops 20px from top and bottom */
+}

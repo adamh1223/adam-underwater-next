@@ -2,6 +2,7 @@
 
 import { EProduct } from "@prisma/client";
 import { useState, useRef, useEffect } from "react";
+import './EProductPreview.css'
 
 function EProductPreview({
   EProduct,
@@ -23,29 +24,32 @@ function EProductPreview({
     }
   }, [isHovered]);
 
-  const imageClassName = extraClassName
-    ? `${extraClassName} `
-    : "flex items-center justify-center rounded w-full object-cover transform group-hover:scale-105 transition-transform duration-500 aspect-video";
-
   const { thumbnail, WMVideoLink } = EProduct;
 
   return (
     <div
-      className="h-full w-full rounded overflow-hidden"
+      className=""
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered ? (
-        <div className="w-full h-full rounded overflow-hidden">
+        <div className="relative w-full h-0 pb-[56.25%]">
+          {" "}
+          {/* Aspect ratio for 16:9 */}
           <iframe
             src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&muted=1&background=1&badge=0&autopause=0`}
             allow="autoplay; loop;"
             style={{
-              width: thumbnailSize.width,
-              height: thumbnailSize.height,
-              borderRadius: "12px",
+              width: "100%",
+              height: "100%",
+              borderRadius: "10px",
+              position: "absolute", // Absolute positioning to fill the container
+              top: "0",
+              left: "0",
+              objectFit: "cover", // Ensures the video fills the container
+              objectPosition: "center", // Centers the video within the iframe
             }}
-            className="w-full h-full object-cover rounded"
+            className="rounded"
           ></iframe>
         </div>
       ) : (
@@ -56,7 +60,7 @@ function EProductPreview({
               src={thumbnail}
               alt="name"
               sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-              className={imageClassName}
+              className="thumbnail-crop"
             />
           )}
         </>

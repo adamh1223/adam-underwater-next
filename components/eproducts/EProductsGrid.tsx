@@ -9,7 +9,7 @@ import EProductPreview from "./EProductPreview";
 
 function ProductsGrid({ EProducts }: { EProducts?: EProduct[] }) {
   return (
-    <div className="pt-12 mx-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-5 pb-5">
+    <div className="pt-12 mx-8 grid gap-4 md:grid-cols-2 px-5 pb-5">
       <>
         {EProducts?.map((product) => {
           const { name, price, WMVideoLink, downloadLink, thumbnail } = product;
