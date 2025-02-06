@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/carousel";
 import SelectProductSize from "@/components/products/ProductSize";
 import "../stock.css";
+import { Card, CardContent } from "@/components/ui/card";
 
 async function SingleEProductPage({ params }: { params: { id: string } }) {
   const EProduct = await fetchSingleEProduct(params.id);
@@ -30,9 +31,11 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
   const { userId } = auth();
   return (
     <>
-      <section className="p-[50px]">
-        <BreadCrumbs name={EProduct.name} />
-        <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">
+      <section>
+        <div className="breadcrumbs">
+          <BreadCrumbs name={EProduct.name} />
+        </div>
+        <div className="mt-8 grid lg:grid-cols-2 lg:gap-x-16">
           {/* IMAGE FIRST COL */}
           {/* <div className="relative h-96">
             <Image
@@ -44,39 +47,43 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
               className="w-full rounded-md object-cover"
             />
           </div> */}
+
           <div className="clip-wrapper">
             <iframe
               src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&badge=0&autopause=0`}
               allow="autoplay; fullscreen; picture-in-picture;"
               style={{
-                height: "67.5%",
-                width: "45%",
-                position: "absolute", // Absolute positioning to fill the container
+                //   height: "67.5%",
+                //   width: "45%",
+                position: "relative", // Absolute positioning to fill the container
                 objectFit: "cover",
                 objectPosition: "center", // Centers the video within the iframe
               }}
+              className="clip"
             ></iframe>
           </div>
           {/* PRODUCT INFO SECOND COL */}
-          <div className="ps-8">
-            <div className="flex gap-x-8 items-center">
-              <h1 className="capitalize text-3xl font-bold">{name}</h1>
-              <FavoriteToggleButton productId={params.id} />
-            </div>
+          <div className="details-wrapper flex items-center justify-center">
+            <div className="p-8">
+              <div className="flex gap-x-8 items-center">
+                <h1 className="capitalize text-3xl font-bold">{name}</h1>
+                <FavoriteToggleButton productId={params.id} />
+              </div>
 
-            <p className="mt-3 text-md bg-muted inline-block p-2 rounded-md">
-              {dollarsAmount}
-            </p>
-            <p className="mt-6 leading-8 text-muted-foreground">
-              {description}
-            </p>
-            <div className="flex items-center">
-              <AddToCart
-                productId={params.id}
-                isEProduct
-                RedirectTo={`/stock/${params.id}`}
-                // redirectto for all add to cart buttons
-              />
+              <p className="mt-3 text-md bg-muted inline-block p-2 rounded-md">
+                {dollarsAmount}
+              </p>
+              <p className="mt-6 leading-8 text-muted-foreground">
+                {description}
+              </p>
+              <div className="flex items-center">
+                <AddToCart
+                  productId={params.id}
+                  isEProduct
+                  RedirectTo={`/stock/${params.id}`}
+                  // redirectto for all add to cart buttons
+                />
+              </div>
             </div>
           </div>
         </div>
