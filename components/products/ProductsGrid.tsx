@@ -57,7 +57,11 @@ function ProductsGrid({
                         <p className="text-muted-foreground mt-2">
                           {dollarsAmount}
                         </p>
-                        <AddToCart productId={productId} isEProduct />
+                        <AddToCart
+                          productId={productId}
+                          isEProduct
+                          RedirectTo={`/products`}
+                        />
                       </div>
                     </CardContent>
                   </Card>
@@ -100,7 +104,10 @@ function ProductsGrid({
                         <p className="text-muted-foreground mt-2">
                           {dollarsAmount}
                         </p>
-                        <AddToCart productId={productId} />
+                        <AddToCart
+                          productId={productId}
+                          RedirectTo={`/products/${productId}`}
+                        />
                       </div>
                     </CardContent>
                   </Card>

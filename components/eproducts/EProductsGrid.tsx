@@ -36,7 +36,11 @@ function ProductsGrid({ EProducts }: { EProducts?: EProduct[] }) {
                     <p className="text-muted-foreground mt-2">
                       {dollarsAmount}
                     </p>
-                    <AddToCart productId={productId} isEProduct />
+                    <AddToCart
+                      productId={productId}
+                      isEProduct
+                      RedirectTo={`/stock`}
+                    />
                   </div>
                 </CardContent>
               </Card>

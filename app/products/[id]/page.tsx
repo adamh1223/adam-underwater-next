@@ -83,7 +83,10 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
               {description}
             </p>
             <div className="flex items-center">
-              <AddToCart productId={params.id} />
+              <AddToCart
+                productId={params.id}
+                RedirectTo={`/products/${params.id}`}
+              />
             </div>
           </div>
         </div>
