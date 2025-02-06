@@ -21,6 +21,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import SelectProductSize from "@/components/products/ProductSize";
+import "../stock.css";
 
 async function SingleEProductPage({ params }: { params: { id: string } }) {
   const EProduct = await fetchSingleEProduct(params.id);
@@ -43,12 +44,21 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
               className="w-full rounded-md object-cover"
             />
           </div> */}
-          <iframe
-            src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&muted=1&background=1&badge=0&autopause=0`}
-            allow="autoplay; loop;"
-          ></iframe>
+          <div className="clip-wrapper">
+            <iframe
+              src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&badge=0&autopause=0`}
+              allow="autoplay; fullscreen; picture-in-picture;"
+              style={{
+                height: "67.5%",
+                width: "45%",
+                position: "absolute", // Absolute positioning to fill the container
+                objectFit: "cover",
+                objectPosition: "center", // Centers the video within the iframe
+              }}
+            ></iframe>
+          </div>
           {/* PRODUCT INFO SECOND COL */}
-          <div className="ps-5">
+          <div className="ps-8">
             <div className="flex gap-x-8 items-center">
               <h1 className="capitalize text-3xl font-bold">{name}</h1>
               <FavoriteToggleButton productId={params.id} />
