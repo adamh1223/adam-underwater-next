@@ -28,13 +28,12 @@
 @media (max-width: 1024px) and (min-width: 901px) {
   .clip {
     width: 790px;
-    height: 420px;
+    height: 460px;
     display: flex;
     justify-content: center;
   }
   .clip-wrapper {
     display: flex;
-    justify-content: center;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -55,7 +54,6 @@
   }
   .clip-wrapper {
     display: flex;
-    justify-content: center;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -69,14 +67,32 @@
 
 @media (max-width: 749px) and (min-width: 650px) {
   .clip {
-    width: 450px;
+    width: 500px;
+    height: 295px;
+    display: flex;
+    justify-content: center;
+  }
+  .clip-wrapper {
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .details-wrapper {
+    width: 100vw;
+    padding: 0 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (max-width: 649px) {
+  .clip {
+    width: 400px;
     height: 225px;
     display: flex;
     justify-content: center;
   }
   .clip-wrapper {
     display: flex;
-    justify-content: center;
     padding-left: 50px;
     padding-right: 50px;
   }
