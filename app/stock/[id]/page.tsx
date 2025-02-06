@@ -53,7 +53,7 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
               <h1 className="capitalize text-3xl font-bold">{name}</h1>
               <FavoriteToggleButton productId={params.id} />
             </div>
-            <ProductRating productId={params.id} />
+
             <p className="mt-3 text-md bg-muted inline-block p-2 rounded-md">
               {dollarsAmount}
             </p>
@@ -61,11 +61,15 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
               {description}
             </p>
             <div className="flex items-center">
-              <AddToCart productId={params.id} />
+              <AddToCart
+                productId={params.id}
+                isEProduct
+                RedirectTo={`/stock/${params.id}`}
+                // redirectto for all add to cart buttons
+              />
             </div>
           </div>
         </div>
-        <ProductReviews productId={params.id} />
       </section>
     </>
   );

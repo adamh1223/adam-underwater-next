@@ -154,7 +154,7 @@ export const createEProductAction = async (
       (formData.getAll("images") as unknown) as File[]
     );
     console.log(rawFiles);
-    
+
     const rawData = Object.fromEntries(formData);
     const promisedImages = rawFiles.map(async (file) => {
       const validatedFile = validateWithZodSchema(thumbnailSchema, {
@@ -619,11 +619,13 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
   let productId = "";
   let EProductId = "";
+  let RedirectTo = "/cart";
   let amount;
   let size;
   try {
     productId = formData.get("productId") as string;
     EProductId = formData.get("EProductId") as string;
+    RedirectTo = formData.get("RedirectTo") as string;
     if (productId) {
       amount = Number(formData.get("amount"));
       size = String(formData.get("size"));
@@ -643,7 +645,16 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
   } catch (error) {
     return renderError(error);
   }
-  redirect(`/products/${productId}`);
+  console.log(
+    prevState,
+    ";alskdj;falksjd;lfkjasdkl;kasd;flajds;lkfja;lsdkjfa;lsdkjf;alksdjf"
+  );
+
+  // const {
+  //   url: { pathname },
+  // } = prevState;
+
+  redirect(RedirectTo);
 };
 
 export const addEProductToCartAction = async (

@@ -61,6 +61,7 @@ function EProductPreview({
         left: "0",
         objectFit: "cover",
         objectPosition: "center", // Centers the video within the iframe
+        pointerEvents: "none",
       }
     : {
         height: "0px",
@@ -90,7 +91,7 @@ function EProductPreview({
         )}
       </>
       {isHovered && (
-        <div className={divStyles}>
+        <div className={divStyles} onClick={() => router.push(`/stock/${id}`)}>
           {" "}
           {/* Aspect ratio for 16:9 */}
           <Link href={`/stock/${id}`}>
@@ -100,10 +101,10 @@ function EProductPreview({
               // @ts-expect-error ignore for now
               style={iframeStyles}
               onLoad={() => console.log("The video is loaded")}
-              onClick={() => router.push(`/stock/${id}`)}
               className={`EProductVideo ${
                 isVideoReady ? "visible" : "tinyVideo"
               }`}
+              onPointerDown={() => router.push(`/stock/${id}`)}
             ></iframe>
           </Link>
         </div>

@@ -11,9 +11,11 @@ import { ProductSignInButton } from "../form/Buttons";
 import SelectProductSize from "../products/ProductSize";
 
 function AddToCart({
+  RedirectTo,
   productId,
   isEProduct,
 }: {
+  RedirectTo?: string;
   productId: string;
   isEProduct?: boolean;
 }) {
@@ -44,6 +46,7 @@ function AddToCart({
       {userId ? (
         <FormContainer action={addToCartAction}>
           <input type="hidden" name="EProductId" value={productId} />
+          <input type="hidden" name="RedirectTo" value={RedirectTo} />
           <SubmitButton text="add to cart" size="default" className="mt-8" />
         </FormContainer>
       ) : (
