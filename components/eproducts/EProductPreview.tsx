@@ -21,7 +21,7 @@ function EProductPreview({
   const handleVideoLoad = () => {
     setTimeout(() => {
       setIsVideoReady(true); // Switch to video only when loaded
-    }, 5000);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -94,7 +94,7 @@ function EProductPreview({
         <div className={divStyles} onClick={() => router.push(`/stock/${id}`)}>
           {" "}
           {/* Aspect ratio for 16:9 */}
-          <Link href={`/stock/${id}`}>
+          <Link href={`/stock/${id}`} className="cursor-pointer">
             <iframe
               src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&muted=1&background=1&badge=0&autopause=0`}
               allow="autoplay; loop;"
