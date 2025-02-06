@@ -35,7 +35,7 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
         <div className="breadcrumbs">
           <BreadCrumbs name={EProduct.name} />
         </div>
-        <div className="mt-8 grid lg:grid-cols-2 lg:gap-x-16">
+        <div className="mt-8 grid lg:grid-cols-2">
           {/* IMAGE FIRST COL */}
           {/* <div className="relative h-96">
             <Image
@@ -56,15 +56,13 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
                 //   height: "67.5%",
                 //   width: "45%",
                 position: "relative", // Absolute positioning to fill the container
-                objectFit: "cover",
-                objectPosition: "center", // Centers the video within the iframe
               }}
               className="clip"
             ></iframe>
           </div>
           {/* PRODUCT INFO SECOND COL */}
           <div className="details-wrapper flex items-center justify-center">
-            <div className="p-8">
+            <div className="">
               <div className="flex gap-x-8 items-center">
                 <h1 className="capitalize text-3xl font-bold">{name}</h1>
                 <FavoriteToggleButton productId={params.id} />
