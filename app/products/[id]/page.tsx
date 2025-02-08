@@ -27,9 +27,9 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
     userId && !(await findExistingReview(userId, product.id));
   return (
     <>
-      <section className="p-[50px]">
+      <section className="px-[60px] pt-[40px]">
         <BreadCrumbs name={product.name} />
-        <div className="mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16">
+        <div className="mt-6 grid gap-y-8 xl:grid-cols-2 xl:gap-x-16 me-5">
           {/* IMAGE FIRST COL */}
           {/* <div className="relative h-96">
             <Image
@@ -41,26 +41,41 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
               className="w-full rounded-md object-cover"
             />
           </div> */}
-          <Carousel className="w-full max-w-m mx-3">
-            <CarouselContent>
+          <Carousel
+            className="w-full max-w-m mx-3 flex items-center justify-center sm: mx-[31px]
+          md: mx-[20px]"
+          >
+            <CarouselContent className="flex">
               {/* First item */}
-              <CarouselItem>
+              <CarouselItem className="flex items-center justify-center">
                 <div className="p-4 flex items-center justify-center">
-                  <img src={image[0]} alt="" />
+                  <img
+                    src={image[0]}
+                    alt=""
+                    className="max-h-full object-contain"
+                  />
                 </div>
               </CarouselItem>
 
               {/* Second item */}
-              <CarouselItem>
+              <CarouselItem className="flex items-center justify-center">
                 <div className="p-4 flex items-center justify-center">
-                  <img src={image[1]} alt="" />
+                  <img
+                    src={image[1]}
+                    alt=""
+                    className="max-h-full object-contain"
+                  />
                 </div>
               </CarouselItem>
 
               {/* Third item */}
-              <CarouselItem>
+              <CarouselItem className="flex items-center justify-center">
                 <div className="p-4 flex items-center justify-center">
-                  <img src={image[2]} alt="" />
+                  <img
+                    src={image[2]}
+                    alt=""
+                    className="max-h-full object-contain"
+                  />
                 </div>
               </CarouselItem>
             </CarouselContent>
@@ -68,8 +83,9 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
+
           {/* PRODUCT INFO SECOND COL */}
-          <div className="ps-5">
+          <div className="lg:ps-3 md:ps-3 sm:ps-3 xl:ps-8">
             <div className="flex gap-x-8 items-center">
               <h1 className="capitalize text-3xl font-bold">{name}</h1>
               <FavoriteToggleButton productId={params.id} />
