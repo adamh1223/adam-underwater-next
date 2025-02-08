@@ -50,6 +50,7 @@ function Footer() {
 
       {/* Carousel */}
       <LoopingCarousel />
+      <br />
       {/* Bottom Tabs */}
       <div className="flex justify-evenly w-full pb-[100px] text-muted-foreground pt-5 mx-5">
         <div className="help">

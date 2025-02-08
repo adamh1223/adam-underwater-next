@@ -74,15 +74,6 @@ function ProductsPage({
       {/* <section id="print-creation" className="h-[500px]">
         <Sectiontitle text="Print Creation Process" />
       </section> */}
-      <section id="luts" className="h-[500px]">
-        <Sectiontitle text="LUT Packs" />
-        <h1 className="subheader">
-          Color grade your underwater video footage with my custom LUTS
-        </h1>
-      </section>
-      <section id="soundfx" className="h-[500px]">
-        <Sectiontitle text="Ocean Sound FX Bundle" />
-      </section>
     </>
   );
 }

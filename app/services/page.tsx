@@ -146,6 +146,11 @@ function page() {
       <section id="drone">
         <Sectiontitle text="Drone Video & Photo" />
         <br />
+        <div className="subheader flex justify-center">
+          Commercial FAA drone operator with 5 years of experience in aerial
+          cinematography.
+        </div>
+        <br />
         <div
           style={{
             gridTemplateColumns: "1fr 1fr",
@@ -154,31 +159,51 @@ function page() {
         >
           {/* <div className="drone-title">DJI Inspire 3</div>
           <div className="drone-title">RED Komodo X FPV</div> */}
-          <Card className="drone-title group overflow-hidden">
-            <CardHeader className="text-center">
+          <Card className=" group overflow-hidden px-8 pb-8 mx-5">
+            <CardHeader className="text-center drone-title">
               <CardTitle>DJI Inspire 3</CardTitle>
             </CardHeader>
+            <p className="flex justify-center pb-7 mt-[-15px] font-3xl">
+              8.1K Full Frame, Pro Res Raw up to 60fps
+            </p>
             <CardContent className="p-0">
               <img
                 src={"/images/inspire3.jpg"}
                 alt="DJI Inspire 3"
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                className="h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
             </CardContent>
           </Card>
 
-          <Card className="drone-title group overflow-hidden">
-            <CardHeader className="text-center">
-              <CardTitle>FPV with RED Komodo X</CardTitle>
+          <Card className=" group overflow-hidden px-8 pb-8 mx-5">
+            <CardHeader className="text-center drone-title">
+              <CardTitle>FPV RED Komodo X</CardTitle>
             </CardHeader>
+            <p className="flex justify-center pb-7 mt-[-15px]">
+              6K Global Shutter, R3D Raw up to 75fps
+            </p>
             <CardContent className="p-0">
               <img
                 src={"/images/inspire3.jpg"}
-                alt="FPV with RED Komodo X"
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                alt="DJI Inspire 3"
+                className="h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
             </CardContent>
           </Card>
+        </div>
+        <br />
+        <div className="subheader flex justify-center">
+          Check out my drone website at{" "}
+        </div>
+        <div className="subheader flex justify-center">
+          <a
+            href="https://gifts.worldwildlife.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline"
+          >
+            flywithadam.com
+          </a>
         </div>
       </section>
       {/* <section id="coaching">

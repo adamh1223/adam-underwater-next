@@ -28,7 +28,7 @@ function ProductsDropdown() {
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <Button variant="link" onClick={handleServicesClick}>
-          Products
+          Prints
         </Button>
       </HoverCardTrigger>
       {/* 

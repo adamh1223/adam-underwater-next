@@ -12,18 +12,13 @@ export default function LoopingCarousel() {
       <Carousel className="w-full max-w-lg">
         <CarouselContent>
           <CarouselItem className="flex justify-center items-center">
-            <p className="text-l">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-              rerum minima, aspernatur corrupti, dolores eum cupiditate est eos
-              quasi necessitatibus hic dolore, labore officia cumque
-              perspiciatis enim quia magni rem.
-            </p>
+            <p className="text-2xl">Testimonial from Todd Paige</p>
           </CarouselItem>
           <CarouselItem className="flex justify-center items-center">
-            <p className="text-2xl">testimonial 2</p>
+            <p className="text-2xl">Testimonial from Tom Ford</p>
           </CarouselItem>
           <CarouselItem className="flex justify-center items-center">
-            <p className="text-2xl">testimonial 3</p>
+            <p className="text-2xl">Testimonial from Paradeigm Films</p>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
