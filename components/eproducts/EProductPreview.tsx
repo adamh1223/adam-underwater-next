@@ -53,14 +53,15 @@ function EProductPreview({
     : "h-0 w-0";
   const iframeStyles = isVideoReady
     ? {
-        width: "98%",
-        height: "100%",
+        width: "100%",
+        height: "96%",
         position: "absolute", // Absolute positioning to fill the container
         top: "0",
         left: "0",
         objectFit: "cover",
         objectPosition: "center", // Centers the video within the iframe
         pointerEvents: "none",
+        cursor: "pointer",
       }
     : {
         height: "0px",
@@ -85,7 +86,8 @@ function EProductPreview({
             src={thumbnail}
             alt="name"
             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-            className={`thumbnail-crop ${isVideoReady ? "hidden" : ""}`}
+            className={`thumbnail-crop ${isVideoReady ? "hidden" : ""} cursor-pointer`}
+            onPointerDown={() => router.push(`/stock/${id}`)}
           />
         )}
       </>
@@ -102,7 +104,7 @@ function EProductPreview({
               onLoad={() => console.log("The video is loaded")}
               className={`EProductVideo ${
                 isVideoReady ? "visible" : "tinyVideo"
-              }`}
+              } cursor-pointer`}
               onPointerDown={() => router.push(`/stock/${id}`)}
             ></iframe>
           </Link>

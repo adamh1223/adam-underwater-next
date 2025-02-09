@@ -20,7 +20,7 @@ function ProductsGrid({ EProducts }: { EProducts?: EProduct[] }) {
             <article key={productId} className="group relative">
               <Card className="group-hover:shadow-xl transition-shadow duration-500">
                 <CardContent className="p-4">
-                  <div className="relative h-full w-full rounded">
+                  <div className="relative h-full evideo">
                     {/* {thumbnail && (
                       <img
                         src={thumbnail}
