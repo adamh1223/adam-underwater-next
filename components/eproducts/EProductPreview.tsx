@@ -53,9 +53,8 @@ function EProductPreview({
     : "h-0 w-0";
   const iframeStyles = isVideoReady
     ? {
-        width: "100%",
+        width: "98%",
         height: "100%",
-        borderRadius: "10px",
         position: "absolute", // Absolute positioning to fill the container
         top: "0",
         left: "0",
