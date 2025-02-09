@@ -56,7 +56,7 @@ export default function ContactForm() {
     <div className="container">
       <form
         onSubmit={handleSubmit}
-        className="border-2 border-gray-300 dark:border-gray-700 p-8 rounded-md shadow-md space-y-8"
+        className="border-2 border-gray-600 dark:border-gray-700 p-8 rounded-md shadow-md space-y-8"
       >
         <div className="space-y-2">
           <h2 className="text-3xl font-bold">Contact Me</h2>
@@ -103,7 +103,7 @@ export default function ContactForm() {
               onChange={handleChange}
               placeholder="Type your message"
               rows={4}
-              className="w-full message"
+              className="w-full message bg-background border border-input border-gray-300 dark:border-gray-700 rounded-sm p-2"
               required
             />
           </div>
