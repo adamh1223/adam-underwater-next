@@ -24,16 +24,17 @@
   margin: 15px 0px;
   padding: 0 30px 0 30px;
 }
-
-.clip-wrapper {
-  display: flex;
-  padding-left: 25px;
-}
 .details-wrapper {
   padding: 0 30px 20px 30px;
   display: flex;
   justify-content: center;
 }
+
+.clip-wrapper {
+  display: flex;
+  padding-left: 25px;
+}
+
 .clip {
   display: flex;
   justify-content: center;

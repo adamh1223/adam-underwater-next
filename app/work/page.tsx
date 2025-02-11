@@ -14,13 +14,11 @@ function page() {
       <div>
         <Sectiontitle text="Seaforestation (Trailer)" />
       </div>
-      <div className="video-container flex justify-center position-relative p-[50px]">
+      <div className="clip-wrapper flex justify-center position-relative">
         <iframe
-          className="frame"
+          className="clip"
           src="https://player.vimeo.com/video/814128392?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          width="900vw"
-          height="506vh"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+          allow="autoplay; fullscreen; picture-in-picture;"
           title="Seaforestation Trailer"
         ></iframe>
       </div>
@@ -29,14 +27,12 @@ function page() {
       <div>
         <Sectiontitle text="Urchinomics x Sumiré Uni Co" />
       </div>
-      <div className="video-container flex justify-center position-relative p-[50px]">
+      <div className="clip-wrapper flex justify-center position-relative p-[50px]">
         <iframe
-          className="frame"
+          className="clip"
           src="https://player.vimeo.com/video/795362432?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          width="900vw"
-          height="506vh"
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-          title="Seaforestation Trailer"
+          allow="autoplay; fullscreen; picture-in-picture;"
+          title="Urchinomics"
         ></iframe>
       </div>
       <script src="https://player.vimeo.com/api/player.js"></script>
