@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/utils/format";
@@ -5,6 +7,8 @@ import { createOrderAction } from "@/utils/actions";
 import FormContainer from "../form/FormContainer";
 import { SubmitButton } from "../form/Buttons";
 import { Cart } from "@prisma/client";
+import StockForm from "../form/StockForm";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function CartTotals({ cart }: { cart: Cart }) {
   const { cartTotal, shipping, tax, orderTotal } = cart;
@@ -18,12 +22,19 @@ function CartTotals({ cart }: { cart: Cart }) {
           <CartTotalRow label="Order Total" amount={orderTotal} lastRow />
         </CardTitle>
       </Card>
-      <p className="flex justify-center pt-7">
+      <p className="flex justify-center pt-7 px-8">
         Please allow 7-10 business days for shipping.
       </p>
-      <p className="flex justify-center pt-7">
-        Electronic products will be downloaded immediately.
+      <p className="flex justify-center pt-7 px-8">
+        Electronic products will be downloaded immediately and a download code
+        will be sent via email.
       </p>
+      {/* Some conditional statement that checks if there is an Eproduct in the cart and only shows the stock form if there IS one or more eproducts in the cart */}
+      <div className="flex justify-center pt-7">
+        {/* Hide the checkbox until they complete the form, and then show it checked */}
+        <Checkbox className="h-6 w-6 mt-1.5 me-2" />
+        <StockForm></StockForm>
+      </div>
       <FormContainer action={createOrderAction}>
         <SubmitButton text="Place Order" className="w-full mt-8" />
       </FormContainer>

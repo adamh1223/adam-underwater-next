@@ -868,6 +868,7 @@ export async function sendStockFootageForm({
   facebook,
   website,
   independent,
+  advertisement,
   other,
 }: {
   name: string;
@@ -879,22 +880,13 @@ export async function sendStockFootageForm({
   facebook?: string;
   website?: string;
   independent?: string;
+  advertisement?: string;
   other?: string;
 }) {
-  console.log(name, email);
   await courier.send({
     message: {
       to: {
-        email, // Replace with your recipient email
-      },
-      template: "DX5DX0MT7GMCTFK3CY65WC927THZ",
-    },
-  });
-
-  await courier.send({
-    message: {
-      to: {
-        email: "adamahussain1223@gmail.com", // Replace with your recipient email
+        email: "adamahussain1223@gmail.com", 
       },
       data: {
         name,
@@ -906,9 +898,10 @@ export async function sendStockFootageForm({
         facebook,
         website,
         independent,
+        advertisement,
         other,
       },
-      template: "Q6HCEKAAFXM5CFH41HR0RSHRWH6R",
+      template: "",
     },
   });
 }
