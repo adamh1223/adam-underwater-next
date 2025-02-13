@@ -11,6 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import "./StockForm.css";
+import { Checkbox } from "@/components/ui/checkbox";
 
 function StockForm() {
   const [formData, setFormData] = useState({
@@ -78,159 +80,127 @@ function StockForm() {
       <DialogTrigger asChild>
         <Button variant="outline">Stock Footage Terms & Conditions</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="modal">
         <DialogHeader>
           <DialogTitle>
-            Please list all channels where this will be shown
+            Please list all channels where purchased stock footage will appear.
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="py-3">
             By purchasing stock footage from Adam Underwater, you must list the
             channels and/or films in which the stock footage will appear. These
-            channels are given access to the footage for use publicly. Channels
-            not listed are not given access to post this stock footage publicly,
-            and are subject to a copyright infringement violation where stock
-            footage from Adam Underwater appears.
+            channels are given access to the footage for use publicly.{" "}
+            <span className="one-entry">
+              Only one entry per platform is allowed.
+            </span>{" "}
+            Channels not listed are not given access to post this stock footage
+            publicly, and are subject to a copyright infringement violation
+            where stock footage from Adam Underwater appears.{" "}
+            <span className="one-entry">
+              Second hand sale of purchased clips is not permitted.
+            </span>{" "}
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              className="col-span-3"
-              placeholder="Your name"
-              onChange={() => {}}
-            />
+        <div className="grid gap-4 py-4 modal-content">
+          {/* Left Column */}
+          <div className="flex flex-col gap-4">
+            {[
+              { id: "name", label: "Name", placeholder: "Your name" },
+              {
+                id: "email",
+                label: "Email",
+                placeholder: "example@example.com",
+              },
+              {
+                id: "youtube",
+                label: "Youtube",
+                placeholder: "Youtube channel URL",
+              },
+              { id: "vimeo", label: "Vimeo", placeholder: "Vimeo channel URL" },
+              {
+                id: "instagram",
+                label: "Instagram",
+                placeholder: "Instagram handle",
+              },
+              { id: "tiktok", label: "Tiktok", placeholder: "Tiktok handle" },
+            ].map(({ id, label, placeholder }) => (
+              <div key={id} className="flex items-center gap-4">
+                <Label htmlFor={id} className="w-32 text-right">
+                  {label}
+                </Label>
+                <Input
+                  id={id}
+                  placeholder={placeholder}
+                  className="flex-grow"
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
           </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">
-              Email
-            </Label>
-            <Input
-              id="email"
-              placeholder="example@example.com"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="youtube" className="text-right">
-              Youtube
-            </Label>
-            <Input
-              id="youtube"
-              placeholder="Youtube channel URL"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="vimeo" className="text-right">
-              Vimeo
-            </Label>
-            <Input
-              id="vimeo"
-              placeholder="Vimeo channel URL"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="instagram" className="text-right">
-              Instagram
-            </Label>
-            <Input
-              id="instagram"
-              placeholder="Instagram handle"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="tiktok" className="text-right">
-              Tiktok
-            </Label>
-            <Input
-              id="tiktok"
-              placeholder="Tiktok handle"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="facebook" className="text-right">
-              Facebook
-            </Label>
-            <Input
-              id="facebook"
-              placeholder="Facebook profile URL"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="website" className="text-right">
-              Website
-            </Label>
-            <Input
-              id="website"
-              placeholder="Website URL"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="independent-film-name" className="text-right">
-              Independent Film
-            </Label>
-            <Input
-              id="independent"
-              placeholder="Name of Film"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-            <Label htmlFor="independent" className="text-right"></Label>
-            <Input
-              id="independent-production-company"
-              placeholder="Production Company"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="advertisement" className="text-right">
-              Advertisment
-            </Label>
-            <Input
-              id="advertisement-brand-name"
-              placeholder="Company/Brand"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-            <Label htmlFor="advertisement" className="text-right"></Label>
-            <Input
-              id="advertisement-production-company"
-              placeholder="Production Company"
-              className="col-span-3"
-              onChange={() => {}}
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="other" className="text-right">
-              Other
-            </Label>
-            <Input
-              id="other"
-              placeholder="Other platform"
-              className="col-span-3"
-              onChange={() => {}}
-            />
+
+          {/* Right Column */}
+          <div className="flex flex-col gap-4">
+            {[
+              {
+                id: "facebook",
+                label: "Facebook",
+                placeholder: "Facebook profile URL",
+              },
+              { id: "website", label: "Website", placeholder: "Website URL" },
+              {
+                id: "independent",
+                label: "Independent Film",
+                placeholder: "Name of Film",
+              },
+              {
+                id: "independent-production-company",
+                label: " ",
+                placeholder: "Production Company",
+              },
+              {
+                id: "advertisement",
+                label: "Advertisement",
+                placeholder: "Company/Brand",
+              },
+              {
+                id: "advertisement-production-company",
+                label: " ",
+                placeholder: "Production Company",
+              },
+              { id: "other", label: "Other", placeholder: "Channel URL" },
+            ].map(({ id, label, placeholder }) => (
+              <div key={id} className="flex items-center gap-4">
+                {label && (
+                  <Label htmlFor={id} className="w-32 text-right">
+                    {label}
+                  </Label>
+                )}
+                <Input
+                  id={id}
+                  placeholder={placeholder}
+                  className="flex-grow"
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
           </div>
         </div>
-        <DialogFooter>
-          <Button type="submit">Submit</Button>
+        <DialogFooter className="flex flex-col items-start gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <Checkbox id="terms" />
+              <Label htmlFor="terms">I agree to the terms and conditions</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox id="platform-terms" />
+              <Label htmlFor="platform-terms">
+                I have listed all platforms where this stock footage will be
+                shown
+              </Label>
+            </div>
+          </div>
+          <Button type="submit" className="self-end">
+            Submit
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

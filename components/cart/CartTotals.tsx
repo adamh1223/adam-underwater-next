@@ -30,11 +30,12 @@ function CartTotals({ cart }: { cart: Cart }) {
         will be sent via email.
       </p>
       {/* Some conditional statement that checks if there is an Eproduct in the cart and only shows the stock form if there IS one or more eproducts in the cart */}
-      <div className="flex justify-center pt-7">
+      <div className="flex items-center justify-center pt-7 gap-2">
         {/* Hide the checkbox until they complete the form, and then show it checked */}
-        <Checkbox className="h-6 w-6 mt-1.5 me-2" />
-        <StockForm></StockForm>
+        <Checkbox className="h-5 w-5" />
+        <StockForm />
       </div>
+
       <FormContainer action={createOrderAction}>
         <SubmitButton text="Place Order" className="w-full mt-8" />
       </FormContainer>
