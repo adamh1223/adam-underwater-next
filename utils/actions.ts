@@ -857,3 +857,58 @@ export async function sendContactEmail({
     },
   });
 }
+
+export async function sendStockFootageForm({
+  name,
+  email,
+  youtube,
+  vimeo,
+  instagram,
+  tiktok,
+  facebook,
+  website,
+  independent,
+  other,
+}: {
+  name: string;
+  email: string;
+  youtube?: string;
+  vimeo?: string;
+  instagram?: string;
+  tiktok?: string;
+  facebook?: string;
+  website?: string;
+  independent?: string;
+  other?: string;
+}) {
+  console.log(name, email);
+  await courier.send({
+    message: {
+      to: {
+        email, // Replace with your recipient email
+      },
+      template: "DX5DX0MT7GMCTFK3CY65WC927THZ",
+    },
+  });
+
+  await courier.send({
+    message: {
+      to: {
+        email: "adamahussain1223@gmail.com", // Replace with your recipient email
+      },
+      data: {
+        name,
+        email,
+        youtube,
+        vimeo,
+        instagram,
+        tiktok,
+        facebook,
+        website,
+        independent,
+        other,
+      },
+      template: "Q6HCEKAAFXM5CFH41HR0RSHRWH6R",
+    },
+  });
+}
