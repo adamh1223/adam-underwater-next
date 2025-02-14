@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./StockForm.css";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -30,6 +30,16 @@ function StockForm() {
   });
 
   const [status, setStatus] = useState("");
+  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreePlatforms, setAgreePlatforms] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,6 +53,13 @@ function StockForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!agreeTerms || !agreePlatforms) {
+      setError("Please agree to the terms and conditions before submitting.");
+      return;
+    }
+
+    setError("");
     setStatus("Sending...");
 
     try {
@@ -53,7 +70,7 @@ function StockForm() {
       });
 
       if (response.ok) {
-        setStatus("Message sent successfully!");
+        setStatus("Form submitted successfully!");
         setFormData({
           name: "",
           email: "",
@@ -67,6 +84,8 @@ function StockForm() {
           advertisement: "",
           other: "",
         });
+        setAgreeTerms(false);
+        setAgreePlatforms(false);
       } else {
         setStatus("Failed to send message. Please try again.");
       }
@@ -75,6 +94,7 @@ function StockForm() {
       setStatus("An error occurred. Please try again later.");
     }
   };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -94,9 +114,9 @@ function StockForm() {
             </span>{" "}
             Channels not listed are not given access to post this stock footage
             publicly, and are subject to a copyright infringement violation
-            where stock footage from Adam Underwater appears.{" "}
+            where stock footage from Adam Underwater appears. Unauthorized platforms using stock footage may result in content being taken down.{" "}
             <span className="one-entry">
-              Second hand sale of purchased clips is not permitted.
+              Second-hand sale of purchased clips is not permitted.
             </span>{" "}
           </DialogDescription>
         </DialogHeader>
@@ -129,14 +149,15 @@ function StockForm() {
                 </Label>
                 <Input
                   id={id}
+                  name={id}
                   placeholder={placeholder}
                   className="flex-grow"
                   onChange={handleChange}
+                  value={formData[id as keyof typeof formData]}
                 />
               </div>
             ))}
           </div>
-
           {/* Right Column */}
           <div className="flex flex-col gap-4">
             {[
@@ -152,58 +173,65 @@ function StockForm() {
                 placeholder: "Name of Film",
               },
               {
-                id: "independent-production-company",
-                label: " ",
-                placeholder: "Production Company",
-              },
-              {
                 id: "advertisement",
                 label: "Advertisement",
-                placeholder: "Company/Brand",
-              },
-              {
-                id: "advertisement-production-company",
-                label: " ",
-                placeholder: "Production Company",
+                placeholder: "Company & Product",
               },
               { id: "other", label: "Other", placeholder: "Channel URL" },
             ].map(({ id, label, placeholder }) => (
               <div key={id} className="flex items-center gap-4">
-                {label && (
-                  <Label htmlFor={id} className="w-32 text-right">
-                    {label}
-                  </Label>
-                )}
+                <Label htmlFor={id} className="w-32 text-right">
+                  {label}
+                </Label>
                 <Input
                   id={id}
+                  name={id}
                   placeholder={placeholder}
                   className="flex-grow"
                   onChange={handleChange}
+                  value={formData[id as keyof typeof formData]}
                 />
               </div>
             ))}
           </div>
         </div>
-        <DialogFooter className="flex flex-col items-start gap-4">
+        <DialogFooter className="flex flex-col items-center gap-4 py-2">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <Checkbox id="terms" />
-              <Label htmlFor="terms">I agree to the terms and conditions</Label>
+              <Checkbox
+                id="terms"
+                checked={agreeTerms}
+                onCheckedChange={(checked) => setAgreeTerms(checked === true)}
+              />
+              <Label htmlFor="terms">
+                I agree to these terms and conditions
+              </Label>
             </div>
             <div className="flex items-center gap-2">
-              <Checkbox id="platform-terms" />
+              <Checkbox
+                id="platform-terms"
+                checked={agreePlatforms}
+                onCheckedChange={(checked) =>
+                  setAgreePlatforms(checked === true)
+                }
+              />
               <Label htmlFor="platform-terms">
                 I have listed all platforms where this stock footage will be
                 shown
               </Label>
             </div>
           </div>
-          <Button type="submit" className="self-end">
+          <Button type="submit" className="self-end" onClick={handleSubmit}>
             Submit
           </Button>
         </DialogFooter>
+        <div className="flex justify-center">
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {status && <p className="text-md">{status}</p>}
+        </div>
       </DialogContent>
     </Dialog>
   );
 }
+
 export default StockForm;
