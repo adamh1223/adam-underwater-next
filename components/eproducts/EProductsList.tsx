@@ -5,6 +5,7 @@ import { EProduct, Product } from "@prisma/client";
 import Image from "next/image";
 import FavoriteToggleButton from "@/components/products/FavoriteToggleButton";
 import EProductPreview from "./EProductPreview";
+import "./List.css";
 
 function ProductsList({ EProducts }: { EProducts?: EProduct[] }) {
   return (
@@ -20,8 +21,8 @@ function ProductsList({ EProducts }: { EProducts?: EProduct[] }) {
             <article key={productId} className="group relative">
               <Link href={`/products/${productId}`}>
                 <Card className="transform group-hover:shadow-xl transition-shadow duration-500 mx-8 my-3">
-                  <CardContent className="p-8 gap-y-4 grid md:grid-cols-3">
-                    <div className="relative h-64 md:h-48 md:w-48">
+                  <CardContent className="p-6 ps-6 pt-8 gap-y-4 grid md:grid-cols-3">
+                    <div className="relative">
                       {/* {thumbnail != null &&
                             thumbnail.length >
                               0 && (
@@ -39,7 +40,7 @@ function ProductsList({ EProducts }: { EProducts?: EProduct[] }) {
                         extraClassName="w-96"
                       />
                     </div>
-                    <div>
+                    <div className="ps-8">
                       <h2 className="text-xl font-semibold capitalize">
                         {name}
                       </h2>
