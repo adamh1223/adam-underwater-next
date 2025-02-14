@@ -13,11 +13,8 @@
   display: inline-block;
 }
 
-.card {
-}
-
 .subheader {
-  font-size: 25px;
+  font-size: 22px;
   width: 100%;
   display: flex;
   justify-content: center;

@@ -21,7 +21,7 @@ function EProductPreview({
   const handleVideoLoad = () => {
     setTimeout(() => {
       setIsVideoReady(true); // Switch to video only when loaded
-    }, 3000);
+    }, 600);
   };
 
   useEffect(() => {
@@ -86,7 +86,9 @@ function EProductPreview({
             src={thumbnail}
             alt="name"
             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-            className={`thumbnail-crop ${isVideoReady ? "hidden" : ""} cursor-pointer`}
+            className={`thumbnail-crop ${
+              isVideoReady ? "hidden" : ""
+            } cursor-pointer`}
             onPointerDown={() => router.push(`/stock/${id}`)}
           />
         )}

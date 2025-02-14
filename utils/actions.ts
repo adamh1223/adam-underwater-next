@@ -886,7 +886,7 @@ export async function sendStockFootageForm({
   await courier.send({
     message: {
       to: {
-        email: "adamahussain1223@gmail.com", 
+        email: "adamahussain1223@gmail.com",
       },
       data: {
         name,
@@ -901,7 +901,7 @@ export async function sendStockFootageForm({
         advertisement,
         other,
       },
-      template: "",
+      template: "W3H7RT1SB7MD4DH8M4Z5T6ACQPM1",
     },
   });
 }
