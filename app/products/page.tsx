@@ -59,7 +59,7 @@ function ProductsPage({
       {/* <div
         className="anchors"
         style={{
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr",
         }}
       >
         <Button variant="outline" className="anchor">

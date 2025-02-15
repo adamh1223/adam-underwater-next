@@ -28,10 +28,10 @@ function ProductsDropdown() {
     <HoverCard openDelay={100} closeDelay={100}>
       <HoverCardTrigger>
         <Button variant="link" onClick={handleServicesClick}>
-          Prints
+          Products
         </Button>
       </HoverCardTrigger>
-      {/* 
+
       <HoverCardContent className="w-40">
         <Button
           variant="ghost"
@@ -40,15 +40,9 @@ function ProductsDropdown() {
           Canvas Prints
         </Button>
         <Button variant="ghost" onClick={() => handleSubservicesClick("luts")}>
-          LUT Packs
+          LUTs & Presets
         </Button>
-        <Button
-          variant="ghost"
-          onClick={() => handleSubservicesClick("soundfx")}
-        >
-          Sound FX
-        </Button>
-      </HoverCardContent> */}
+      </HoverCardContent>
     </HoverCard>
   );
 }
