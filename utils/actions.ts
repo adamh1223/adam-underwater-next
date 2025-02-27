@@ -543,6 +543,8 @@ const updateOrCreateCartItem = async ({
   }
   //New Product not already in cart
   else if (!cartItem && !EProductId) {
+    console.log('adding a new product');
+    
     if (amount != undefined) {
       cartItem = await db.cartItem.create({
         data: { amount, productId, cartId, size },
@@ -643,12 +645,12 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
     await updateCart(cart);
     console.log(productId);
   } catch (error) {
+    console.log(
+      error,
+      ";alskdj;falksjd;lfkjasdkl;kasd;flajds;lkfja;lsdkjfa;lsdkjf;alksdjf"
+    );
     return renderError(error);
   }
-  console.log(
-    prevState,
-    ";alskdj;falksjd;lfkjasdkl;kasd;flajds;lkfja;lsdkjfa;lsdkjf;alksdjf"
-  );
 
   // const {
   //   url: { pathname },
@@ -783,6 +785,45 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
   redirect(`/checkout?orderId=${orderId}&cartId=${cartId}`);
 };
 
+export const createEProductOrder = async (prevState: any, formData: FormData) => {const user = await getAuthUser();
+  const fullName = `${user.firstName} ${user.lastName}`;
+
+  let orderId: null | string = null;
+  let cartId: null | string = null;
+
+  try {
+    const cart = await fetchOrCreateCart({
+      userId: user.id,
+      errorOnFailure: true,
+    });
+    const EProductIds = cart?.cartItems.map((cartItem) => cartItem.EProductId);
+    cartId = cart.id;
+
+    await db.order.deleteMany({
+      where: {
+        clerkId: user.id,
+        isPaid: false,
+      },
+    });
+    const order = await db.order.create({
+      data: {
+        clerkId: user.id,
+        productIDs: EProductIds,
+        products: cart.numItemsInCart,
+        orderTotal: cart.orderTotal,
+        tax: cart.tax,
+        shipping: undefined,
+        email: user.emailAddresses[0].emailAddress,
+        fullName,
+      },
+    });
+    orderId = order.id;
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect(`/checkout?orderId=${orderId}&cartId=${cartId}`);
+};
+
 export const fetchUserOrders = async () => {
   const user = await getAuthUser();
   const orders = await db.order.findMany({
@@ -904,4 +945,26 @@ export async function sendStockFootageForm({
       template: "W3H7RT1SB7MD4DH8M4Z5T6ACQPM1",
     },
   });
+}
+
+export async function grabVideoDownloadLinks(orderId:string) {
+const existingOrder = await db.order.findFirst({
+  where: {
+    id: orderId
+  },
+  select: {
+    productIDs: true
+  }
+}) 
+
+const EProducts = await db.eProduct.findMany({
+  where: {
+    id: {
+      in: existingOrder?.productIDs
+    }
+  }
+})
+
+const downloadLinks = EProducts.map(EProduct => EProduct.downloadLink)
+return downloadLinks
 }

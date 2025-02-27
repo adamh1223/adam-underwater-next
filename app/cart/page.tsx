@@ -12,6 +12,8 @@ async function CartPage() {
   const { currentCart, cartItems } = await updateCart(previousCart);
   if (cartItems.length === 0) return <SectionTitle text="Empty Cart" />;
 
+  const includesEProducts = cartItems.find(cartItem => !! cartItem.EProduct?.id)
+
   return (
     <>
       <div className="flex justify-center">
@@ -26,7 +28,7 @@ async function CartPage() {
           <CartItemsList cartItems={currentCart.cartItems} />
         </div>
         <div className="lg:col-span-4">
-          <CartTotals cart={currentCart} />
+          <CartTotals cart={currentCart} includesEProducts={!!includesEProducts} />
         </div>
       </div>
     </>

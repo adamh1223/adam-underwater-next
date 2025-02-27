@@ -22,6 +22,7 @@ export const POST = async (req: NextRequest) => {
       cartItems: {
         include: {
           product: true,
+          EProduct: true,
         },
       },
     },
@@ -32,16 +33,33 @@ export const POST = async (req: NextRequest) => {
       statusText: 'Not Found',
     });
   }
+
+  
   const line_items = cart.cartItems.map((cartItem) => {
+
+    const productNameToUse = cartItem?.product? cartItem.product.name : ''
+    const productImagesToUse = cartItem?.product? cartItem.product.image : undefined
+    const EProductNameToUse = cartItem?.EProduct? cartItem.EProduct.name : ''
+    const EProductImagesToUse = cartItem?.EProduct?.thumbnail? [cartItem.EProduct.thumbnail] : undefined
+
+    const nameToUse = cartItem?.product ? productNameToUse : EProductNameToUse
+    const imageToUse = cartItem?.product ? productImagesToUse : EProductImagesToUse
+
+    const EProductPrice = cartItem.EProduct?.price? cartItem.EProduct?.price * 100: 200
+    const productPrice = cartItem.product?.price? cartItem.product?.price * 100: 200
+
+    const priceToUse = cartItem?.product ? productPrice : EProductPrice
+
+
     return {
-      quantity: cartItem.amount,
+      quantity: cartItem.amount? cartItem.amount: 1,
       price_data: {
         currency: 'usd',
         product_data: {
-          name: cartItem.product.name,
-          images: [cartItem.product.image],
+          name: nameToUse,
+          images: imageToUse
         },
-        unit_amount: cartItem.product.price * 100, // price in cents
+        unit_amount: priceToUse
       },
     };
   });

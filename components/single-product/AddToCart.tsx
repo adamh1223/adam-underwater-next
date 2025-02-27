@@ -22,6 +22,8 @@ function AddToCart({
   const [amount, setAmount] = useState(1);
   const [size, setSize] = useState("Small");
   const { userId } = useAuth();
+  const productFormName = isEProduct? "EProductId": "productId"
+
 
   return (
     <div className="mt-4">
@@ -45,7 +47,8 @@ function AddToCart({
       )}
       {userId ? (
         <FormContainer action={addToCartAction}>
-          <input type="hidden" name="EProductId" value={productId} />
+          <input type="hidden" name={productFormName} value={productId} />
+          <input type="hidden" name="amount" value={amount}></input>
           <input type="hidden" name="RedirectTo" value={RedirectTo} />
           <SubmitButton text="add to cart" size="default" className="mt-8" />
         </FormContainer>

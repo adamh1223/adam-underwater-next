@@ -23,6 +23,8 @@ function ProductsGrid({
   EProducts?: EProduct[];
   isEProduct: boolean;
 }) {
+  console.log(isEProduct, '8888888888888');
+  
   return (
     <div className="pt-12 mx-8 grid gap-4 md:grid-cols-2 px-5 pb-5">
       <>
@@ -59,7 +61,6 @@ function ProductsGrid({
                         </p>
                         <AddToCart
                           productId={productId}
-                          isEProduct
                           RedirectTo={`/products`}
                         />
                       </div>
@@ -105,6 +106,7 @@ function ProductsGrid({
                           {dollarsAmount}
                         </p>
                         <AddToCart
+                        isEProduct = {false}
                           productId={productId}
                           RedirectTo={`/products/${productId}`}
                         />

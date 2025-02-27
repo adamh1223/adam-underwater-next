@@ -14,9 +14,12 @@ import { formatCurrency, formatDate } from "@/utils/format";
 import "./orders.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import EProductDownloadLinksButton from "@/components/eproducts/EProductDownloadLinksButton";
 
 async function OrdersPage() {
   const orders = await fetchUserOrders();
+  console.log(orders,'333333333333');
+  
 
   return (
     <>
@@ -38,6 +41,7 @@ async function OrdersPage() {
               <TableHead>Tax</TableHead>
               <TableHead>Shipping</TableHead>
               <TableHead>Date</TableHead>
+              <TableHead>Download Links</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -63,6 +67,9 @@ async function OrdersPage() {
                   <TableCell>{formatCurrency(tax)}</TableCell>
                   <TableCell>{formatCurrency(shipping)}</TableCell>
                   <TableCell>{formatDate(createdAt)}</TableCell>
+                  <TableCell>
+                    <EProductDownloadLinksButton orderId={id}></EProductDownloadLinksButton>
+                  </TableCell>
                 </TableRow>
               );
             })}

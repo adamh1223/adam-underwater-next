@@ -3,15 +3,16 @@
 import { Card, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/utils/format";
-import { createOrderAction } from "@/utils/actions";
+import { createEProductOrder, createOrderAction } from "@/utils/actions";
 import FormContainer from "../form/FormContainer";
 import { SubmitButton } from "../form/Buttons";
 import { Cart } from "@prisma/client";
 import StockForm from "../form/StockForm";
 import { Checkbox } from "@/components/ui/checkbox";
 
-function CartTotals({ cart }: { cart: Cart }) {
+function CartTotals({ cart, includesEProducts }: { cart: Cart, includesEProducts: Boolean }) {
   const { cartTotal, shipping, tax, orderTotal } = cart;
+  const actionToUse = includesEProducts? createEProductOrder : createOrderAction
   return (
     <div>
       <Card className="p-8">
@@ -36,7 +37,7 @@ function CartTotals({ cart }: { cart: Cart }) {
         <StockForm />
       </div>
 
-      <FormContainer action={createOrderAction}>
+      <FormContainer action={actionToUse}>
         <SubmitButton text="Place Order" className="w-full mt-8" />
       </FormContainer>
     </div>

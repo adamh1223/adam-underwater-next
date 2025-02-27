@@ -102,6 +102,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
               <AddToCart
                 productId={params.id}
                 RedirectTo={`/products/${params.id}`}
+                isEProduct={false}
               />
             </div>
           </div>

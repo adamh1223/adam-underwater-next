@@ -31,7 +31,7 @@ model EProduct {
   description  String
   WMVideoLink  String
   downloadLink String
-  thumbnail    String?
+  thumbnail    String
   price        Int
   keywords     String[]
   location     String     @default("San Francisco, CA")

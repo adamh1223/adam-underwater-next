@@ -26,6 +26,8 @@ async function ProductsContainer({
   const totalProducts = products.length;
   const totalEProducts = EProducts.length;
   const searchTerm = search ? `&search=${search}` : "";
+  console.log(isEProduct, '99999999999999999');
+  
   return (
     <>
       {/* HEADER */}
