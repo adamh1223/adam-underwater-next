@@ -38,8 +38,8 @@ async function OrdersPage() {
               <TableHead>Total Products</TableHead>
               <TableHead>Order ID</TableHead>
               <TableHead>Order Total</TableHead>
-              <TableHead>Tax</TableHead>
-              <TableHead>Shipping</TableHead>
+              {/* <TableHead>Tax</TableHead>
+              <TableHead>Shipping</TableHead> */}
               <TableHead>Date</TableHead>
               <TableHead>Download Links</TableHead>
             </TableRow>
@@ -50,8 +50,8 @@ async function OrdersPage() {
                 id,
                 products,
                 orderTotal,
-                tax,
-                shipping,
+                // tax,
+                // shipping,
                 createdAt,
               } = order;
 
@@ -64,8 +64,8 @@ async function OrdersPage() {
                     </Button>
                   </TableCell>
                   <TableCell>{formatCurrency(orderTotal)}</TableCell>
-                  <TableCell>{formatCurrency(tax)}</TableCell>
-                  <TableCell>{formatCurrency(shipping)}</TableCell>
+                  {/* <TableCell>{formatCurrency(tax)}</TableCell>
+                  <TableCell>{formatCurrency(shipping)}</TableCell> */}
                   <TableCell>{formatDate(createdAt)}</TableCell>
                   <TableCell>
                     <EProductDownloadLinksButton orderId={id}></EProductDownloadLinksButton>

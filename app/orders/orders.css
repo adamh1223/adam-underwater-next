@@ -1,6 +1,20 @@
 .table {
   margin: 0 auto; /* Centers the table horizontally */
-  width: 80%; /* Ensures the table takes up 80% of the viewport width */
+  width: 75%; /* Ensures the table takes up 80% of the viewport width */
   display: table; /* Resets the display property to its default for tables */
   justify-content: center; /* This is unnecessary for table display */
+}
+
+/* @media (max-width: 700px) {
+  .table {
+  }
+} */
+
+.subheader {
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+  padding: 0 30px 0 30px;
 }

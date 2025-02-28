@@ -2,6 +2,7 @@
 
 import { Button } from "../ui/button"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card"
+import './EProductsDropdown.css'
 
 interface DownloadLinks {
   downloadLink: string;
@@ -22,12 +23,14 @@ return (
       <HoverCardContent className="w-56">
         {downloadLinks.map(downloadLink => {
           return (<>
-          <p>{downloadLink.name}</p>
+          <p className="drop-subheader">{downloadLink.name}</p>
           <img src={downloadLink.thumbnail} />
+          <div className="flex justify-center mt-3">
           <Button key={downloadLink.downloadLink} variant="ghost" onClick={() => handleDownloadClick(downloadLink.downloadLink)}>
-            
-          <a href={downloadLink.downloadLink}>Click to Download</a>
+
+          <a href={downloadLink.downloadLink}>Download</a>
         </Button>
+          </div>
         </>)
         
         })}
