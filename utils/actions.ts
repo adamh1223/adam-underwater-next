@@ -796,7 +796,16 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
       userId: user.id,
       errorOnFailure: true,
     });
-    const EProductIds = cart?.cartItems.map((cartItem) => cartItem.EProductId);
+    if (!cart?.cartItems) {
+      return
+    }
+
+    const EProductIds = cart?.cartItems?.map((cartItem) => cartItem.EProductId).filter(item => item!=null);
+    const regularProductIds = cart?.cartItems.map((cartItem) => cartItem.productId);
+
+    const mixedOrder = EProductIds?.length && regularProductIds?.length
+    let itemIds: (string[])
+
     cartId = cart.id;
 
     await db.order.deleteMany({
@@ -805,6 +814,12 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
         isPaid: false,
       },
     });
+
+    if (mixedOrder) {
+      EProductIds.concat(regularProductIds)
+    }
+
+
     const order = await db.order.create({
       data: {
         clerkId: user.id,
@@ -965,6 +980,6 @@ const EProducts = await db.eProduct.findMany({
   }
 })
 
-const downloadLinks = EProducts.map(EProduct => EProduct.downloadLink)
+const downloadLinks = EProducts.map(EProduct => ({downloadLink: EProduct.downloadLink, name: EProduct.name, thumbnail: EProduct.thumbnail}))
 return downloadLinks
 }

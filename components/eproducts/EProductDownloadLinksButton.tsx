@@ -1,12 +1,16 @@
 import { grabVideoDownloadLinks } from '@/utils/actions'
 import React from 'react'
-import { Button } from '../ui/button'
+import EProductDownloadLinksDropdown from './EProductDownloadLinksDropdown';
 
 async function EProductDownloadLinksButton({orderId}:{orderId:string}) {
   const downloadLinks = await grabVideoDownloadLinks(orderId)
-  return (
+  console.log(downloadLinks);
+
+    return (
     <div>
-      {downloadLinks?.length > 0 && <Button>Download</Button>}
+      {downloadLinks?.length > 0 && (
+        <EProductDownloadLinksDropdown downloadLinks={downloadLinks}/>
+      )}
     </div>
   )
 }
