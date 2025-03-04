@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import LoopingCarousel from "./FooterCarousel";
+// import LoopingCarousel from "./FooterCarousel";
 import { Button } from "../ui/button";
 import Sectiontitle from "../global/Sectiontitle";
 // import NewsLetter from "../newsLetter/NewsLetter";
@@ -49,7 +49,7 @@ function Footer() {
       </div>
 
       {/* Carousel */}
-      <LoopingCarousel />
+      {/* <LoopingCarousel /> */}
       <br />
       {/* Bottom Tabs */}
       <div className="flex justify-evenly w-full pb-[100px] text-muted-foreground pt-5 mx-5">
