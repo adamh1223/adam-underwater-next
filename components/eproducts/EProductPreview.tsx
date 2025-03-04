@@ -19,10 +19,15 @@ function EProductPreview({
   const [thumbnailSize, setThumbnailSize] = useState({ width: 0, height: 0 });
   const imgRef = useRef<HTMLImageElement>(null);
   const handleVideoLoad = () => {
-    setTimeout(() => {
-      setIsVideoReady(true); // Switch to video only when loaded
-    }, 600);
+    if (isHovered) {
+      
+      setTimeout(() => {
+        setIsVideoReady(true); // Switch to video only when loaded
+      }, 800);
+    }
   };
+console.log(isHovered, '1111');
+
 
   useEffect(() => {
     if (imgRef.current) {
@@ -35,14 +40,15 @@ function EProductPreview({
 
   const { thumbnail, WMVideoLink, id } = EProduct;
   const [isVideoReady, setIsVideoReady] = useState(false);
+  console.log(isVideoReady, '2222');
 
   useEffect(() => {
     const iframe = document.querySelector("iframe");
-    if (iframe) {
+    if (iframe && isHovered) {
       iframe.addEventListener("load", handleVideoLoad);
     }
     return () => {
-      if (iframe) {
+      if (iframe && isHovered) {
         iframe.removeEventListener("load", handleVideoLoad);
       }
     };
@@ -67,7 +73,18 @@ function EProductPreview({
         height: "0px",
         width: "0px",
       };
-  console.log(iframeStyles);
+  // console.log(iframeStyles);
+
+  const [imageClass, setImageClass] = useState('')
+  useEffect(() => {
+    if (isVideoReady && isHovered) {
+      setImageClass('hidden')
+    } else {
+      setImageClass('')
+    }
+  },
+  [isVideoReady, isHovered]
+)
 
   const router = useRouter();
   return (
@@ -77,6 +94,9 @@ function EProductPreview({
       onMouseLeave={() => {
         setIsHovered(false);
         setIsVideoReady(false);
+        if (!isVideoReady) {
+          setTimeout(() => setIsVideoReady(false), 100)
+        }
       }}
     >
       <>
@@ -87,7 +107,7 @@ function EProductPreview({
             alt="name"
             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             className={`thumbnail-crop ${
-              isVideoReady ? "hidden" : ""
+             imageClass
             } cursor-pointer`}
             onPointerDown={() => router.push(`/stock/${id}`)}
           />
@@ -103,7 +123,7 @@ function EProductPreview({
               allow="autoplay; loop;"
               // @ts-expect-error ignore for now
               style={iframeStyles}
-              onLoad={() => console.log("The video is loaded")}
+              onLoad={() => console.log("The video is loaded", isHovered, isVideoReady)}
               className={`EProductVideo ${
                 isVideoReady ? "visible" : "tinyVideo"
               } cursor-pointer`}

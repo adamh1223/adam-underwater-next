@@ -18,20 +18,25 @@ function CartItemsList({ cartItems }: { cartItems: CartItemWithProduct[] }) {
 
         const { id: productId, image, name, company, price } =
           cartItem.product ?? {};
-        const { id: EProductId, name: EProductName, price: EProductPrice } =
+        const { id: EProductId, name: EProductName, price: EProductPrice, thumbnail: thumbnail } =
           cartItem.EProduct ?? {};
         console.log(EProductName);
 
         const priceToUse = price ? price : EProductPrice;
+        const thumbnailURL = thumbnail? thumbnail : '';
+        const imageToUse = image ? image : [thumbnailURL];
+        const nameToUse =  name ? name: EProductName;
+        console.log(imageToUse);
+        
         return (
           <Card
             key={id}
             className="flex flex-col gap-y-4 md:flex-row flex-wrap p-6 mb-8 gap-x-4"
           >
-            {image && (name && <FirstColumn image={image} name={name} />)}
+            {imageToUse && (EProductName && <FirstColumn image={imageToUse} name={EProductName} />)}
             {productId ? (
               <SecondColumn
-                name={name}
+                name={nameToUse}
                 company={company}
                 productId={productId}
               />

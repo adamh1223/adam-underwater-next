@@ -13,8 +13,9 @@ import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import "./StockForm.css";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Check } from "phosphor-react";
 
-function StockForm() {
+function StockForm({updateCheck}: {updateCheck: React.Dispatch<React.SetStateAction<boolean>>}) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,6 +34,7 @@ function StockForm() {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreePlatforms, setAgreePlatforms] = useState(false);
   const [error, setError] = useState("");
+  const [checkedBox, setCheckedBox] = useState(false)
 
   useEffect(() => {
     if (error) {
@@ -84,6 +86,8 @@ function StockForm() {
           advertisement: "",
           other: "",
         });
+        setCheckedBox(true);
+        updateCheck(true);
         setAgreeTerms(false);
         setAgreePlatforms(false);
       } else {
@@ -94,8 +98,12 @@ function StockForm() {
       setStatus("An error occurred. Please try again later.");
     }
   };
+console.log(checkedBox);
 
   return (
+    <>
+    <Checkbox checked={checkedBox}></Checkbox>
+    
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">Stock Footage Terms & Conditions</Button>
@@ -231,6 +239,7 @@ function StockForm() {
         </div>
       </DialogContent>
     </Dialog>
+    </>
   );
 }
 

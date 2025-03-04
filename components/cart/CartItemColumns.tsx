@@ -13,7 +13,7 @@ export const FirstColumn = ({
   name,
   image,
 }: {
-  image?: string[];
+  image?: string[] | null;
   name: string;
 }) => {
   if (!image) {

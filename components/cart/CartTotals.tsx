@@ -9,37 +9,40 @@ import { SubmitButton } from "../form/Buttons";
 import { Cart } from "@prisma/client";
 import StockForm from "../form/StockForm";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 
 function CartTotals({ cart, includesEProducts }: { cart: Cart, includesEProducts: Boolean }) {
   const { cartTotal, shipping, tax, orderTotal } = cart;
   const actionToUse = includesEProducts? createEProductOrder : createOrderAction
+  const defaultOrderValue = includesEProducts? false : true
+  const [isOrderReady, setIsOrderReady] = useState(defaultOrderValue)
   return (
     <div>
       <Card className="p-8">
         <CartTotalRow label="Subtotal" amount={cartTotal} />
-        <CartTotalRow label="Shipping" amount={shipping} />
+        {!includesEProducts && <CartTotalRow label="Shipping" amount={shipping} />}
         <CartTotalRow label="Tax" amount={tax} />
         <CardTitle className="mt-8">
           <CartTotalRow label="Order Total" amount={orderTotal} lastRow />
         </CardTitle>
       </Card>
-      <p className="flex justify-center pt-7 px-8">
+      {!includesEProducts && <p className="flex justify-center pt-7 px-8">
         Please allow 7-10 business days for shipping.
-      </p>
-      <p className="flex justify-center pt-7 px-8">
+      </p>}
+      {includesEProducts && <p className="flex justify-center pt-7 px-8">
         Electronic products will be downloaded immediately and a download code
         will be sent via email.
-      </p>
+      </p>}
       {/* Some conditional statement that checks if there is an Eproduct in the cart and only shows the stock form if there IS one or more eproducts in the cart */}
-      <div className="flex items-center justify-center pt-7 gap-2">
+      {includesEProducts && <div className="flex items-center justify-center pt-7 gap-2">
         {/* Hide the checkbox until they complete the form, and then show it checked */}
-        <Checkbox className="h-5 w-5" />
-        <StockForm />
-      </div>
+        {/* <Checkbox className="h-5 w-5" /> */}
+        <StockForm updateCheck={setIsOrderReady}/>
+      </div>}
 
-      <FormContainer action={actionToUse}>
+      {isOrderReady && <FormContainer action={actionToUse}>
         <SubmitButton text="Place Order" className="w-full mt-8" />
-      </FormContainer>
+      </FormContainer>}
     </div>
   );
 }
