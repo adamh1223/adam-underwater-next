@@ -107,8 +107,8 @@ export default function ContactForm() {
               required
             />
           </div>
-          <div className="submit">
-            <Button type="submit" className="w-50 bg-gray-300 dark:bg-gray-700">
+          <div className="submit ">
+            <Button type="submit" className="w-50 bg-primary">
               Submit
             </Button>
           </div>

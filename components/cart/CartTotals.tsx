@@ -46,10 +46,12 @@ function CartTotals({ cart, includesEProducts, includesBoth }: { cart: Cart, inc
         {/* <Checkbox className="h-5 w-5" /> */}
         <StockForm updateCheck={setIsOrderReady}/>
       </div>}
+      <div className="flex justify-center">
 
       <FormContainer action={actionToUse}>
-        <SubmitButton disabled={!isOrderReady} text="Place Order" className="w-full mt-8" />
+        <SubmitButton disabled={!isOrderReady} text="Place Order" className="w-50 mt-8" />
       </FormContainer>
+      </div>
     </div>
   );
 }
