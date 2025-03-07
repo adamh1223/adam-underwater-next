@@ -63,7 +63,7 @@ export const fetchAllProducts = async ({
 
 const renderSuccess = () => {
   return {
-    message: 'Item added to cart'
+    message: 'Added to cart'
   };
 }
 
