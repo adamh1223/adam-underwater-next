@@ -557,7 +557,7 @@ const updateOrCreateCartItem = async ({
       console.log("creating an e product");
 
       cartItem = await db.cartItem.create({
-        data: { EProductId, cartId },
+        data: { EProductId, cartId, amount },
       });
     }
   }
@@ -586,14 +586,20 @@ export const updateCart = async (cart: Cart) => {
     if (item.size && item.amount && item?.product?.price) {
       cartTotal += item.amount + (Number(surcharge) + item.product.price);
     } else {
-      if (item?.product?.price) {
-        cartTotal += item.product.price;
+      if (item?.product?.price|| item?.EProduct?.price) {
+        const pricetoUse = item?.product?.price?item.product.price: item!.EProduct!.price
+        cartTotal += pricetoUse
       }
     }
   }
   const tax = cart.taxRate * cartTotal;
   const shipping = cartTotal ? cart.shipping : 0;
-  const orderTotal = cartTotal + tax + shipping;
+  const shouldHaveShipping = cartItems.filter((cartItem) => {
+    return cartItem.productId != null
+  })
+  console.log(shouldHaveShipping, '7777');
+  
+  const orderTotal = shouldHaveShipping?.length>0? cartTotal + tax + shipping: cartTotal + tax
 
   const currentCart = await db.cart.update({
     where: {
@@ -633,7 +639,9 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
       size = String(formData.get("size"));
       await fetchProduct(productId);
     }
-
+    if (EProductId) {
+      amount = Number(formData.get("amount"));
+    }
     const cart = await fetchOrCreateCart({ userId: user.id });
     await updateOrCreateCartItem({
       productId,

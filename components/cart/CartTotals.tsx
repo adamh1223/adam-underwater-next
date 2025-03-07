@@ -9,18 +9,25 @@ import { SubmitButton } from "../form/Buttons";
 import { Cart } from "@prisma/client";
 import StockForm from "../form/StockForm";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function CartTotals({ cart, includesEProducts }: { cart: Cart, includesEProducts: Boolean }) {
+function CartTotals({ cart, includesEProducts, includesBoth }: { cart: Cart, includesEProducts: Boolean, includesBoth: boolean }) {
+  const [hideExtraInfo, setHideExtraInfo] = useState(!includesEProducts || includesBoth)
   const { cartTotal, shipping, tax, orderTotal } = cart;
+  console.log(cart, '888888888');
+  
   const actionToUse = includesEProducts? createEProductOrder : createOrderAction
   const defaultOrderValue = includesEProducts? false : true
+  useEffect(()=>{
+    
+    setHideExtraInfo(!includesEProducts || includesBoth)
+  }, [includesBoth, includesEProducts])
   const [isOrderReady, setIsOrderReady] = useState(defaultOrderValue)
   return (
     <div>
       <Card className="p-8">
         <CartTotalRow label="Subtotal" amount={cartTotal} />
-        {!includesEProducts && <CartTotalRow label="Shipping" amount={shipping} />}
+        {hideExtraInfo && <CartTotalRow label="Shipping" amount={shipping} />}
         <CartTotalRow label="Tax" amount={tax} />
         <CardTitle className="mt-8">
           <CartTotalRow label="Order Total" amount={orderTotal} lastRow />
@@ -40,9 +47,9 @@ function CartTotals({ cart, includesEProducts }: { cart: Cart, includesEProducts
         <StockForm updateCheck={setIsOrderReady}/>
       </div>}
 
-      {isOrderReady && <FormContainer action={actionToUse}>
-        <SubmitButton text="Place Order" className="w-full mt-8" />
-      </FormContainer>}
+      <FormContainer action={actionToUse}>
+        <SubmitButton disabled={!isOrderReady} text="Place Order" className="w-full mt-8" />
+      </FormContainer>
     </div>
   );
 }

@@ -11,9 +11,15 @@ async function CartPage() {
   const previousCart = await fetchOrCreateCart({ userId });
   const { currentCart, cartItems } = await updateCart(previousCart);
   if (cartItems.length === 0) return <SectionTitle text="Empty Cart" />;
-
-  const includesEProducts = cartItems.find(cartItem => !! cartItem.EProduct?.id)
-
+  console.log(cartItems, '999999999');
+  
+  const includesEProducts = cartItems.filter(cartItem => cartItem.EProductId!=null)
+  const includesProducts = cartItems.filter(cartItem => cartItem.productId != null)
+  const includesBoth = includesEProducts?.length>0 && includesProducts?.length>0
+  console.log(includesEProducts, '1111111');
+  console.log(includesProducts, '2222222');
+  console.log(includesBoth, '3333333');
+  
   return (
     <>
       <div className="flex justify-center">
@@ -28,7 +34,7 @@ async function CartPage() {
           <CartItemsList cartItems={currentCart.cartItems} />
         </div>
         <div className="lg:col-span-4">
-          <CartTotals cart={currentCart} includesEProducts={!!includesEProducts} />
+          <CartTotals cart={currentCart} includesEProducts={includesEProducts?.length>0} includesBoth={includesBoth}/>
         </div>
       </div>
     </>
