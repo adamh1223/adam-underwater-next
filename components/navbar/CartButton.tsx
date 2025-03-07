@@ -1,12 +1,30 @@
-import React from "react";
+// 'use client'
+
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { LuShoppingCart } from "react-icons/lu";
 import { fetchCartItems } from "@/utils/actions";
 
-async function CartButton() {
+ async function CartButton() {
   const numItemsInCart = await fetchCartItems();
+  // const [cartItems, setCartItems] = useState(0)
+  // const [cache, setCache] = useState<number | null>(null)
+  // useEffect(()=>{
 
+
+  //   const waitForCartItems = async()=>{
+  //     const cartItems = await fetchCartItems()
+  //     if (cartItems != cache) {
+  //       setCache(cartItems)
+  //       setCartItems(cartItems)
+  //     }
+  //   }
+  //   const interval = setInterval(()=>{
+  //     waitForCartItems()
+  //   }, 33000)
+  //   return ()=>clearInterval(interval)
+  // }, [cache])
   return (
     <Button
       asChild

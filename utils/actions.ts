@@ -11,7 +11,7 @@ import {
   validateWithZodSchema,
 } from "./schemas";
 import { deleteImage, uploadImage } from "./supabase";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { Cart } from "@prisma/client";
 import { CourierClient } from "@trycourier/courier";
 
@@ -60,6 +60,12 @@ export const fetchAllProducts = async ({
     },
   });
 };
+
+const renderSuccess = () => {
+  return {
+    message: 'Item added to cart'
+  };
+}
 
 export const fetchAllEProducts = async ({
   search = "",
@@ -175,11 +181,12 @@ export const createEProductAction = async (
       },
     });
   } catch (error) {
-    console.log(error);
+    console.log(error, '222222222222222');
 
     return renderError(error);
   }
   redirect("/admin/products");
+
 };
 
 export const fetchAdminProducts = async () => {
@@ -653,18 +660,18 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
     await updateCart(cart);
     console.log(productId);
   } catch (error) {
-    console.log(
-      error,
-      ";alskdj;falksjd;lfkjasdkl;kasd;flajds;lkfja;lsdkjfa;lsdkjf;alksdjf"
-    );
+    
     return renderError(error);
   }
-
+  revalidateTag('/cart')
+  return renderSuccess();
   // const {
   //   url: { pathname },
   // } = prevState;
 
-  redirect(RedirectTo);
+  // redirect(RedirectTo);
+
+
 };
 
 export const addEProductToCartAction = async (
@@ -758,7 +765,7 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
       userId: user.id,
       errorOnFailure: true,
     });
-    const productIDs = cart?.cartItems.map((cartItem) => cartItem.productId);
+    const productIDs = cart?.cartItems ? cart?.cartItems.map((cartItem) => cartItem.productId) : undefined
     cartId = cart.id;
 
     await db.order.deleteMany({
@@ -776,7 +783,8 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
     const order = await db.order.create({
       data: {
         clerkId: user.id,
-        productIDs,
+        productIDs: productIDs as string[], 
+        // Revisit this if errors when submitting an order for products
         products: cart.numItemsInCart,
         orderTotal: cart.orderTotal,
         tax: cart.tax,
@@ -831,7 +839,8 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
     const order = await db.order.create({
       data: {
         clerkId: user.id,
-        productIDs: EProductIds,
+        productIDs: EProductIds as string[],
+        // revisit if errors on orders
         products: cart.numItemsInCart,
         orderTotal: cart.orderTotal,
         tax: cart.tax,
