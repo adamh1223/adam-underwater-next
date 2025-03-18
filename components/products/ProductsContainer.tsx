@@ -34,7 +34,7 @@ async function ProductsContainer({
       <section>
         <div className="flex justify-center py-5">
           <Suspense>
-            <NavSearch />
+            <NavSearch isEProduct={isEProduct}/>
           </Suspense>
         </div>
         <div className="flex justify-between items-center pt-5 px-9">

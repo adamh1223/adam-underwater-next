@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useEffect } from "react";
 
-function NavSearch() {
+function NavSearch({isEProduct}:{isEProduct:Boolean}) {
   const searchParams = useSearchParams()
   const {replace} = useRouter()
   const [search, setSearch] = useState(searchParams.get('search')?.toString() || '')
@@ -16,7 +16,14 @@ function NavSearch() {
     else {
       params.delete('search')
     }
-    replace(`/products?${params.toString()}`)
+
+    if (isEProduct) {
+      replace(`/stock?${params.toString()}`)
+    } else {
+
+      replace(`/products?${params.toString()}`)
+    }
+
   },300)
   useEffect(() => {
     if(!searchParams.get('search')) {
@@ -26,7 +33,7 @@ function NavSearch() {
   return (
     <Input
       type="search"
-      placeholder="search product..."
+      placeholder={isEProduct? "search clip...": "search product..."}
       className="max-w-xs dark:bg-muted"
       onChange={(e) => {
         setSearch(e.target.value)

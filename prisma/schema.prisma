@@ -45,10 +45,10 @@ model EProduct {
 model Favorite {
   id         String   @id @default(uuid())
   clerkId    String
-  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  EProduct   EProduct @relation(fields: [EProductId], references: [id], onDelete: Cascade)
-  productId  String
-  EProductId String
+  product    Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  EProduct   EProduct? @relation(fields: [EProductId], references: [id], onDelete: Cascade)
+  productId  String?
+  EProductId String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }

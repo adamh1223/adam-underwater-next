@@ -279,9 +279,9 @@ export const updateProductImageAction = async (
   }
 };
 
-export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
+export const fetchFavoriteId = async ({ productId, EProductId }: { productId: string | null, EProductId: string | null }) => {
   const user = await getAuthUser();
-  const favorite = await db.favorite.findFirst({
+  const favorite = productId? await db.favorite.findFirst({
     where: {
       productId,
       clerkId: user.id,
@@ -289,17 +289,28 @@ export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
     select: {
       id: true,
     },
-  });
-  return favorite?.id || null;
+  }): null
+  const favoriteEProductId = EProductId?  await db.favorite.findFirst({
+    where: {
+      EProductId,
+      clerkId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  }): null
+  const favoriteProductToReturn = productId? favorite?.id : favoriteEProductId?.id
+  return favoriteProductToReturn || null;
 };
 
 export const toggleFavoriteAction = async (prevState: {
-  productId: string;
+  productId: string | null;
+  EProductId: string | null;
   favoriteId: string | null;
   pathname: string;
 }) => {
   const user = await getAuthUser();
-  const { productId, favoriteId, pathname } = prevState;
+  const { productId, EProductId, favoriteId, pathname } = prevState;
   try {
     if (favoriteId) {
       await db.favorite.delete({
@@ -308,12 +319,25 @@ export const toggleFavoriteAction = async (prevState: {
         },
       });
     } else {
-      await db.favorite.create({
+      if (productId) {
+        await db.favorite.create({
         data: {
           productId,
+          EProductId: undefined,
           clerkId: user.id,
         },
       });
+      }
+      if (EProductId) {
+        
+        await db.favorite.create({
+          data: {
+            EProductId,
+            productId: undefined,
+            clerkId: user.id,
+          },
+        });
+      }
     }
     revalidatePath(pathname);
     return {
@@ -332,6 +356,7 @@ export const fetchUserFavorites = async () => {
     },
     include: {
       product: true,
+      EProduct: true,
     },
   });
   return favorites;
@@ -531,10 +556,16 @@ const updateOrCreateCartItem = async ({
       cartId,
     },
   });
-  if (ECartItem) {
-    return;
-  }
-  //Product that exists in cart
+  console.log(ECartItem, '1111.11111');
+
+
+  // TOOK OUT BECAUSE WE FORGOT WHY IT WAS HERE; ADD REGULAR PRODUCTS QUANTITIES
+  // if (EProductId) {
+  //   return;
+  // }
+  // console.log(cartItem, amount, size, '000000000000');
+  
+
   if (cartItem && amount && size) {
     if (cartItem.amount != null) {
       cartItem = await db.cartItem.update({
@@ -548,7 +579,7 @@ const updateOrCreateCartItem = async ({
       });
     }
   }
-  //New Product not already in cart
+
   else if (!cartItem && !EProductId) {
     console.log('adding a new product');
     
@@ -558,7 +589,7 @@ const updateOrCreateCartItem = async ({
       });
     }
   }
-  //New EProduct
+
   else {
     if (EProductId != undefined) {
       console.log("creating an e product");
@@ -657,8 +688,8 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
       amount,
       size,
     });
+    console.log(productId,'55555.55555');
     await updateCart(cart);
-    console.log(productId);
   } catch (error) {
     
     return renderError(error);

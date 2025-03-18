@@ -45,7 +45,7 @@ function ProductsGrid({ EProducts }: { EProducts?: EProduct[] }) {
                 </CardContent>
               </Card>
               <div className="absolute top-5 right-2 z-5">
-                <FavoriteToggleButton productId={productId} />
+                <FavoriteToggleButton EProductId={productId} productId={null} />
               </div>
             </article>
           );
