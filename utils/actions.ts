@@ -477,6 +477,20 @@ export const fetchCartItems = async () => {
   return cart?.numItemsInCart || 0;
 };
 
+export const identifyCart = async () => {
+  const { userId } = auth();
+
+  const cart = await db.cart.findFirst({
+    where: {
+      clerkId: userId ?? "",
+    },
+    select: {
+      cartItems: true
+    },
+  });
+  return cart?.cartItems;
+};
+
 const fetchProduct = async (productId: string) => {};
 
 export const fetchOrCreateCart = async ({
@@ -660,6 +674,30 @@ export const updateCart = async (cart: Cart) => {
   });
   return { cartItems, currentCart };
 };
+
+export const isEProductInCart = async (productId: string) => {
+  const cartItems = await identifyCart()
+  console.log(productId, 'CCCCCCCCCCCCCCCCCCCCCC');
+  
+  // const cartItems = await db.cartItem.findMany({
+  //   where: {
+  //     cartId: cart.id,
+  //   },
+  //   include: {
+  //     product: true,
+  //     EProduct: true,
+  //   },
+  //   orderBy: {
+  //     createdAt: "asc",
+  //   },
+  // });
+  const matchingEProductId = cartItems?.map(cartItem => cartItem.EProductId === productId).filter(match => match === true)
+
+  console.log(matchingEProductId, 'DDDDDDDDDDDDDDDDDDDDDDDD');
+  
+
+  return matchingEProductId?.length? matchingEProductId[0] : false
+}
 
 export const addToCartAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();

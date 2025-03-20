@@ -23,12 +23,14 @@ export function SubmitButton({
   size = "lg",
   disabled
 }: SubmitButtonProps) {
-  const { pending } = useFormStatus();
+  const { pending, data } = useFormStatus();
+  console.log(data, 'FFFFFFFFFFFFFFFFFFFFFFFFFF');
+  
 
   return (
     <Button
       type="submit"
-      disabled={pending||disabled}
+      disabled={pending||disabled||!!data}
       className={cn("capitalize", className)}
       size={size}
     >

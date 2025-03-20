@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectProductAmount from "./SelectProductAmount";
 import { Mode } from "./SelectProductAmount";
 import FormContainer from "../form/FormContainer";
 import { SubmitButton } from "../form/Buttons";
-import { addToCartAction } from "@/utils/actions";
+import { addToCartAction, isEProductInCart } from "@/utils/actions";
 import { useAuth } from "@clerk/nextjs";
 import { ProductSignInButton } from "../form/Buttons";
 import SelectProductSize from "../products/ProductSize";
+import { useFormState } from "react-dom";
 
 function AddToCart({
   RedirectTo,
@@ -21,8 +22,26 @@ function AddToCart({
 }) {
   const [amount, setAmount] = useState(1);
   const [size, setSize] = useState("Small");
+  const [disabled, setDisabled] = useState(false);
   const { userId } = useAuth();
   const productFormName = isEProduct? "EProductId": "productId"
+
+  useEffect(()=>{
+    const getActionResult = async () => {
+      const alreadyInCart = await isEProductInCart(productId)
+      setDisabled(alreadyInCart)
+    }
+   getActionResult()
+  }, [])
+  
+const test = useFormState(addToCartAction, {message: ''})
+console.log(test, 'EEEEEEEEEEEEEEE');
+
+//FOR THURSDAY
+//Make new function that submits the action
+//create new state variables
+//when action submits, use new state variables to disable button 
+
 
 
   return (
@@ -50,7 +69,7 @@ function AddToCart({
           <input type="hidden" name={productFormName} value={productId} />
           <input type="hidden" name="amount" value={amount}></input>
           <input type="hidden" name="RedirectTo" value={RedirectTo} />
-          <SubmitButton text="add to cart" size="default" className="mt-8" />
+          <SubmitButton disabled={disabled} text="add to cart" size="default" className="mt-8" />
         </FormContainer>
       ) : (
         <ProductSignInButton />
