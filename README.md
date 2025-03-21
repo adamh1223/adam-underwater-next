@@ -35,12 +35,15 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
 Shadcn commands:
 
-npx shadcn@latest init -d 
+npx shadcn@latest init -d
 
 npx shadcn@latest add breadcrumb card checkbox dropdown-menu input label popover select separator table textarea toast skeleton carousel
 
 React Icons:
 npm i react-icons
+
+LOOK INTO SUPABASE BOT ACCOUNT THING
+prisma limits
+clerk limits

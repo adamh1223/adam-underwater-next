@@ -114,7 +114,7 @@ function ProductsGrid({
                     </CardContent>
                   </Card>
                   <div className="absolute top-5 right-2 z-5">
-                    <FavoriteToggleButton productId={productId} />
+                    <FavoriteToggleButton productId={productId} EProductId={null} />
                   </div>
                 </article>
               );

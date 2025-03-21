@@ -48,15 +48,25 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
             />
           </div> */}
 
-          <div className="clip-wrapper">
+          <div className="clip-wrapper relative w-full h-0 pb-[56.25%]">
             <iframe
               src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&badge=0&autopause=0`}
               allow="autoplay; fullscreen; picture-in-picture;"
+              // style={{
+               
+              //   position: "relative", 
+              // }}
               style={{
-                //   height: "67.5%",
-                //   width: "45%",
-                position: "relative", // Absolute positioning to fill the container
-              }}
+        width: "99.8%",
+        height: "93.5%",
+        position: "absolute", // Absolute positioning to fill the container
+        top: "0",
+        left: "0",
+        objectFit: "cover",
+        objectPosition: "center", // Centers the video within the iframe
+        pointerEvents: "none",
+        cursor: "pointer",
+      }}
               className="clip"
             ></iframe>
           </div>
@@ -65,7 +75,7 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
             <div className="">
               <div className="flex gap-x-8 items-center">
                 <h1 className="capitalize text-3xl font-bold">{name}</h1>
-                <FavoriteToggleButton productId={params.id} />
+                <FavoriteToggleButton EProductId={params.id} productId={null} />
               </div>
 
               <p className="mt-3 text-md bg-muted inline-block p-2 rounded-md">

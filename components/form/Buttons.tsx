@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { SignInButton } from "@clerk/nextjs";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { LuTrash2, LuPenSquare } from "react-icons/lu";
+import { useEffect, useState } from "react";
 
 type btnSize = "default" | "lg" | "sm";
 
@@ -23,8 +24,9 @@ export function SubmitButton({
   size = "lg",
   disabled
 }: SubmitButtonProps) {
+  
   const { pending, data } = useFormStatus();
-  console.log(data, 'FFFFFFFFFFFFFFFFFFFFFFFFFF');
+
   
 
   return (

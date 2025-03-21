@@ -52,7 +52,7 @@ function ProductsList({ EProducts }: { EProducts?: EProduct[] }) {
                 </Card>
               </Link>
               <div className="absolute bottom-8 right-8 z-5 p-5">
-                <FavoriteToggleButton productId={productId} />
+                <FavoriteToggleButton EProductId={productId} productId={null}  />
               </div>
             </article>
           );

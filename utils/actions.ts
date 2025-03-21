@@ -733,7 +733,8 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
     return renderError(error);
   }
   revalidateTag('/cart')
-  return renderSuccess();
+  // return renderSuccess();
+  return {message: 'Added to Cart', shouldDisableButton: !!EProductId}
   // const {
   //   url: { pathname },
   // } = prevState;
@@ -759,6 +760,7 @@ export const addEProductToCartAction = async (
   } catch (error) {
     return renderError(error);
   }
+  return {message: 'test'}
   redirect(`/products/${productId}`);
 };
 

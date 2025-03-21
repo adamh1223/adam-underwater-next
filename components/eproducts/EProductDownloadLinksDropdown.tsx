@@ -7,7 +7,7 @@ import './EProductsDropdown.css'
 interface DownloadLinks {
   downloadLink: string;
   name: string;
-  thumbnail: string;
+  thumbnail: string | null;
 }
 
 function EProductDownloadLinksDropdown({downloadLinks}:{downloadLinks:DownloadLinks[]}) {
@@ -24,7 +24,7 @@ return (
         {downloadLinks.map(downloadLink => {
           return (<>
           <p className="drop-subheader">{downloadLink.name}</p>
-          <img src={downloadLink.thumbnail} />
+          {downloadLink.thumbnail && <img src={downloadLink.thumbnail} />}
           <div className="flex justify-center mt-3">
           <Button key={downloadLink.downloadLink} variant="ghost" onClick={() => handleDownloadClick(downloadLink.downloadLink)}>
 

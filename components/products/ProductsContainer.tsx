@@ -26,8 +26,8 @@ async function ProductsContainer({
   const totalProducts = products.length;
   const totalEProducts = EProducts.length;
   const searchTerm = search ? `&search=${search}` : "";
-  console.log(isEProduct, '99999999999999999');
-  
+  console.log(totalProducts, '9...9999999999999999');
+  const useEProductLayoutButtons = isEProduct && totalEProducts >0
   return (
     <>
       {/* HEADER */}
@@ -42,7 +42,7 @@ async function ProductsContainer({
             {totalProducts} product{totalProducts > 1 && "s"}
           </h4>
           <div className="flex gap-x-4 p-5">
-            {totalEProducts > 0 ? (
+            {useEProductLayoutButtons ? (
               <>
                 <Button
                   variant={layout === "grid" ? "default" : "ghost"}

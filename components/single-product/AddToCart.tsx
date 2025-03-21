@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import SelectProductAmount from "./SelectProductAmount";
 import { Mode } from "./SelectProductAmount";
 import FormContainer from "../form/FormContainer";
@@ -9,7 +9,7 @@ import { addToCartAction, isEProductInCart } from "@/utils/actions";
 import { useAuth } from "@clerk/nextjs";
 import { ProductSignInButton } from "../form/Buttons";
 import SelectProductSize from "../products/ProductSize";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 function AddToCart({
   RedirectTo,
@@ -23,19 +23,27 @@ function AddToCart({
   const [amount, setAmount] = useState(1);
   const [size, setSize] = useState("Small");
   const [disabled, setDisabled] = useState(false);
+ 
   const { userId } = useAuth();
   const productFormName = isEProduct? "EProductId": "productId"
+  const [hasAddedItemToCart, setHasAddedItemToCart] = useState(false)
 
   useEffect(()=>{
     const getActionResult = async () => {
       const alreadyInCart = await isEProductInCart(productId)
-      setDisabled(alreadyInCart)
+      
+      
+        setDisabled(alreadyInCart)
     }
    getActionResult()
   }, [])
+const handleAddToCart =  () => {
+   console.log('hello');
+   setHasAddedItemToCart(true)
+  };
   
-const test = useFormState(addToCartAction, {message: ''})
-console.log(test, 'EEEEEEEEEEEEEEE');
+
+
 
 //FOR THURSDAY
 //Make new function that submits the action
@@ -65,11 +73,11 @@ console.log(test, 'EEEEEEEEEEEEEEE');
         </>
       )}
       {userId ? (
-        <FormContainer action={addToCartAction}>
+        <FormContainer action={addToCartAction} callback={handleAddToCart}>
           <input type="hidden" name={productFormName} value={productId} />
           <input type="hidden" name="amount" value={amount}></input>
           <input type="hidden" name="RedirectTo" value={RedirectTo} />
-          <SubmitButton disabled={disabled} text="add to cart" size="default" className="mt-8" />
+          <SubmitButton disabled={disabled || hasAddedItemToCart} text="add to cart" size="default" className="mt-8" />
         </FormContainer>
       ) : (
         <ProductSignInButton />
