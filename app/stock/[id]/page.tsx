@@ -35,7 +35,7 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
         <div className="breadcrumbs">
           <BreadCrumbs name={EProduct.name} />
         </div>
-        <div className="mt-8 grid lg:grid-cols-2">
+        <div className="mt-8 grid lg:grid-cols-2 px-5">
           {/* IMAGE FIRST COL */}
           {/* <div className="relative h-96">
             <Image
@@ -48,27 +48,28 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
             />
           </div> */}
 
-          <div className="clip-wrapper relative w-full h-0 pb-[56.25%]">
-            <iframe
-              src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&badge=0&autopause=0`}
-              allow="autoplay; fullscreen; picture-in-picture;"
-              // style={{
-               
-              //   position: "relative", 
-              // }}
-              style={{
-        width: "99.8%",
-        height: "93.5%",
-        position: "absolute", // Absolute positioning to fill the container
-        top: "0",
-        left: "0",
-        objectFit: "cover",
-        objectPosition: "center", // Centers the video within the iframe
-        pointerEvents: "none",
-        cursor: "pointer",
-      }}
-              className="clip"
-            ></iframe>
+          <div className="clip-wrapper relative w-full pb-[56.25%]">
+            <div className="hello w-[90%] flex justify-center">
+              <iframe
+                src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&badge=0&autopause=0`}
+                allow="autoplay; fullscreen; picture-in-picture;"
+                // style={{
+
+                //   position: "relative",
+                // }}
+                style={{
+                  width: "99.8%",
+                  height: "93.5%",
+                  position: "absolute", // Absolute positioning to fill the container
+                  top: "0",
+                  left: "0",
+                  objectFit: "cover",
+                  objectPosition: "center", // Centers the video within the iframe
+                  cursor: "pointer",
+                }}
+                className="clip"
+              ></iframe>
+            </div>
           </div>
           {/* PRODUCT INFO SECOND COL */}
           <div className="details-wrapper flex items-center justify-center">

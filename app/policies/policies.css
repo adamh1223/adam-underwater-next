@@ -70,7 +70,7 @@
 
 .statement {
   text-align: left; /* Align the text to the start of its parent */
-  width: 80vw; /* Optional: Ensure consistent width with other elements */
+  width: 77vw; /* Optional: Ensure consistent width with other elements */
   margin: 0; /* Reset margin if needed */
   position: relative; /* Required for positioning the pseudo-element */
 }

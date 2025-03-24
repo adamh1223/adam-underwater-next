@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { EProduct, Product } from "@prisma/client";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
+import ProductCarousel from "./ProductCarousel";
 
 function ProductsList({
   products,
@@ -56,7 +57,10 @@ function ProductsList({
                     </Card>
                   </Link>
                   <div className="absolute bottom-8 right-8 z-5 p-5">
-                    <FavoriteToggleButton productId={productId} />
+                    <FavoriteToggleButton
+                      productId={productId}
+                      EProductId={null}
+                    />
                   </div>
                 </article>
               );
@@ -73,30 +77,39 @@ function ProductsList({
                   <Link href={`/products/${productId}`}>
                     <Card className="transform group-hover:shadow-xl transition-shadow duration-500 mx-8 my-3">
                       <CardContent className="p-8 gap-y-4 grid md:grid-cols-3">
-                        <div className="relative h-64 md:h-48 md:w-48">
-                          <Image
+                        <div className="relative">
+                          {/* <Image
                             src={image[0]}
                             alt={name}
                             fill
                             sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
                             priority
                             className="w-full rounded object-cover"
-                          />
+                          /> */}
+                          <ProductCarousel
+                            image={image}
+                            productId={productId}
+                          ></ProductCarousel>
                         </div>
                         <div>
-                          <h2 className="text-xl font-semibold capitalize">
+                          <h2 className="text-xl font-semibold capitalize ps-5">
                             {name}
                           </h2>
-                          <h4 className="text-muted-foreground">{company}</h4>
+                          <h4 className="text-muted-foreground ps-5">
+                            {company}
+                          </h4>
                         </div>
-                        <p className="text-muted-foreground text-lg md:ml-auto">
+                        <p className="text-muted-foreground text-lg md:ml-auto ps-5">
                           {dollarsamount}
                         </p>
                       </CardContent>
                     </Card>
                   </Link>
                   <div className="absolute bottom-8 right-8 z-5 p-5">
-                    <FavoriteToggleButton productId={productId} />
+                    <FavoriteToggleButton
+                      productId={productId}
+                      EProductId={null}
+                    />
                   </div>
                 </article>
               );

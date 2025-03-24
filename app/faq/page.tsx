@@ -34,19 +34,18 @@ const faq = () => {
                   Do products ship internationally?
                 </AccordionTrigger>
                 <AccordionContent>
-                  My electronic products - LUTS and Sound FX are available from
-                  anywhere in the world, but at this time prints can only be
-                  shipped within the United States.
+                  My electronic products - Stock Footage, LUTS, and Sound FX are
+                  available from anywhere in the world, but at this time prints
+                  can only be shipped within the United States.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
                 <AccordionTrigger>
-                  I purchased an E-product and it didn't download. What should I
-                  do?
+                  I purchased an Electronic product. How do I download it?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes. It&apos;s animated by default, but you can disable it if
-                  you prefer.
+                  Navigate to "My Orders" and hover over "Download Links" next
+                  to your order. Each download link will appear here.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-4">
@@ -55,8 +54,12 @@ const faq = () => {
                   publicly?
                 </AccordionTrigger>
                 <AccordionContent>
-                  Yes. It&apos;s animated by default, but you can disable it if
-                  you prefer.
+                  No, you may only publish clips purchased here on the specific
+                  channels you listed in the form you submit before purchasing
+                  stock footage clips. Submit a contact form if you wish to
+                  change one of more of these channels. Publishing stock footage
+                  purchased on Adam Underwater on an unauthorized channel will
+                  be subject to copyright violation.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
