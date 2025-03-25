@@ -35,7 +35,7 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
         <div className="breadcrumbs">
           <BreadCrumbs name={EProduct.name} />
         </div>
-        <div className="mt-8 grid lg:grid-cols-2 px-5">
+        <div className="mt-8 grid 2xl:grid-cols-2 px-8">
           {/* IMAGE FIRST COL */}
           {/* <div className="relative h-96">
             <Image
@@ -48,8 +48,8 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
             />
           </div> */}
 
-          <div className="clip-wrapper relative w-full pb-[56.25%]">
-            <div className="hello w-[90%] flex justify-center">
+          <div className="clip-wrapper relative w-[90%] pb-[56.25%] flex justify-center">
+            <div className="w-[80%] flex justify-center">
               <iframe
                 src={`https://player.vimeo.com/video/${WMVideoLink}?autoplay=1&badge=0&autopause=0`}
                 allow="autoplay; fullscreen; picture-in-picture;"
@@ -58,11 +58,10 @@ async function SingleEProductPage({ params }: { params: { id: string } }) {
                 //   position: "relative",
                 // }}
                 style={{
-                  width: "99.8%",
-                  height: "93.5%",
+                  width: "99.9%",
+                  height: "84.3%",
                   position: "absolute", // Absolute positioning to fill the container
-                  top: "0",
-                  left: "0",
+
                   objectFit: "cover",
                   objectPosition: "center", // Centers the video within the iframe
                   cursor: "pointer",
