@@ -12,6 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 function page() {
   const handleClick = (
@@ -100,8 +107,48 @@ function page() {
           {/* <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1018553050?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="website"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script> */}
         </div>
       </section>
-      <section id="photo" className="h-[500px]">
+      <section id="photo" className="pt-3">
         <Sectiontitle text="Underwater 45mp Photo" />
+        <div className="flex justify-center">
+          <Carousel className="w-[85%]">
+            <CarouselContent>
+              {/* First item */}
+              <CarouselItem>
+                <div className="flex items-center justify-center h-full">
+                  <div className="grid lg:grid-cols-3 grid-cols-2 gap-4 p-4">
+                    {[...Array(6)].map((_, index) => (
+                      <Card key={index} className="group overflow-hidden">
+                        <CardContent className="p-0 cursor-pointer">
+                          <img
+                            src={"/images/inspire3.jpg"}
+                            className="h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              </CarouselItem>
+
+              {/* Second item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear2.png"} alt="" />
+                </div>
+              </CarouselItem>
+
+              {/* Third item */}
+              <CarouselItem>
+                <div className="p-4 flex items-center justify-center">
+                  <img src={"/images/gear3.png"} alt="" />
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+
+            <CarouselPrevious className="" />
+            <CarouselNext />
+          </Carousel>
+        </div>
       </section>
       {/* <section id="dives">
         <Sectiontitle text="Guided Dives" />
