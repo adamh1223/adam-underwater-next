@@ -173,80 +173,78 @@ function AboutPage() {
       </section>
       <section id="gear">
         <Sectiontitle text="My Gear" />
-        <h1 className="subheader">
-          Canon EOS R5C + Nauticam NA-R5C Underwater Housing
-        </h1>
-        <div className="gear-container">
-          <Carousel className="w-full max-w-sm">
-            <CarouselContent>
-              {/* First item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear1.png"} alt="" />
-                </div>
-              </CarouselItem>
+        <div className="gear-layout px-8 py-8">
+  {/* First Gear Card */}
+  <Card className="gear-card">
+    <h1 className="subheader">
+      Canon EOS R5C + Nauticam NA-R5C Underwater Housing
+    </h1>
 
-              {/* Second item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear2.png"} alt="" />
-                </div>
-              </CarouselItem>
+    <div className="gear-container">
+      <Carousel className="w-full max-w-sm">
+        <CarouselContent>
+          <CarouselItem>
+            <div className="p-4 flex items-center justify-center">
+              <img src={"/images/gear1.png"} alt="Gear 1" />
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-4 flex items-center justify-center">
+              <img src={"/images/gear2.png"} alt="Gear 2" />
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-4 flex items-center justify-center">
+              <img src={"/images/gear3.png"} alt="Gear 3" />
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
 
-              {/* Third item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear3.png"} alt="" />
-                </div>
-              </CarouselItem>
-            </CarouselContent>
+    {/* Inner Description Card */}
+    <Card className="description-card p-4">
+      <p>
+        The Canon EOS R5C is a hybrid powerhouse, capable of 8K video recording and excellent still photography, making it perfect for underwater shooting.
+      </p>
+    </Card>
+  </Card>
 
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
-        <Card className="p-5 text-lg tracking-wide leading-8 mx-[70px] mt-[15px]">
-          <p>
-            The NA-R5C Nauticam Housing allows me to bring the Canon R5C, an 8K
-            Raw and 50mp photo cinema camera into the water. With 14 stops of
-            dynamic range and up to 60 fps, the R5C gives me the flexibility I
-            need when I'm filming.
-          </p>
-        </Card>
-        <ul className="subheader">
-          <h1>Keldan Video Lights</h1>
-        </ul>
+  {/* Second Gear Card */}
+  <Card className="gear-card">
+    <h1 className="subheader">Keldan Video Lights</h1>
 
-        <div className="gear-container">
-          <Carousel className="w-full max-w-sm">
-            <CarouselContent>
-              {/* First item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/keldan2.jpg"} alt="" />
-                </div>
-              </CarouselItem>
+    <div className="gear-container">
+      <Carousel className="w-full max-w-sm">
+        <CarouselContent>
+          <CarouselItem>
+            <div className="p-4 flex items-center justify-center">
+              <img src={"/images/keldan2.jpg"} alt="Keldan Light 1" />
+            </div>
+          </CarouselItem>
+          <CarouselItem>
+            <div className="p-4 flex items-center justify-center">
+              <img src={"/images/keldan1.png"} alt="Keldan Light 2" />
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    </div>
 
-              {/* Second item */}
-              <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/keldan1.png"} alt="" />
-                </div>
-              </CarouselItem>
-            </CarouselContent>
+    {/* Inner Description Card */}
+    <Card className="description-card p-4">
+      <p>
+        Keldan video lights provide high-output, natural-looking illumination underwater, essential for capturing vibrant colors at depth.
+      </p>
+    </Card>
+  </Card>
+</div>
 
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        </div>
-        <Card className="p-5 text-lg tracking-wide leading-8 mx-[70px] mt-[45px]">
-          <p>
-            It can get dark underwater and I need a strong light source to
-            properly light underexposed shots. The Keldan video lights provide
-            long lasting and a strong light source that allow me to achieve
-            adequate exposure on any dive, day or night.
-          </p>
-        </Card>
+
       </section>
     </>
   );

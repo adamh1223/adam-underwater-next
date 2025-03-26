@@ -39,9 +39,9 @@ function ProductsDropdown() {
         >
           Canvas Prints
         </Button>
-        <Button variant="ghost" onClick={() => handleSubservicesClick("luts")}>
+        {/* <Button variant="ghost" onClick={() => handleSubservicesClick("luts")}>
           LUTs & Presets
-        </Button>
+        </Button> */}
       </HoverCardContent>
     </HoverCard>
   );

@@ -30,10 +30,7 @@ function Footer() {
               >
                 <FaInstagram className="social-icon" />
               </Link>
-              <Link href="https://facebook.com" target="_blank">
-                <FaFacebook className="social-icon" />
-              </Link>
-              <Link href="https://youtube.com" target="_blank">
+              <Link href="https://www.youtube.com/@Seaforestation" target="_blank">
                 <FaYoutube className="social-icon" />
               </Link>
               <Link

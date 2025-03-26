@@ -138,21 +138,66 @@
   }
 }
 .gear-container {
+  flex-grow: 1; /* Makes the carousel fill the available space */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
 }
 
 .subheader {
-  font-size: 25px;
-  width: 100%;
+  min-height: 72px; /* Adjust based on font size to fit 3 lines */
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin: 15px 0px;
-  padding: 0 30px 0 30px;
+  text-align: center;
+  font-size: 1.25rem; /* Adjust as needed */
+  font-weight: bold;
+  line-height: 1.4;
 }
 
 .img-container {
   margin-left: -25px;
+}
+
+.gear-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: stretch; /* Ensures both cards take up the same height */
+}
+
+.gear-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px; /* Adjust this based on design */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .gear-layout {
+    grid-template-columns: 1fr; /* Stack cards in one column for smaller screens */
+    width: 100%;
+  }
+}
+
+.carousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%; /* Ensures carousel stretches */
+}
+
+.carousel-wrapper .carousel {
+  height: 100%;
+}
+
+.carousel-wrapper .carousel img {
+  max-height: 300px; /* Ensures images scale consistently */
+  width: auto;
+}
+
+.description-card {
+  margin: 20px 20px 20px 20px; /* Pushes it to the bottom */
+  text-align: center;
 }
