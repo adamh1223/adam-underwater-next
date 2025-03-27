@@ -74,7 +74,7 @@ function ProductsList({
               const productId = product.id;
               return (
                 <article key={productId} className="group relative">
-                  <Link href={`/products/${productId}`}>
+                  
                     <Card className="transform group-hover:shadow-xl transition-shadow duration-500 mx-8 my-3">
                       <CardContent className="p-8 gap-y-4 grid md:grid-cols-3">
                         <div className="relative">
@@ -92,9 +92,12 @@ function ProductsList({
                           ></ProductCarousel>
                         </div>
                         <div>
+                          <Link href={`/products/${productId}`}>
+
                           <h2 className="text-xl font-semibold capitalize ps-5">
                             {name}
                           </h2>
+                          </Link>
                           <h4 className="text-muted-foreground ps-5">
                             {company}
                           </h4>
@@ -104,7 +107,7 @@ function ProductsList({
                         </p>
                       </CardContent>
                     </Card>
-                  </Link>
+                  
                   <div className="absolute bottom-8 right-8 z-5 p-5">
                     <FavoriteToggleButton
                       productId={productId}

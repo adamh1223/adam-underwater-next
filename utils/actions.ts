@@ -394,6 +394,18 @@ export const fetchProductReviews = async (productId: string) => {
   });
   return reviews;
 };
+export const fetchAllUserReviews = async () => {
+  const user = await getAuthUser();
+  const reviews = await db.review.findMany({
+    where: {
+      clerkId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return reviews;
+};
 
 export const fetchProductRating = async (productId: string) => {
   const result = await db.review.groupBy({
@@ -424,6 +436,7 @@ export const fetchProductReviewsByUser = async () => {
       id: true,
       rating: true,
       comment: true,
+      authorImageUrl: true,
       product: {
         select: {
           image: true,
@@ -884,7 +897,7 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
       errorOnFailure: true,
     });
     if (!cart?.cartItems) {
-      return
+      return {message: 'no cart items, something went wrong.'}
     }
 
     const EProductIds = cart?.cartItems?.map((cartItem) => cartItem.EProductId).filter(item => item!=null);

@@ -25,6 +25,7 @@ async function ProductsContainer({
 
   const totalProducts = products.length;
   const totalEProducts = EProducts.length;
+  const totalProductCount = isEProduct? totalEProducts : totalProducts
   const searchTerm = search ? `&search=${search}` : "";
   console.log(totalProducts, '9...9999999999999999');
   const useEProductLayoutButtons = isEProduct && totalEProducts >0
@@ -39,7 +40,7 @@ async function ProductsContainer({
         </div>
         <div className="flex justify-between items-center pt-5 px-9">
           <h4 className="font-medium text-xl p-5">
-            {totalProducts} product{totalProducts > 1 && "s"}
+            {totalProductCount} product{totalProductCount > 1 && "s"}
           </h4>
           <div className="flex gap-x-4 p-5">
             {useEProductLayoutButtons ? (

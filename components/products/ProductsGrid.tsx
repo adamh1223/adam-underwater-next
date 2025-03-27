@@ -101,7 +101,10 @@ function ProductsGrid({
                         ></ProductCarousel>
                       </div>
                       <div className="mt-4 text-center">
+                        <Link href={`/products/${productId}`}>
+
                         <h2 className="text-lg capitalize">{name}</h2>
+                        </Link>
                         <p className="text-muted-foreground mt-2">
                           {dollarsAmount}
                         </p>

@@ -19,6 +19,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { servicesImages1, servicesImages2 } from "./constants";
 
 function page() {
   const handleClick = (
@@ -116,11 +117,11 @@ function page() {
               <CarouselItem>
                 <div className="flex items-center justify-center h-full">
                   <div className="grid lg:grid-cols-3 grid-cols-2 gap-4 p-4">
-                    {[...Array(6)].map((_, index) => (
+                    {servicesImages1.map((imageURL, index) => (
                       <Card key={index} className="group overflow-hidden">
                         <CardContent className="p-0 cursor-pointer">
                           <img
-                            src={"/images/inspire3.jpg"}
+                            src={imageURL}
                             className="h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
                           />
                         </CardContent>
@@ -132,8 +133,19 @@ function page() {
 
               {/* Second item */}
               <CarouselItem>
-                <div className="p-4 flex items-center justify-center">
-                  <img src={"/images/gear2.png"} alt="" />
+                <div className="flex items-center justify-center h-full">
+                  <div className="grid lg:grid-cols-3 grid-cols-2 gap-4 p-4">
+                    {servicesImages2.map((imageURL, index) => (
+                      <Card key={index} className="group overflow-hidden">
+                        <CardContent className="p-0 cursor-pointer">
+                          <img
+                            src={imageURL}
+                            className="h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
               </CarouselItem>
 

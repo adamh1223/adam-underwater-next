@@ -7,7 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-function BreadCrumbs({ name }: { name: string }) {
+function BreadCrumbs({ name, isEProduct }: { name: string, isEProduct: Boolean }) {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -18,9 +18,12 @@ function BreadCrumbs({ name }: { name: string }) {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href="/products" className="capitalize text-lg">
+        {isEProduct? <BreadcrumbLink href="/stock" className="capitalize text-lg">
+            Stock Footage
+          </BreadcrumbLink>: <BreadcrumbLink href="/products" className="capitalize text-lg">
             products
-          </BreadcrumbLink>
+          </BreadcrumbLink>}
+          
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
