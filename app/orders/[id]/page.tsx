@@ -26,7 +26,7 @@ async function page({ params }: { params: { id: string } }) {
     productIDs,
   } = orderInfo;
   const productsPurchased = await fetchPurchasedProducts(productIDs);
-console.log(productsPurchased, '44444444444444');
+console.log(orderInfo, '44444444444444');
 
   if (!productsPurchased || !productQuantities) {
     return null;

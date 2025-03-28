@@ -9,6 +9,7 @@ import { type NextRequest } from 'next/server';
 import db from '@/utils/db';
 import { log } from 'console';
 import { auth } from '@clerk/nextjs/server';
+import { EProduct, Product } from '@prisma/client';
 
 export const GET = async (req: NextRequest) => {
   const { searchParams } = await new URL(req.url);
@@ -47,15 +48,30 @@ export const GET = async (req: NextRequest) => {
       }
       
     })
-    const productInfo = await db.product.findMany({
-      where: {
+    const [products, EProducts] = await Promise.all([
+      await db.product.findMany( {
+where: {
         id: {in: orderInfo?.productIDs}
       }
-    })
-    
-    const productDescriptions = productInfo.map(product => {
+      }),
+      await db.eProduct.findMany( {
+where: {
+        id: {in: orderInfo?.productIDs}
+      }
+      }),
 
-      const productImage = product.image
+    ])
+    const productInfo = [...products, ...EProducts]
+    
+    const productDescriptions = productInfo.map((product: Product | EProduct) => {
+      let productImage;
+      if ("image" in product) {
+        productImage = product.image[0]
+      } else {
+        productImage = product.thumbnail
+      }
+
+      const productImageToUse = productImage
       const productDescription = product.description
       const productPrice = product.price;
       const productName = product.name;
@@ -66,7 +82,7 @@ export const GET = async (req: NextRequest) => {
         }
       })
 
-      return {productName, productImage, productDescription, productPrice, productQuantity}
+      return {productName, productImageToUse, productDescription, productPrice, productQuantity}
       
       
     })

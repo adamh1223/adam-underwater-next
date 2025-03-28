@@ -441,6 +441,7 @@ export const fetchProductReviewsByUser = async () => {
         select: {
           image: true,
           name: true,
+          id: true,
         },
       },
     },
@@ -901,7 +902,7 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
     }
 
     const EProductIds = cart?.cartItems?.map((cartItem) => cartItem.EProductId).filter(item => item!=null);
-    const regularProductIds = cart?.cartItems.map((cartItem) => cartItem.productId);
+    const regularProductIds = cart?.cartItems.map((cartItem) => cartItem.productId).filter(item => item != null)
 
     const mixedOrder = EProductIds?.length && regularProductIds?.length
     let itemIds: (string[])
@@ -914,9 +915,20 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
         isPaid: false,
       },
     });
-
+let productQuantities;
     if (mixedOrder) {
       EProductIds.concat(regularProductIds)
+      productQuantities = cart?.cartItems.map((cartItem) => {
+        if (cartItem.productId != null) {
+          
+          return {
+            productId: cartItem.productId,
+            amount: cartItem.amount,
+          };
+        }
+    });
+    //FOR TOMORROW
+    //Make sure its a proper type, test sending it out
     }
 
 
@@ -931,6 +943,7 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
         shipping: undefined,
         email: user.emailAddresses[0].emailAddress,
         fullName,
+        productQuantities,
       },
     });
     orderId = order.id;

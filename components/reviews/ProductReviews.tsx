@@ -4,6 +4,7 @@ import ReviewCard from "./ReviewCard";
 import SectionTitle from "@/components/global/Sectiontitle";
 async function ProductReviews({ productId }: { productId: string }) {
   const reviews = await fetchProductReviews(productId);
+console.log(reviews, 'WWWWWW');
 
   return (
     <div className="mt-16">

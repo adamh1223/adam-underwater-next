@@ -5,6 +5,8 @@ import FormContainer from "@/components/form/FormContainer";
 import { IconButton } from "@/components/form/Buttons";
 async function ReviewsPage() {
   const reviews = await fetchProductReviewsByUser();
+  console.log(reviews, 'TTTTTTTTTTTT');
+  
   if (reviews.length === 0)
     return <SectionTitle text="you have no reviews yet" />;
 
@@ -20,15 +22,16 @@ async function ReviewsPage() {
       <section className="grid md:grid-cols-2 gap-8 mt-4 ">
         {reviews.map((review) => {
           const { comment, rating } = review;
-          const { name, image } = review.product;
+          const { name, image, id } = review.product;
           const reviewInfo = {
             comment,
             rating,
             name,
-            image,
+            image: image[0],
+            productId: id,
           };
           return (
-            <ReviewCard key={review.id} reviewInfo={reviewInfo}>
+            <ReviewCard key={review.id} reviewInfo={reviewInfo} removeCircle={true}>
               <DeleteReview reviewId={review.id} />
             </ReviewCard>
           );
