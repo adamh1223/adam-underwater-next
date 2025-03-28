@@ -12,7 +12,7 @@ import {
 } from "./schemas";
 import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath, revalidateTag } from "next/cache";
-import { Cart } from "@prisma/client";
+import { Cart, EProduct, Product } from "@prisma/client";
 import { CourierClient } from "@trycourier/courier";
 
 const getAuthUser = async () => {
@@ -547,14 +547,23 @@ export const fetchOrCreateCart = async ({
 };
 
 export const fetchPurchasedProducts = async (productIDs: string[]) => {
-  const products = db.product.findMany({
+  const EProducts = await db.eProduct.findMany({
     where: {
       id: {
         in: productIDs,
       },
     },
   });
-  return products;
+
+  const products = await db.product.findMany({
+    where: {
+      id: {
+        in: productIDs,
+      },
+    },
+  });
+  const allPurchasedProducts = (products && EProducts) ? [...products, ...EProducts] : products
+  return allPurchasedProducts
 };
 // only calculates quantity, not price
 const updateOrCreateCartItem = async ({
@@ -659,6 +668,7 @@ export const updateCart = async (cart: Cart) => {
     }
   }
   const tax = cart.taxRate * cartTotal;
+  //DEBUG WHY TAX IS NOT BEING SAVED
   const shipping = cartTotal ? cart.shipping : 0;
   const shouldHaveShipping = cartItems.filter((cartItem) => {
     return cartItem.productId != null
@@ -905,7 +915,7 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
     const regularProductIds = cart?.cartItems.map((cartItem) => cartItem.productId).filter(item => item != null)
 
     const mixedOrder = EProductIds?.length && regularProductIds?.length
-    let itemIds: (string[])
+    const itemIds = mixedOrder? EProductIds.concat(regularProductIds) : EProductIds
 
     cartId = cart.id;
 
@@ -915,28 +925,28 @@ export const createEProductOrder = async (prevState: any, formData: FormData) =>
         isPaid: false,
       },
     });
-let productQuantities;
+let productQuantities = [{}];
     if (mixedOrder) {
-      EProductIds.concat(regularProductIds)
       productQuantities = cart?.cartItems.map((cartItem) => {
-        if (cartItem.productId != null) {
+       
           
           return {
-            productId: cartItem.productId,
+            productId: cartItem.productId??cartItem.EProductId,
             amount: cartItem.amount,
           };
-        }
+        
     });
     //FOR TOMORROW
     //Make sure its a proper type, test sending it out
     }
+console.log(itemIds, 'QQQQQQ');
 
 
     const order = await db.order.create({
       data: {
         clerkId: user.id,
-        productIDs: EProductIds as string[],
-        // revisit if errors on orders
+        productIDs: itemIds as string[],
+      
         products: cart.numItemsInCart,
         orderTotal: cart.orderTotal,
         tax: cart.tax,

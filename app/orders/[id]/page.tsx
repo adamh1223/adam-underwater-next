@@ -8,6 +8,8 @@ import FormContainer from "@/components/form/FormContainer";
 import { fetchOrder, fetchPurchasedProducts } from "@/utils/actions";
 import { Card, CardTitle } from "@/components/ui/card";
 import "./order.css";
+import { EProduct, Product } from "@prisma/client";
+import { Button } from "@/components/ui/button";
 
 async function page({ params }: { params: { id: string } }) {
   const id = params.id;
@@ -26,7 +28,7 @@ async function page({ params }: { params: { id: string } }) {
     productIDs,
   } = orderInfo;
   const productsPurchased = await fetchPurchasedProducts(productIDs);
-console.log(orderInfo, '44444444444444');
+console.log(productsPurchased, '44444444444444');
 
   if (!productsPurchased || !productQuantities) {
     return null;
@@ -56,24 +58,56 @@ console.log(orderInfo, '44444444444444');
         <p className="text-xl py-5">
           Order #: <span className="font-semibold">{`${id}`} </span>
         </p>
-        {productsPurchased.map((product) => {
+        {productsPurchased.map((product: Product | EProduct) => {
           const productQuantities = test.map((t) => {
             if (t.productId === product.id) {
               return t;
             }
           });
+          let imageToUse = null
+          if ("image" in product) {
+            imageToUse = product.image
+          } else {
+            imageToUse = product.thumbnail? [product.thumbnail] : null
+          }
+          let companyToUse = undefined
+          if ("company" in product) {
+            companyToUse = product.company
+          } 
+          let productSize = undefined;
+          if ("size" in product) {
+            productSize = product.size
+          } 
+          let downloadLink = undefined;
+          if ("downloadLink" in product) {
+            downloadLink = product.downloadLink
+          } 
+          let productType = undefined;
+          if ("downloadLink" in product) {
+            productType = 'Stock Footage Clip:'
+          } else {
+            productType = 'Canvas Print:'
+          }
           return (
             <Card
               key={product.id}
               className="flex flex-col gap-y-4 md:flex-row flex-wrap p-6 mb-8 gap-x-4"
             >
-              <FirstColumn image={product.image} name={product.name} />
+              <FirstColumn image={imageToUse} name={product.name} />
               <SecondColumn
                 name={product.name}
-                company={product.company}
+                company={companyToUse}
                 productId={product.id}
+                productType={productType}
               />
-              <div>Quantity: {productQuantities[0].amount}</div>
+              <div>Quantity: {productQuantities[0]?.amount??1}</div>
+              {productSize && <div>Size: {productSize}</div>}
+              {downloadLink
+                && <Button variant="ghost">
+
+          <a href={downloadLink}>Download</a>
+        </Button>
+              }
               <FourthColumn price={product.price} />
             </Card>
           );

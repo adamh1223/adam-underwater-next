@@ -37,14 +37,17 @@ export const SecondColumn = ({
   company,
   productId,
   EProductId,
+  productType,
 }: {
   name?: string;
   company?: string;
   productId?: string;
   EProductId?: string;
+  productType?: string;
 }) => {
   return (
     <div className=" sm:w-48">
+      {productType && <h3>{productType}</h3>}
       {productId ? (
         <Link href={`/products/${productId}`}>
           <h3 className="capitalize font-medium hover:underline">{name}</h3>

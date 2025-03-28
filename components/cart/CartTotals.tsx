@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 function CartTotals({ cart, includesEProducts, includesBoth }: { cart: Cart, includesEProducts: Boolean, includesBoth: boolean }) {
   const [hideExtraInfo, setHideExtraInfo] = useState(!includesEProducts || includesBoth)
-  const { cartTotal, shipping, tax, orderTotal } = cart;
+  const { cartTotal, shipping, tax, taxRate, orderTotal } = cart;
   console.log(cart, '888888888');
   
   const actionToUse = includesEProducts? createEProductOrder : createOrderAction
