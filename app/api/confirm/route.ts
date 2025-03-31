@@ -91,6 +91,7 @@ where: {
       const orderTotal = orderInfo?.orderTotal ?? 0
       const shipping = orderInfo?.shipping ?? 0
       const tax = orderInfo?.tax ?? 0
+      
       const subtotal = (orderTotal - shipping - tax) ?? 0
 
     await courier.send({

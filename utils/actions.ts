@@ -17,7 +17,6 @@ import { CourierClient } from "@trycourier/courier";
 
 const getAuthUser = async () => {
   const user = await currentUser();
-  console.log(currentUser);
 
   if (!user) redirect("/");
   return user;
@@ -132,8 +131,7 @@ export const createProductAction = async (
     });
     const stringFiles: string[] = await Promise.all(promisedImages);
 
-    console.log("hello world", stringFiles);
-    console.log("goodbye world", rawFiles);
+
 
     await db.product.create({
       data: {
@@ -159,7 +157,7 @@ export const createEProductAction = async (
     const rawFiles = Object.values(
       (formData.getAll("images") as unknown) as File[]
     );
-    console.log(rawFiles);
+
 
     const rawData = Object.fromEntries(formData);
     const promisedImages = rawFiles.map(async (file) => {
@@ -181,7 +179,7 @@ export const createEProductAction = async (
       },
     });
   } catch (error) {
-    console.log(error, '222222222222222');
+
 
     return renderError(error);
   }
@@ -579,7 +577,7 @@ const updateOrCreateCartItem = async ({
   size?: string;
   EProductId?: string;
 }) => {
-  console.log(EProductId, "this is my e product");
+
 
   let cartItem = await db.cartItem.findFirst({
     where: {
@@ -593,14 +591,14 @@ const updateOrCreateCartItem = async ({
       cartId,
     },
   });
-  console.log(ECartItem, '1111.11111');
+
 
 
   // TOOK OUT BECAUSE WE FORGOT WHY IT WAS HERE; ADD REGULAR PRODUCTS QUANTITIES
   // if (EProductId) {
   //   return;
   // }
-  // console.log(cartItem, amount, size, '000000000000');
+
   
 
   if (cartItem && amount && size) {
@@ -618,7 +616,7 @@ const updateOrCreateCartItem = async ({
   }
 
   else if (!cartItem && !EProductId) {
-    console.log('adding a new product');
+
     
     if (amount != undefined) {
       cartItem = await db.cartItem.create({
@@ -629,7 +627,7 @@ const updateOrCreateCartItem = async ({
 
   else {
     if (EProductId != undefined) {
-      console.log("creating an e product");
+
 
       cartItem = await db.cartItem.create({
         data: { EProductId, cartId, amount },
@@ -657,9 +655,12 @@ export const updateCart = async (cart: Cart) => {
   for (const item of cartItems) {
     numItemsInCart += item.amount ?? 1;
     const surcharge = item.size === "medium" ? 100 : 0;
-    console.log(surcharge);
+
     if (item.size && item.amount && item?.product?.price) {
-      cartTotal += item.amount + (Number(surcharge) + item.product.price);
+      cartTotal += item.amount * (Number(surcharge) + item.product.price);
+      console.log(item.amount, '54321');
+      console.log((Number(surcharge) + item.product.price), '6789');
+      
     } else {
       if (item?.product?.price|| item?.EProduct?.price) {
         const pricetoUse = item?.product?.price?item.product.price: item!.EProduct!.price
@@ -668,12 +669,15 @@ export const updateCart = async (cart: Cart) => {
     }
   }
   const tax = cart.taxRate * cartTotal;
+  console.log(tax, '12345');
+  console.log(cart.taxRate, '12345');
+  
   //DEBUG WHY TAX IS NOT BEING SAVED
   const shipping = cartTotal ? cart.shipping : 0;
   const shouldHaveShipping = cartItems.filter((cartItem) => {
     return cartItem.productId != null
   })
-  console.log(shouldHaveShipping, '7777');
+
   
   const orderTotal = shouldHaveShipping?.length>0? cartTotal + tax + shipping: cartTotal + tax
 
@@ -684,7 +688,7 @@ export const updateCart = async (cart: Cart) => {
     data: {
       numItemsInCart,
       cartTotal,
-      tax,
+      tax: tax,
       orderTotal,
     },
     include: {
@@ -701,7 +705,7 @@ export const updateCart = async (cart: Cart) => {
 
 export const isEProductInCart = async (productId: string) => {
   const cartItems = await identifyCart()
-  console.log(productId, 'CCCCCCCCCCCCCCCCCCCCCC');
+
   
   // const cartItems = await db.cartItem.findMany({
   //   where: {
@@ -717,7 +721,6 @@ export const isEProductInCart = async (productId: string) => {
   // });
   const matchingEProductId = cartItems?.map(cartItem => cartItem.EProductId === productId).filter(match => match === true)
 
-  console.log(matchingEProductId, 'DDDDDDDDDDDDDDDDDDDDDDDD');
   
 
   return matchingEProductId?.length? matchingEProductId[0] : false
@@ -750,7 +753,7 @@ export const addToCartAction = async (prevState: any, formData: FormData) => {
       amount,
       size,
     });
-    console.log(productId,'55555.55555');
+
     await updateCart(cart);
   } catch (error) {
     
@@ -780,7 +783,7 @@ export const addEProductToCartAction = async (
     const cart = await fetchOrCreateCart({ userId: user.id });
     await updateOrCreateCartItem({ productId, cartId: cart.id });
     await updateCart(cart);
-    console.log(productId);
+
   } catch (error) {
     return renderError(error);
   }
@@ -849,8 +852,7 @@ export const updateCartItemAction = async ({
 export const createOrderAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
   const fullName = `${user.firstName} ${user.lastName}`;
-  console.log(user);
-  console.log(fullName);
+
 
   let orderId: null | string = null;
   let cartId: null | string = null;
@@ -939,7 +941,7 @@ let productQuantities = [{}];
     //FOR TOMORROW
     //Make sure its a proper type, test sending it out
     }
-console.log(itemIds, 'QQQQQQ');
+
 
 
     const order = await db.order.create({
@@ -1013,7 +1015,7 @@ export async function sendContactEmail({
   email: string;
   message: string;
 }) {
-  console.log(name, email, message);
+
   await courier.send({
     message: {
       to: {

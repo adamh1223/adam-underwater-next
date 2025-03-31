@@ -72,10 +72,10 @@ model Cart {
   cartItems      CartItem[]
   numItemsInCart Int        @default(0)
   cartTotal      Int        @default(0)
-  shipping       Int        @default(5)
-  tax            Int        @default(0)
+  shipping       Float        @default(5)
+  tax            Float        @default(0)
   taxRate        Float      @default(0.0725)
-  orderTotal     Int        @default(0)
+  orderTotal     Float        @default(0)
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
 }
@@ -100,9 +100,9 @@ model Order {
   clerkId           String
   products          Int      @default(0)
   productIDs        String[]
-  orderTotal        Int      @default(0)
-  tax               Int      @default(0)
-  shipping          Int      @default(0)
+  orderTotal        Float      @default(0)
+  tax               Float      @default(0)
+  shipping          Float      @default(0)
   email             String
   isPaid            Boolean  @default(false)
   createdAt         DateTime @default(now())

@@ -34,7 +34,12 @@ export const POST = async (req: NextRequest) => {
     });
   }
 
-  
+  const taxRate = await stripe.taxRates.create({
+      display_name: 'Sales Tax:',
+      inclusive: false,
+      percentage: cart.taxRate,
+
+    })
   const line_items = cart.cartItems.map((cartItem) => {
 
     const productNameToUse = cartItem?.product? cartItem.product.name : ''
@@ -60,15 +65,19 @@ export const POST = async (req: NextRequest) => {
           images: imageToUse
         },
         unit_amount: priceToUse
+
       },
+      tax_rates: [taxRate.id]
     };
   });
   try {
+    
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
       metadata: { orderId, cartId },
       line_items: line_items,
       mode: 'payment',
+      // automatic_tax: {enabled: true},
       shipping_address_collection: {allowed_countries: ['US']},
       return_url: `${origin}/api/confirm?session_id={CHECKOUT_SESSION_ID}`,
     });
