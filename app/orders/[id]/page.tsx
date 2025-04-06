@@ -106,6 +106,12 @@ console.log(productsPurchased, '44444444444444');
                 && <Button variant="ghost">
 
           <a href={downloadLink}>Download</a>
+          {/* 
+          Button "My Licensed Channels" that opens modal showing channels
+          pencil Icon to edit channel
+          Grab the info from their stock footage form and put it here
+          Make this info available to me too. if they update it, I should see that.
+          */}
         </Button>
               }
               <FourthColumn price={product.price} />

@@ -48,6 +48,8 @@ export const GET = async (req: NextRequest) => {
       }
       
     })
+    console.log(orderInfo, 'QWERTY');
+    
     const [products, EProducts] = await Promise.all([
       await db.product.findMany( {
 where: {
@@ -62,7 +64,24 @@ where: {
 
     ])
     const productInfo = [...products, ...EProducts]
+    const EProductsOnly = EProducts?.length > 0
+    const regularProductsOnly = products?.length > 0
+    const mixedOrder = EProductsOnly && regularProductsOnly
+
+    console.log(EProductsOnly, 'IIII');
+    console.log(regularProductsOnly, 'JJJJ');
+    console.log(mixedOrder, 'RRRR');
     
+    const determinedCourierTemplate = () => {
+      if (mixedOrder) {
+        return '47VN859Q3EMVQDJ58KE1YN3JTV1D'
+      } else if (EProductsOnly){
+        return '8V46KS6NK44WFWHXZM2BN5KP1Z47'
+      } else {
+        return 'YF16GXYDBN4NQ2QD1716FK7SAY3G'
+      }
+    }
+
     const productDescriptions = productInfo.map((product: Product | EProduct) => {
       let productImage;
       if ("image" in product) {
@@ -99,16 +118,16 @@ where: {
     to: {
       email: orderInfo?.email,
     },
-    template: "YF16GXYDBN4NQ2QD1716FK7SAY3G",
+    template: determinedCourierTemplate(),
     data: {
       orderInfo: orderInfoString,
       fullName: orderInfo?.fullName,
       productDescriptions,
       bodyText,
-      orderTotal,
+      orderTotal: orderTotal.toFixed(2),
       shipping,
-      tax,
-      subtotal,
+      tax: tax.toFixed(2),
+      subtotal: Math.ceil(subtotal),
       shippingDetails: shippingDetails?.address,
     },
     routing: {

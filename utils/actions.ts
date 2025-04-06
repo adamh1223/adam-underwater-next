@@ -851,6 +851,8 @@ export const updateCartItemAction = async ({
 
 export const createOrderAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
+  console.log(user, 'ZZZZZZZ');
+  
   const fullName = `${user.firstName} ${user.lastName}`;
 
 
@@ -877,6 +879,8 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
         amount: cartItem.amount,
       };
     });
+    console.log(cart, '2000');
+    
     const order = await db.order.create({
       data: {
         clerkId: user.id,
@@ -952,7 +956,7 @@ let productQuantities = [{}];
         products: cart.numItemsInCart,
         orderTotal: cart.orderTotal,
         tax: cart.tax,
-        shipping: undefined,
+        shipping: mixedOrder? cart.shipping: undefined,
         email: user.emailAddresses[0].emailAddress,
         fullName,
         productQuantities,
